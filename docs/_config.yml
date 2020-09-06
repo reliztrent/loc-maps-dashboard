@@ -3,9 +3,7 @@ markdown: kramdown
 plugins:
   - jekyll-remote-theme
 remote_theme: broccolini/swiss
-
 timezone: America/New_York 
-
 
 # Site settings
 # These are used to personalize the site. If you look in the HTML files,
@@ -13,9 +11,9 @@ timezone: America/New_York
 # Custom variables will be accessible in the templates via {{ site.myvariable }}.
 title: GLAM data
 description: Experiments with open data and galleries, libraries, archives, and museums
-baseurl: "/glam-data" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-github_repo: glam-data # the GitHub repo name for your project
+baseurl: "/loc-maps-dashboard" # the subpath of your site, e.g. /blog
+#url: # the base hostname & protocol for your site, e.g. http://example.com
+github_repo: loc-maps-dashboard # the GitHub repo name for your project
 github_username: reliztrent
 
 # Optional social link, you can choose from the following options:
