@@ -1,0 +1,72 @@
+<script>
+
+
+// set the dimensions and margins of the graph
+var maps_partof_margin = {top: 10, right: 30, bottom: 115, left: 40},
+    maps_partof_width = 450 - maps_partof_margin.left - maps_partof_margin.right,
+    maps_partof_height = 350 - maps_partof_margin.top - maps_partof_margin.bottom;
+
+// append the svg object to the body of the page
+var maps_partof = d3.select("#d3-maps-partof")
+  .append("svg")
+    .attr("width", maps_partof_width + maps_partof_margin.left + maps_partof_margin.right)
+    .attr("height", maps_partof_height + maps_partof_margin.top + maps_partof_margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + maps_partof_margin.left + "," + maps_partof_margin.top + ")");
+
+// Parse the Data
+d3.json("https://reliztrent.github.io/glam-data/data/all-facet-partof.json", function(data) {
+
+  
+
+// X axis
+var x = d3.scaleBand()
+  .range([ 0, maps_partof_width ])
+  .domain(data.map(function(d) { return d.facet; }))
+  .padding(0.2);
+maps_partof.append("g")
+  .attr("transform", "translate(0," + maps_partof_height + ")")
+  .call(d3.axisBottom(x))
+  .selectAll("text")
+    .attr("transform", "translate(-10,0)rotate(-45)")
+    .style("text-anchor", "end");
+
+// Add Y axis
+var y = d3.scaleLinear()
+  .domain([0, 60000])
+  .range([ maps_partof_height, 0]);
+maps_partof.append("g")
+  .call(d3.axisLeft(y));
+
+// Bars
+maps_partof.selectAll("bar")
+  .data(data)
+  .enter()
+  .append("rect")
+    .attr("x", function(d) { return x(d.facet); })
+    .attr("width", x.bandwidth())
+    .attr("fill", "#69b3a2")
+    // no bar at the beginning thus:
+    .attr("height", function(d) { return maps_partof_height - y(0); }) // always equal to 0
+    .attr("y", function(d) { return y(0); })
+  .on("mousemove", function(d){
+    tooltip
+      .style("left", d3.event.pageX - 30 + "px")
+      .style("top", d3.event.pageY - 40 + "px")
+      .style("display", "inline-block")
+      .html((d.count));
+  })
+  .on("mouseout", function(d){ tooltip.style("display", "none");})
+
+// Animation
+maps_partof.selectAll("rect")
+  .transition()
+  .duration(800)
+  .attr("y", function(d) { return y(d.count); })
+  .attr("height", function(d) { return maps_partof_height - y(d.count); })
+  .delay(function(d,i){console.log(i) ; return(i*200)})
+
+})
+
+</script>

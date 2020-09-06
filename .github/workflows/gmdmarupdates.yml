@@ -1,0 +1,41 @@
+name: New gmd.mar updates
+on:
+  schedule:
+      - cron: '10 4 * * *' 
+jobs:
+  refresh-feed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          
+      - name: Set TIMESTAMP env
+        run: echo ::set-env name=TIMESTAMP::$(date -d "4 hours ago" +"%Y%m%d") #offset from UTC
+      - name: Set TODAY env
+        run: echo ::set-env name=TODAY::$(date -d "1 day ago" +"%Y-%m-%d") #offset due to timing of catalog/P1 updates 
+      - name: Set YESTEDAY env
+        run: echo ::set-env name=YESTERDAY::$(date -d "2 days ago" +"%Y-%m-%d") #offset due to timing of catalog/P1 updates 
+  
+      - name: Fetch API Data - ${{ env.TIMESTAMP }}📦
+        uses: JamesIves/fetch-api-data-action@1.0.15
+        with:
+          ENDPOINT: https://www.loc.gov/search/?all=true&sb=shelf-id&sq=group:gmd.mar+AND+number_source_modified:[${{ env.YESTERDAY }} TO ${{ env.TODAY }}]&fo=json&at=facets
+          RETRY: true
+          SAVE_NAME: maps-loc-gov-facets-${{ env.TIMESTAMP }}
+          
+      - name: Fetch API Data - TODAY 📦
+        uses: JamesIves/fetch-api-data-action@1.0.15
+        with:
+          ENDPOINT: https://www.loc.gov/search/?all=true&sb=shelf-id&sq=group:gmd.mar+AND+number_source_modified:[${{ env.YESTERDAY }} TO ${{ env.TODAY }}]&fo=json&at=facets
+          RETRY: true
+          SAVE_NAME: maps-loc-gov-facets-TODAY
+          
+      - name: Build and Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.BUILD_AND_DEPLOY_ACTION_ACCESS_TOKEN }}
+          BRANCH: master # Pushes the updates to the master branch.
+          FOLDER: fetch-api-data-action # Must maintain this variable, appears to be ignored
+          TARGET_FOLDER: docs/_data/gmdmar-recent-daily # Saves the data into the 'docs/_data' directory on the master branch.

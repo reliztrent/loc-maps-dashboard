@@ -1,0 +1,82 @@
+---
+layout: page
+title: LOC Maps Dashboard
+---
+
+<style>
+	.h0 {font-size:80px !important; padding-top:30px; padding-bottom:35px;}
+	rect {fill: #69b3a2;}
+	rect:hover {fill: #8CD3DD;}
+	path:hover {}
+	.toolTip {
+	  position: absolute;
+	  display: none;
+	  padding:4px 10px;
+	  height: auto;
+	  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+	  color:white;
+	  text-align: center;
+	  font-size:12px;
+	}
+	.line {
+	  stroke-width: 4px;
+	}
+</style>
+
+<p><small>Data about publicly-availalable maps from the <a href='https://loc.gov/maps'>Library of Congress online map collections</a>. Data last refreshed : <code>{{ site.time | date: "%B %d, %Y" }} 00:15 AM</small></code>.
+
+
+<div class="clearfix">
+	<div class="col-4 sm-width-full left">
+		<h3>Online map objects</h3>
+		<p>{{site.data.map-facets-daily.map-facets-TODAY.facets[0].filters[0].count}}</p>
+	
+	</div>
+	<div class="col-4 sm-width-full left">
+		<h3> Online Sanborns atlases</h3>
+		<p>{{site.data.map-facets-daily.map-facets-TODAY.facets[5].filters[1].count}}</p>
+	</div>
+	<div class="col-4 sm-width-full left">
+		<h3> Online gmd.mar objects</h3>
+		<p>{{site.data.gmdmar-facets-daily.gmdmar-facets-TODAY.facets[0].filters[0].count}}</p>
+	</div>
+	<p>&nbsp;</p>
+</div>
+
+<div class="clearfix">
+	<div class="col-7 sm-width-full left">
+		<h3>Maps, by Collection</h3>
+		<p>Online objects in loc.gov/maps, by "Part of" facet</p>
+		<div id="d3-maps-partof"></div>
+
+		<h3>GMD.MAR Last Modified, by Month</h3>
+		<p>Map objects from the gmd.mar ETL, by total number most recently modified (created or updated) by month. </p>
+		<div id="d3-gmdmar-recent"></div>
+
+	</div>
+
+	<div class="col-5 sm-width-full left">
+		<h3>Maps, by Online Status</h3>
+		<p>Included are all map objects in loc.gov/maps, online (true) vs. not online (false). </p>
+		<div id="d3-maps-online-donut"></div>
+		<dl><dt>Online</dt><dd>digitized materials, webpages, finding aids, e-resources, other online resources</dd><dt>Not online</dt><dd>links to catalog records, other metadata records (e.g., Sanborn records where Sanborn is not available online)<dd></dl>
+		<br>
+		<h3>GMD.MAR Modified, by Day and Online Status</h3>
+		<p>Map objects from the gmd.mar ETL, by total modified (created or updated) per day</p>
+		<div id="d3-gmdmar-recent-daily"></div>
+	</div>
+</div>
+<p>&nbsp;</p>
+<div class="clearfix">
+	<div class="col-12 sm-width-full">
+		<h3>Data Freshness</h3>
+		{% include data_freshness.html %}
+	</div>
+</div>
+
+
+<script src="//d3js.org/d3.v4.min.js"></script>
+{% include d3-maps-online.html %}
+{% include d3-maps-partof.html %}
+{% include d3-gmdmar-recent.html %}
+{% include d3-gmdmar-recent-daily.html %}

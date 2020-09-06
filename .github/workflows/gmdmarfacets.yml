@@ -1,0 +1,39 @@
+name: Daily get loc.gov map facets
+on:
+  schedule:
+    - cron: '5 4 * * *'
+
+jobs:
+  refresh-feed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          
+      - name: Set env
+        run: echo ::set-env name=TIMESTAMP::$(date +"%Y%m%d")
+  
+      - name: Fetch API Data - ${{ env.TIMESTAMP }} 📦
+        uses: JamesIves/fetch-api-data-action@1.0.15
+        with:
+          ENDPOINT: https://www.loc.gov/maps/?sq=group:gmd.mar&fo=json&at=facets
+          RETRY: true
+          SAVE_NAME: gmdmar-facets-${{ env.TIMESTAMP }}
+      
+      - name: Fetch API Data - TODAY 📦
+        uses: JamesIves/fetch-api-data-action@1.0.15
+        with:
+          ENDPOINT: https://www.loc.gov/maps/?sq=group:gmd.mar&fo=json&at=facets
+          RETRY: true
+          SAVE_NAME: gmdmar-facets-TODAY
+          
+          
+      - name: Build and Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.BUILD_AND_DEPLOY_ACTION_ACCESS_TOKEN }}
+          BRANCH: master # Pushes the updates to the master branch.
+          FOLDER: fetch-api-data-action # Must maintain this variable, appears to be ignored
+          TARGET_FOLDER: docs/_data/gmdmar-facets-daily # Saves the data into the 'docs/_data' directory on the master branch.

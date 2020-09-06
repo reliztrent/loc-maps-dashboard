@@ -1,0 +1,148 @@
+<script>
+
+// Dimensions and margins
+var margin = {top: 20, right: 100, bottom: 100, left: 30},
+    width = 450 - margin.left - margin.right,
+    height = 350 - margin.top - margin.bottom;
+
+// Append to body
+var svg = d3.select("#d3-gmdmar-recent-daily")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+//Read the data
+d3.json("https://reliztrent.github.io/glam-data/data/gmdmar-recent-daily.json", function(data) { 
+
+    // A color scale: one color for each group
+    var myColor = d3.scaleOrdinal()
+      .domain(["online", "not_online"])
+      .range(d3.schemeCategory10);
+
+    // parse the date / time
+    var parseTime = d3.timeParse("%Y-%m-%d");
+
+    // set the ranges
+    var x = d3.scaleTime().range([0, width]);
+    var y = d3.scaleLinear().range([height, 0]);
+
+    // define the first line
+    var line1 = d3.line()
+        .x(function(d) { return x(d.facet); })
+        .y(function(d) { return y(d.online); });
+    // define the second line
+    var line2 = d3.line()
+        .x(function(d) { return x(d.facet); })
+        .y(function(d) { return y(d.not_online); });
+
+    // format the data
+    data.forEach(function(d) {
+        d.facet = parseTime(d.facet);
+        d.online = +d.online;
+        d.not_online = +d.not_online;
+    });
+
+    // sort years ascending
+    data.sort(function(a, b){
+      return a["facet"]-b["facet"]; 
+    })
+
+    // Scale the range of the data
+    x.domain(d3.extent(data, function(d) { return d.facet; })); //list of all facets
+    y.domain([0, d3.max(data, function(d) {
+      return Math.max(d.online, d.not_online); })]); 
+
+    // Add first line
+    svg.append("path")
+        .data([data])
+        .attr("class", "line")
+        .attr("d", line1)
+        .attr("fill", "none")
+        .attr("stroke", "#8CD3DD");
+
+    // Add second line
+    svg.append("path")
+        .data([data])
+        .attr("class", "line")
+        .attr("d", line2)
+        .attr("fill", "none")
+        .attr("stroke", "#69b3a2");
+
+    // Add Y Axis
+    svg.append("g")
+        .attr("class", "axis")
+        .call(d3.axisLeft(y));
+
+    // Add X Axis
+    svg.append("g")
+        .attr("class", "axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x)
+          .tickFormat(d3.timeFormat("%a %b %d")))
+        .selectAll("text") 
+          .style("text-anchor", "end")
+          .attr("dx", "-.8em")
+          .attr("dy", ".15em")
+          .attr("transform", "rotate(-65)");
+
+    // Add line labels
+    svg.append("text")
+        .data([data])
+        .text("online")
+        .attr("transform", "translate(" + width + "," + y(data[data.length-1].online) + ")")
+        .style("fill","#8CD3DD")
+        .attr("x", 12)
+        .attr("y", -8)//move up a bit;
+    svg.append("text")
+        .data([data])
+        .text("not online")
+        .attr("transform", "translate(" + width + "," + y(data[data.length-1].not_online) + ")")
+        .style("fill","#69b3a2")
+        .attr("x", 12)
+        .attr("y", 8);
+
+    // Add the points
+    svg
+      .selectAll("points")
+      .data(data)
+      .enter()
+        .append("circle")
+          .attr("cx", function(d) { return x(d.facet) } )
+          .attr("cy", function(d) { return y(d.online) } )
+          .attr("r", 4)
+          .attr("stroke", "white")
+          .style("fill", "#8CD3DD")
+          .on("mousemove", function(d){
+            tooltip
+              .style("left", d3.event.pageX - 30 + "px")
+              .style("top", d3.event.pageY - 40 + "px")
+              .style("display", "inline-block")
+              .html((d.online));
+          })
+          .on("mouseout", function(d){ tooltip.style("display", "none");});
+    svg
+      .selectAll("points")
+      .data(data)
+      .enter()
+        .append("circle")
+          .attr("cx", function(d) { return x(d.facet) } )
+          .attr("cy", function(d) { return y(d.not_online) } )
+          .attr("r", 4)
+          .attr("stroke", "white")
+          .style("fill", "#69b3a2")
+          .on("mousemove", function(d){
+            tooltip
+              .style("left", d3.event.pageX - 30 + "px")
+              .style("top", d3.event.pageY - 40 + "px")
+              .style("display", "inline-block")
+              .html((d.not_online));
+          })
+          .on("mouseout", function(d){ tooltip.style("display", "none");});
+}
+)
+
+
+</script>

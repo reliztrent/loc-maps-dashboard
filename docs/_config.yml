@@ -1,0 +1,31 @@
+name: GLAM data
+markdown: kramdown
+plugins:
+  - jekyll-remote-theme
+remote_theme: broccolini/swiss
+
+timezone: America/New_York 
+
+
+# Site settings
+# These are used to personalize the site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.github_repo }}, and so on.
+# Custom variables will be accessible in the templates via {{ site.myvariable }}.
+title: GLAM data
+description: Experiments with open data and galleries, libraries, archives, and museums
+baseurl: "/glam-data" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+github_repo: glam-data # the GitHub repo name for your project
+github_username: reliztrent
+
+# Optional social link, you can choose from the following options:
+# twitter (default), instagram, medium, or dribbble
+#social_link:
+#social_username: 
+
+# Set theme color here
+# Choose from: black (default), blue, gray, magenta, orange, red, white, and yellow.
+theme_color: white
+
+# Build settings
+markdown: kramdown

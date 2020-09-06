@@ -1,0 +1,27 @@
+{
+  "pagination": {
+    "from": 1,
+    "results": "1 - 5",
+    "last": null,
+    "total": 1,
+    "previous": null,
+    "perpage": 25,
+    "perpage_options": [
+      25,
+      50,
+      100,
+      150
+    ],
+    "of": 5,
+    "next": null,
+    "current": 1,
+    "to": 5,
+    "page_list": [
+      {
+        "url": null,
+        "number": 1
+      }
+    ],
+    "first": null
+  }
+}

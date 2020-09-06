@@ -1,0 +1,21 @@
+{% assign date_list = '' %}
+
+{% for file in site.data.gmdmar-recent-monthly %}
+  {% assign file_date = file[0] | slice: -6, 6 %}
+  {% assign date_list = date_list | append: file_date %}
+  {% if forloop.last == false %}
+    {% assign date_list = date_list | append: ',' %}
+  {% endif %}
+{% endfor %}
+
+{% assign date_array = date_list | split: ',' %}
+{% assign date_array_sorted = date_array | sort_natural %}
+{% assign last_modified = date_array_sorted | last %}
+{% assign year = last_modified | slice: 0,4 %}
+{% assign prev_month = last_modified | slice: 4,2 %}
+{% assign month = prev_month | plus: 1 %}
+
+
+{{ month }}/01/{{ year }}
+
+
