@@ -32,11 +32,13 @@ d3.json("https://reliztrent.github.io/loc-maps-dashboard/data/gmdmar-recent-dail
     // define the first line
     var line1 = d3.line()
         .x(function(d) { return x(d.facet); })
-        .y(function(d) { return y(d.online); });
+        .y(function(d) { return y(d.online); })
+        .curve(d3.curveMonotoneX) ;
     // define the second line
     var line2 = d3.line()
         .x(function(d) { return x(d.facet); })
-        .y(function(d) { return y(d.not_online); });
+        .y(function(d) { return y(d.not_online); })
+        .curve(d3.curveMonotoneX);
 
     // format the data
     data.forEach(function(d) {
@@ -81,7 +83,8 @@ d3.json("https://reliztrent.github.io/loc-maps-dashboard/data/gmdmar-recent-dail
         .attr("class", "axis")
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(x)
-          .tickFormat(d3.timeFormat("%a %b %d")))
+          .tickFormat(d3.timeFormat("%a %b %d"))
+          .tickValues(data.map(function(d){return d.date})))
         .selectAll("text") 
           .style("text-anchor", "end")
           .attr("dx", "-.8em")
