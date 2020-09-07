@@ -15,7 +15,7 @@ var maps_online_donut = d3.select("#d3-maps-online-donut")
   .append("g")
     .attr("transform", "translate(" + maps_online_donut_width / 2 + "," + maps_online_donut_height / 2 + ")");
  
-d3.json("https://reliztrent.github.io/glam-data/data/maps-online.json", function(data) {
+d3.json("https://reliztrent.github.io/loc-maps-dashboard/data/maps-online.json", function(data) {
 
 // set the color scale
 var color = d3.scaleOrdinal()
