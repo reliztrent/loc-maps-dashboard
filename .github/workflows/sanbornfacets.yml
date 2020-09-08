@@ -1,6 +1,7 @@
 name: Daily get Sanborn atlas facets
 on:
-  push
+  schedule:
+    - cron: '0 4 * * *'
 jobs:
   refresh-feed:
     runs-on: ubuntu-latest
