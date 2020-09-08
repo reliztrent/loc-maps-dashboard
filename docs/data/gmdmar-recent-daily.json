@@ -9,12 +9,11 @@ layout: none
 {% assign year = file[0] | slice: -8, 4 %}
 {% assign month = file[0] | slice: -4, 2 %}
 {% assign day = file[0] | slice: -2, 2 %}
-{% if forloop.first == false %},{% endif %}
 {
 	"facet": "{{year}}-{{month}}-{{day}}",
 	"online": {{ online | default: 0 }}, 
 	"not_online": {{ not_online | default: 0 }} 	
-}
+}{% if forloop.last == false %},{% endif %}
 {% endif %}
 {% endfor %}
 ]
