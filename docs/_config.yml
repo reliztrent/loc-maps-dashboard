@@ -1,4 +1,4 @@
-name: GLAM data
+name: Maps Data Dashboards
 markdown: kramdown
 plugins:
   - jekyll-remote-theme
@@ -9,7 +9,7 @@ timezone: America/New_York
 # These are used to personalize the site. If you look in the HTML files,
 # you will see them accessed via {{ site.title }}, {{ site.github_repo }}, and so on.
 # Custom variables will be accessible in the templates via {{ site.myvariable }}.
-title: GLAM data
+title: Maps Data Dashboards
 description: Experiments with open data and galleries, libraries, archives, and museums
 baseurl: "/loc-maps-dashboard" # the subpath of your site, e.g. /blog
 #url: # the base hostname & protocol for your site, e.g. http://example.com
