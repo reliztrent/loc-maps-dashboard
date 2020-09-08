@@ -1,0 +1,20 @@
+---
+layout: none
+---
+[
+{% for file in site.data.map-facets-daily %}
+{% if file[0].size == 19 %}
+{% assign online = file[1].facets[0].filters[0].count %}
+{% assign not_online = file[1].facets[0].filters[1].count %}
+{% assign year = file[0] | slice: -8, 4 %}
+{% assign month = file[0] | slice: -4, 2 %}
+{% assign day = file[0] | slice: -2, 2 %}
+{% if forloop.first == false %},{% endif %}
+{
+	"facet": "{{year}}-{{month}}-{{day}}",
+	"online": {{ online | default: 0 }}, 
+	"not_online": {{ not_online | default: 0 }} 	
+}
+{% endif %}
+{% endfor %}
+]
