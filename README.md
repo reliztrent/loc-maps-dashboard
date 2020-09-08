@@ -1,4 +1,4 @@
-# LOC Maps Dashboard
+# Maps Dashboard
 
 This repo contains files used to build the GitHub pages site at https://reliztrent.github.io/loc-maps-dashboard/. The site is built using Jekyll, which integrates by default with GitHub pages. The Jekyll pages are keps in the **/docs** directory. Many of the basic configurations for the site can be found in **/docs/\_config.yml**. 
 
@@ -19,7 +19,7 @@ If duplicating this repo, you'll need to:
 
 ## Data Updates
 
-Daily, this repo saves data from loc.gov about the Library of Congress's online map collections. This is achieved through a series of workflow files in the directory **.github/workflows/**. Each workflow file runs a cron jobs every evening just after midnight (or just after midnight after the first day of every month). The cron jobs make API requests to the loc.gov API and save the resulting JSON files into subdirectories within this repo's **/docs/\_data/ directory**.  
+Daily, this repo saves data from [loc.gov](http://loc.gov) about online map collections. This is achieved through a series of workflow files in the directory **.github/workflows/**. Each workflow file runs a cron jobs every evening just after midnight (or just after midnight after the first day of every month). The cron jobs make API requests to the [loc.gov](http://loc.gov) API and save the resulting JSON files into subdirectories within this repo's **/docs/\_data/ directory**.  
 
 These workflows use the [Fetch API Data Action](https://github.com//JamesIves/fetch-api-data-action) and [GitHub Pages Deploy Action](https://github.com/JamesIves/github-pages-deploy-action) from James Ives.
 
@@ -29,7 +29,7 @@ These workflows can be created by creating files in **.github/workflows/**, or b
 
 ## D3 Visualizations
  
-The workflows save data received from the loc.gov API in the form of JSON files in the **/docs/\_data directory**. Files in the **/docs/data** directory (notice the change in underscore) are then used to restructure the JSON for the D3 visualizations. The files in **/docs/data** use Liquid templating language (documented [here](https://jekyllrb.com/docs/liquid/) and [here](https://shopify.github.io/liquid/)) to pull from the **/docs/\_data** files. Open the files in this repo to see the Liquid syntax (e.g., [/docs/data/all-facet-partof.json](/docs/data/all-facet-partof.json)), or view them at their GitHub Pages URL to see them as JSON after their Jekyll build (e.g., https://reliztrent.github.io/loc-maps-dashboard/data/all-facet-partof.json).
+The workflows save data received from the [loc.gov](http://loc.gov) API in the form of JSON files in the **/docs/\_data directory**. Files in the **/docs/data** directory (notice the change in underscore) are then used to restructure the JSON for the D3 visualizations. The files in **/docs/data** use Liquid templating language (documented [here](https://jekyllrb.com/docs/liquid/) and [here](https://shopify.github.io/liquid/)) to pull from the **/docs/\_data** files. Open the files in this repo to see the Liquid syntax (e.g., [/docs/data/all-facet-partof.json](/docs/data/all-facet-partof.json)), or view them at their GitHub Pages URL to see them as JSON after their Jekyll build (e.g., https://reliztrent.github.io/loc-maps-dashboard/data/all-facet-partof.json).
 
 The visualizations (charts and graphs) are then built using [D3](https://github.com/d3/d3/wiki) JavaScript library for data visualizations. Each visualization is configured in its own file in the **/\_includes/ directory** (the files are saved as .html for Jekyll purposes). Each includes file is then included at the bottom of the index.html file with a [Jekyll includes statement](https://jekyllrb.com/docs/includes/): 
 
@@ -49,4 +49,4 @@ In summary, the flow of data being converted to visualization (after being initi
 
 ## LOC.GOV API
 
-The data comes from the Library of Congress's online collections platform loc.gov. Documentation on the platform's API can be found at [About the loc.gov JSON API](https://libraryofcongress.github.io/data-exploration/). The API queries used for this site can be found in the workflow files in **.github/workflows/**. The JSON returned from the API also sometimes contains the query request string, found in the JSON files saved into **/docs/_data/**
+The data comes from the online collections at [loc.gov](http://loc.gov). Documentation on the platform's API can be found at [About the loc.gov JSON API](https://libraryofcongress.github.io/data-exploration/). The API queries used for this site can be found in the workflow files in **.github/workflows/**. The JSON returned from the API also sometimes contains the query request string, found in the JSON files saved into **/docs/_data/**
