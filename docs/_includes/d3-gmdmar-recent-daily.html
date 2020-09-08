@@ -84,7 +84,7 @@ d3.json("https://reliztrent.github.io/loc-maps-dashboard/data/gmdmar-recent-dail
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(x)
           .tickFormat(d3.timeFormat("%a %b %d"))
-          .tickValues(data.map(function(d){return d.date})))
+          .tickValues(data.map(function(d){return d.facet})))
         .selectAll("text") 
           .style("text-anchor", "end")
           .attr("dx", "-.8em")
