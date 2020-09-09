@@ -58,7 +58,7 @@ d3.json("https://reliztrent.github.io/loc-maps-dashboard/data/gmdmar-total-daily
         .attr("class", "line")
         .attr("d", line1)
         .attr("fill", "none")
-        .attr("stroke", "#ff7f0e");
+        .attr("stroke", "#8CD3DD");
 
     // Add Y Axis
     gmdmar_total_daily_svg.append("g")
@@ -83,7 +83,7 @@ d3.json("https://reliztrent.github.io/loc-maps-dashboard/data/gmdmar-total-daily
         .data([data])
         .text("online")
         .attr("transform", "translate(" + gmdmar_total_daily_width + "," + y(data[data.length-1].online) + ")")
-        .style("fill","#ff7f0e")
+        .style("fill","#8CD3DD")
         .attr("x", 12)
         .attr("y", -8)//move up a bit;
 
@@ -97,7 +97,7 @@ d3.json("https://reliztrent.github.io/loc-maps-dashboard/data/gmdmar-total-daily
           .attr("cy", function(d) { return y(d.online) } )
           .attr("r", 4)
           .attr("stroke", "white")
-          .style("fill", "#ff7f0e")
+          .style("fill", "#8CD3DD")
           .on("mousemove", function(d){
             tooltip
               .style("left", d3.event.pageX - 30 + "px")

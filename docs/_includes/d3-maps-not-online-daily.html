@@ -58,7 +58,7 @@ d3.json("https://reliztrent.github.io/loc-maps-dashboard/data/maps-online-daily.
         .attr("class", "line")
         .attr("d", line1)
         .attr("fill", "none")
-        .attr("stroke", "#8CD3DD");
+        .attr("stroke", "#ff7f0e");
 
     // Add Y Axis
     maps_not_online_daily_svg.append("g")
@@ -83,7 +83,7 @@ d3.json("https://reliztrent.github.io/loc-maps-dashboard/data/maps-online-daily.
         .data([data])
         .text("not online")
         .attr("transform", "translate(" + maps_not_online_daily_width + "," + y(data[data.length-1].not_online) + ")")
-        .style("fill","#8CD3DD")
+        .style("fill","#ff7f0e")
         .attr("x", 12)
         .attr("y", -8)//move up a bit;
 
@@ -97,7 +97,7 @@ d3.json("https://reliztrent.github.io/loc-maps-dashboard/data/maps-online-daily.
           .attr("cy", function(d) { return y(d.not_online) } )
           .attr("r", 4)
           .attr("stroke", "white")
-          .style("fill", "#8CD3DD")
+          .style("fill", "#ff7f0e")
           .on("mousemove", function(d){
             tooltip
               .style("left", d3.event.pageX - 30 + "px")
