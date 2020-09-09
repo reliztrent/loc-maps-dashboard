@@ -13,7 +13,7 @@ layout: none
 	"facet": "{{year}}-{{month}}-{{day}}",
 	"online": {{ online | default: 0 }}, 
 	"not_online": {{ not_online | default: 0 }} 	
-}{% if forloop.first == false %},{% endif %}
+}{% if forloop.last == false %},{% endif %}
 {% endif %}
 {% endfor %}
 ]
