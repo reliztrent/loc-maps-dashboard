@@ -9,7 +9,11 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>Online map objects</td>
+			<td><code>Top row numbers</code>
+			</td>
+		</tr>
+		<tr>
+			<td>Online Map objects</td>
 			<td><code>{% include lm-map-facets-daily.html %}</code></td>
 			<td><code><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}/tree/master/docs/_data/map-facets-daily">_data/map-facets-daily/</a></code></td>
 			<td><code><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}/tree/master/docs/_data/map-facets-daily/map-facets-TODAY.json">map-facets-TODAY.json</a></code></td>
@@ -21,34 +25,58 @@
 			<td><code><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}/tree/master/docs/_data/map-facets-daily/map-facets-TODAY.json">map-facets-TODAY.json</a></code></td>
 		</tr>
 		<tr>
-			<td>Online gmd.mar objects</td>
+			<td>Online GMD.MAR  objects</td>
 			<td><code>{% include lm-map-facets-daily.html %}</code></td>
 			<td><code><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}/tree/master/docs/_data/map-facets-daily">_data/map-facets-daily/</a></code></td>
 			<td><code><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}/tree/master/docs/_data/map-facets-daily/map-facets-TODAY.json">map-facets-TODAY.json</a></code></td>
 		</tr>
+		
 		<tr>
-			<td>GMD.MAR Last Modified, by Month</td>
+			<td><code>Diagrams</code>
+			</td>
+		</tr>
+
+		<tr>
+			<td>GMD.MAR objects Last Modified, by Month</td>
 			<td><code>{% include lm-gmdmar-recent-monthly.html %}</code></td>
 			<td><code><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}/tree/master/docs/_data/gmdmar-recent-monthly">_data/gmdmar-recent-monthly/</a></code></td>
-			<td><code><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}/tree/master/docs/_data/gmdmar-recent-monthly/maps-loc-gov-facets-{{site.time | date: "%Y"}}0{{site.time | date: "%m" | minus: 1}}.json">maps-loc-gov-facets-{{site.time | date: "%Y" }}0{{site.time | date: "%m" | minus: 1}}.json</a></code></td>
+			<td>all files</td>
 		</tr>
 		<tr>
-			<td>Online Maps, by Collection</td>
+			<td>GMD.MAR objects Modified, by Day</td>
+			<td><code>{% include lm-map-facets-daily.html %}</code></td>
+			<td><code><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}/tree/master/docs/_data/gmdmar-recent-daily">_data/gmdmar-recent-daily/</a></code></td>
+			<td>all files</td>
+		</tr>
+		<tr>
+			<td>Total GMD.MAR objects, by Day</td>
+			<td><code>{% include lm-map-facets-daily.html %}</code></td>
+			<td><code><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}/tree/master/docs/_data/gmdmar-total-facets-daily">_data/gmdmar-total-facets-daily/</a></code></td>
+			<td>all files</td>
+		</tr>
+		<tr>
+			<td>Total Map objects, by Online Status</td>
 			<td><code>{% include lm-map-facets-daily.html %}</code></td>
 			<td><code><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}/tree/master/docs/_data/map-facets-daily">_data/map-facets-daily/</a></code></td>
 			<td><code><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}/tree/master/docs/_data/map-facets-daily/map-facets-TODAY.json">map-facets-TODAY.json</a></code></td>
 		</tr>
 		<tr>
-			<td>Online vs Not Online objects</td>
+			<td>Total Online Map objects, by Day</td>
 			<td><code>{% include lm-map-facets-daily.html %}</code></td>
-			<td><code><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}/tree/master/docs/_data/gmdmar-recent-monthly">_data/gmdmar-recent-monthly/</a></code></td>
-			<td><code><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}/tree/master/docs/_data/map-facets-daily/map-facets-TODAY.json">map-facets-TODAY.json</a></code></td>
+			<td><code><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}/tree/master/docs/_data/map-facets-daily">_data/map-facets-daily/</a></code></td>
+			<td>all files</td>
 		</tr>
 		<tr>
-			<td>GMD.MAR Modified, by Day and Online Status</td>
+			<td>Total Map records (not online), by Day</td>
 			<td><code>{% include lm-map-facets-daily.html %}</code></td>
-			<td><code><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}/tree/master/docs/_data/gmdmar-recent-daily">_data/gmdmar-recent-monthly/</a></code></td>
-			<td> </td>
+			<td><code><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}/tree/master/docs/_data/map-facets-daily">_data/map-facets-daily/</a></code></td>
+			<td>all files</td>
+		</tr>
+		<tr>
+			<td>Total Online Map objects, by Collection</td>
+			<td><code>{% include lm-map-facets-daily.html %}</code></td>
+			<td><code><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}/tree/master/docs/_data/map-facets-daily">_data/map-facets-daily/</a></code></td>
+			<td><code><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}/tree/master/docs/_data/map-facets-daily/map-facets-TODAY.json">map-facets-TODAY.json</a></code></td>
 		</tr>
 	</tbody>
 </table>
