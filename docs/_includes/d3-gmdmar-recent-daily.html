@@ -1,151 +1,72 @@
 <script>
 
-// Dimensions and margins
-var margin = {top: 20, right: 100, bottom: 100, left: 30},
-    width = 450 - margin.left - margin.right,
-    height = 350 - margin.top - margin.bottom;
 
-// Append to body
-var svg = d3.select("#d3-gmdmar-recent-daily")
+// set the dimensions and margins of the graph
+var gmdmar_recent_daily_margin = {top: 10, right: 30, bottom: 80, left: 40},
+    gmdmar_recent_daily_width = 450 - gmdmar_recent_daily_margin.left - gmdmar_recent_daily_margin.right,
+    gmdmar_recent_daily_height = 350 - gmdmar_recent_daily_margin.top - gmdmar_recent_daily_margin.bottom;
+
+// append the svg object to the body of the page
+var gmdmar_recent_daily = d3.select("#d3-gmdmar-recent-daily")
   .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", gmdmar_recent_daily_width + gmdmar_recent_daily_margin.left + gmdmar_recent_daily_margin.right)
+    .attr("height", gmdmar_recent_daily_height + gmdmar_recent_daily_margin.top + gmdmar_recent_daily_margin.bottom)
   .append("g")
     .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
+          "translate(" + gmdmar_recent_daily_margin.left + "," + gmdmar_recent_daily_margin.top + ")");
 
-//Read the data
-d3.json("https://reliztrent.github.io/loc-maps-dashboard/data/gmdmar-recent-daily.json", function(data) { 
+var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
-    // A color scale: one color for each group
-    var myColor = d3.scaleOrdinal()
-      .domain(["online", "not_online"])
-      .range(d3.schemeCategory10);
+// Parse the Data
+d3.json("https://reliztrent.github.io/loc-maps-dashboard/data/gmdmar-recent-daily.json", function(data) {
 
-    // parse the date / time
-    var parseTime = d3.timeParse("%Y-%m-%d");
+// X axis
+var x = d3.scaleBand()
+  .range([ 0, gmdmar_recent_daily_width ])
+  .domain(data.map(function(d) { return d.facet; }))
+  .padding(0.2);
+gmdmar_recent_daily.append("g")
+  .attr("transform", "translate(0," + gmdmar_recent_daily_height + ")")
+  .call(d3.axisBottom(x))
+  .selectAll("text")
+    .attr("transform", "translate(-10,0)rotate(-45)")
+    .style("text-anchor", "end");
 
-    // set the ranges
-    var x = d3.scaleTime().range([0, width]);
-    var y = d3.scaleLinear().range([height, 0]);
+// Add Y axis
+var y = d3.scaleLinear()
+  .domain([0, d3.max(data, function(d) {
+        return Math.max(d.online); })+10])
+  .range([ gmdmar_recent_daily_height, 0]);
+gmdmar_recent_daily.append("g")
+  .call(d3.axisLeft(y));
 
-    // define the first line
-    var line1 = d3.line()
-        .x(function(d) { return x(d.facet); })
-        .y(function(d) { return y(d.online); })
-        .curve(d3.curveMonotoneX) ;
-    // define the second line
-    var line2 = d3.line()
-        .x(function(d) { return x(d.facet); })
-        .y(function(d) { return y(d.not_online); })
-        .curve(d3.curveMonotoneX);
+// Bars
+gmdmar_recent_daily.selectAll("mybar")
+  .data(data)
+  .enter()
+  .append("rect")
+    .attr("x", function(d) { return x(d.facet); })
+    .attr("width", x.bandwidth())
+    // no bar at the beginning thus:
+    .attr("height", function(d) { return gmdmar_recent_daily_height - y(0); }) // always equal to 0
+    .attr("y", function(d) { return y(0); })
+  .on("mousemove", function(d){
+      tooltip
+        .style("left", d3.event.pageX - 30 + "px")
+        .style("top", d3.event.pageY - 40 + "px")
+        .style("display", "inline-block")
+        .html((d.online));
+  })
+  .on("mouseout", function(d){ tooltip.style("display", "none");})
 
-    // format the data
-    data.forEach(function(d) {
-        d.facet = parseTime(d.facet);
-        d.online = +d.online;
-        d.not_online = +d.not_online;
-    });
+// Animation
+gmdmar_recent_daily.selectAll("rect")
+  .transition()
+  .duration(800)
+  .attr("y", function(d) { return y(d.online); })
+  .attr("height", function(d) { return gmdmar_recent_daily_height - y(d.online); })
+  .delay(function(d,i){console.log(i) ; return(i*100)})
 
-    // sort years ascending
-    data.sort(function(a, b){
-      return a["facet"]-b["facet"]; 
-    })
-
-    // Scale the range of the data
-    x.domain(d3.extent(data, function(d) { return d.facet; })); //list of all facets
-    y.domain([0, d3.max(data, function(d) {
-      return Math.max(d.online, d.not_online); })]); 
-
-    // Add first line
-    svg.append("path")
-        .data([data])
-        .attr("class", "line")
-        .attr("d", line1)
-        .attr("fill", "none")
-        .attr("stroke", "#8CD3DD");
-
-    // Add second line
-    svg.append("path")
-        .data([data])
-        .attr("class", "line")
-        .attr("d", line2)
-        .attr("fill", "none")
-        .attr("stroke", "#69b3a2");
-
-    // Add Y Axis
-    svg.append("g")
-        .attr("class", "axis")
-        .call(d3.axisLeft(y));
-
-    // Add X Axis
-    svg.append("g")
-        .attr("class", "axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x)
-          .tickFormat(d3.timeFormat("%a %b %d"))
-          .tickValues(data.map(function(d){return d.facet})))
-        .selectAll("text") 
-          .style("text-anchor", "end")
-          .attr("dx", "-.8em")
-          .attr("dy", ".15em")
-          .attr("transform", "rotate(-65)");
-
-    // Add line labels
-    svg.append("text")
-        .data([data])
-        .text("online")
-        .attr("transform", "translate(" + width + "," + y(data[data.length-1].online) + ")")
-        .style("fill","#8CD3DD")
-        .attr("x", 12)
-        .attr("y", -8)//move up a bit;
-    svg.append("text")
-        .data([data])
-        .text("not online")
-        .attr("transform", "translate(" + width + "," + y(data[data.length-1].not_online) + ")")
-        .style("fill","#69b3a2")
-        .attr("x", 12)
-        .attr("y", 8);
-
-    // Add the points
-    svg
-      .selectAll("points")
-      .data(data)
-      .enter()
-        .append("circle")
-          .attr("cx", function(d) { return x(d.facet) } )
-          .attr("cy", function(d) { return y(d.online) } )
-          .attr("r", 4)
-          .attr("stroke", "white")
-          .style("fill", "#8CD3DD")
-          .on("mousemove", function(d){
-            tooltip
-              .style("left", d3.event.pageX - 30 + "px")
-              .style("top", d3.event.pageY - 40 + "px")
-              .style("display", "inline-block")
-              .html((d.online));
-          })
-          .on("mouseout", function(d){ tooltip.style("display", "none");});
-    svg
-      .selectAll("points")
-      .data(data)
-      .enter()
-        .append("circle")
-          .attr("cx", function(d) { return x(d.facet) } )
-          .attr("cy", function(d) { return y(d.not_online) } )
-          .attr("r", 4)
-          .attr("stroke", "white")
-          .style("fill", "#69b3a2")
-          .on("mousemove", function(d){
-            tooltip
-              .style("left", d3.event.pageX - 30 + "px")
-              .style("top", d3.event.pageY - 40 + "px")
-              .style("display", "inline-block")
-              .html((d.not_online));
-          })
-          .on("mouseout", function(d){ tooltip.style("display", "none");});
-}
-)
-
+})
 
 </script>
