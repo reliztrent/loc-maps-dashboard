@@ -81,7 +81,7 @@ d3.json("https://reliztrent.github.io/loc-maps-dashboard/data/maps-online-daily.
     // Add line label(s)
     maps_not_online_daily_svg.append("text")
         .data([data])
-        .text("not online")
+        .text("records")
         .attr("transform", "translate(" + maps_not_online_daily_width + "," + y(data[data.length-1].not_online) + ")")
         .style("fill","#ff7f0e")
         .attr("x", 12)
