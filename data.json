@@ -11,7 +11,7 @@
                 "G4123.W8G46 1862 .R3"
             ],
             "contributors": [
-                "Randall, G. A.",
+                "Randall, George A., cartographer.",
                 "Palmer, C.",
                 "Bogert, J. Augustus.",
                 "Mendel, Edward, 1827-1884"
@@ -47,14 +47,20 @@
                 "[Milwaukee] : G.A. Randall & J.A. Bogert, 1862.",
                 "Milwaukee, Wisconsin : H. Seifert"
             ],
+            "number_former_id": [
+                "https://www.loc.gov/item/2012593179",
+                "https://www.loc.gov/item/17571164"
+            ],
             "medium": [
                 "1 map on 6 sheets : mounted on linen, hand colored ; 123 x 117 cm, sheets 45 x 63 cm"
             ]
         },
         "access_restricted": false,
         "number": [
+            "http://www.loc.gov/item/2012593179",
             "2012593179",
             "sheet",
+            "http://www.loc.gov/item/17571164",
             "2020-09-11t15:06:09"
         ],
         "number_carrier_type": [
@@ -63,7 +69,6 @@
         "contributor": [
             "randall, george a.",
             "bogert, j. augustus",
-            "randall, g. a.",
             "palmer, c.",
             "mendel, edward"
         ],
@@ -106,6 +111,10 @@
             "wisconsin",
             "winnebago county"
         ],
+        "number_former_id": [
+            "http://www.loc.gov/item/2012593179",
+            "http://www.loc.gov/item/17571164"
+        ],
         "resources": [
             {
                 "files": 1,
@@ -117,7 +126,7 @@
         "description": [
             "LC Land ownership maps, 1445 Includes business directories, statistical table, distance table, list of county officers, insets of Eureka, Delhi, Butte Des Mort, Omro, Oshkosh, Winneconnee, Menasha, Waukau, Neenah, views of public, residential, and commercial properties. Available also through the Library of Congress Web site as a raster image."
         ],
-        "timestamp": "2020-09-12T05:26:42.600Z",
+        "timestamp": "2020-09-13T05:13:09.033Z",
         "site": [
             "catalog",
             "ammem"
@@ -126,7 +135,7 @@
         "original_format": [
             "map"
         ],
-        "extract_timestamp": "2020-09-12T05:23:28.017Z",
+        "extract_timestamp": "2020-09-13T05:09:43.493Z",
         "date": "1862",
         "shelf_id": "G4123.W8G46 1862 .R3",
         "other_title": [],
