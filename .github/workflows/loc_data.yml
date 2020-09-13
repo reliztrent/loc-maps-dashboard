@@ -41,14 +41,14 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements_loc.txt') }}
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-pip-
     # Install dependencies with `pip`
     - name: Install requirements
       run: |
         python3 -m pip install --upgrade pip setuptools wheel
-        python3 -m pip install -r requirements_loc.txt
+        python3 -m pip install -r requirements.txt
     # Generate all json
     - name: Generate json
       run: |
