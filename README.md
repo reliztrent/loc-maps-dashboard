@@ -23,7 +23,7 @@ Daily, this repo saves data from [loc.gov](http://loc.gov) about online map coll
 
 These workflows use the [Fetch API Data Action](https://github.com//JamesIves/fetch-api-data-action) and [GitHub Pages Deploy Action](https://github.com/JamesIves/github-pages-deploy-action) from James Ives.
 
-Each workflow is a .yml file, and each makes a different type of API request. New data is saved by date and appended with \_TODAY or \_THISMONTH, which is overwritten daily or monthly.
+Each workflow is a .yml file, and each makes a different type of API request. New data from the API requests is saved into files named by date and appended with \_TODAY or \_THISMONTH. Each night, when the workflow runs, if the data is different from the night before (or, for monthly requests, when the workflow runs monthly and if the data is different from the month before), then the \_TODAY (or \_THISMONTH) file is overwritten with the new data. 
 
 These workflows can be created by creating files in **.github/workflows/**, or by clicking the **Actions** tab in your github repo. The workflows also require you to make an easy-to-create access token, to give the workflow the ability to push to your repo (see instructions above).
 
