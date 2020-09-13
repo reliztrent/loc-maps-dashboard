@@ -1,10 +1,16 @@
 #!/usr/bin/python3
 
 import sys 
+import os
 import getopt
 import time
 import json
 import requests
+
+def generate_output_folder(directory):
+    if not os.path.isdir(directory):
+        os.makedirs(directory)
+
 
 def query(url, items=[],x=0):
     max_retries = 5
@@ -57,7 +63,13 @@ def main(argv):
     print ('End date is ', end_date)
     url = 'https://www.loc.gov/search/?at=facets&fo=json&sb=shelf-id&sq=group:gmd.mar+AND+number_source_modified:[' + start_date + '+' + end_date + ']'
     items = query (url,[])
-    return items, directory, end_date
+
+    print(directory)
+
+    generate_output_folder(directory)
+    with open(directory + '/gmdmar-modified-' + end_date + '.json', 'w', encoding='utf-8') as f:
+        json.dump(items, f, ensure_ascii=False, indent=4)
+    
 
     
 '''
@@ -67,7 +79,4 @@ end_date = '2020-09-12'
 
 
 if __name__ == "__main__":
-    output, save_dir, date = main(sys.argv[1:])
-
-with open(save_dir + '/gmdmar-modified-' + date + '.json', 'w', encoding='utf-8') as f:
-    json.dump(output, f, ensure_ascii=False, indent=4)
+    main(sys.argv[1:])
