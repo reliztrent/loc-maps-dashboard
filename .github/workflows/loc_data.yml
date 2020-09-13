@@ -25,7 +25,7 @@ jobs:
     - name: Set TIMESTAMP env
       run: echo ::set-env name=TIMESTAMP::$(date -d "4 hours ago" +"%Y%m%d") #offset from UTC
     - name: Set TODAY env
-      run: echo ::set-env name=TODAY::$(date -d "%Y-%m-%d") #offset due to timing of catalog/P1 updates 
+      run: echo ::set-env name=TODAY::$(date "%Y-%m-%d") #offset due to timing of catalog/P1 updates 
     - name: Set YESTERDAY env
       run: echo ::set-env name=YESTERDAY::$(date -d "1 day ago" +"%Y-%m-%d") #offset due to timing of catalog/P1 updates 
 
