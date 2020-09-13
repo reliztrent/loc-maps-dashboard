@@ -62,7 +62,7 @@ def main(argv):
     print ('Start date is ', start_date)
     print ('End date is ', end_date)
     url = 'https://www.loc.gov/search/?at=facets&fo=json&sb=shelf-id&sq=group:gmd.mar+AND+number_source_modified:[' + start_date + ' TO ' + end_date + ']'
-    print("Query URL is: ", items)
+    print("Query URL is: ", url)
     items = query (url,[])
 
     print(directory)
