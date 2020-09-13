@@ -39,7 +39,7 @@ def main(argv):
     start_date = ''
     end_date = ''
     try:
-        opts, args = getopt.getopt(argv,"hs:e:",["start=","end="])
+        opts, args = getopt.getopt(argv,"hs:e:d:",["start=","end=","directory="])
     except getopt.GetoptError:
         print ('loc_json.py -s <start_date (YYYY-MM-DD)> -e <end_date (YYYY-MM-DD)> -d <directory>')
         sys.exit(2)
