@@ -41,21 +41,23 @@ def main(argv):
     try:
         opts, args = getopt.getopt(argv,"hs:e:",["start=","end="])
     except getopt.GetoptError:
-        print ('loc_json.py -s <start_date (YYYY-MM-DD)> -e <end_date (YYYY-MM-DD)>')
+        print ('loc_json.py -s <start_date (YYYY-MM-DD)> -e <end_date (YYYY-MM-DD)> -d <directory>')
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-h':
-            print ('loc_json.py -s <start_date (YYYY-MM-DD)> -e <end_date (YYYY-MM-DD)>')
+            print ('loc_json.py -s <start_date (YYYY-MM-DD)> -e <end_date (YYYY-MM-DD)> -d <directory>')
             sys.exit()
         elif opt in ("-s", "--start_date"):
             start_date = arg
         elif opt in ("-e", "--end_date"):
             end_date = arg
+        elif opt in ("-d", "--directory"):
+            directory = arg
     print ('Start date is ', start_date)
     print ('End date is ', end_date)
     url = 'https://www.loc.gov/search/?at=facets&fo=json&sb=shelf-id&sq=group:gmd.mar+AND+number_source_modified:[' + start_date + '+' + end_date + ']'
     items = query (url,[])
-    return items
+    return items, directory, end_date
 
     
 '''
@@ -65,7 +67,7 @@ end_date = '2020-09-12'
 
 
 if __name__ == "__main__":
-    output = main(sys.argv[1:])
+    output, save_dir, date = main(sys.argv[1:])
 
-with open('data.json', 'w', encoding='utf-8') as f:
+with open(save_dir + '/gmdmar-modified-' + date + '.json', 'w', encoding='utf-8') as f:
     json.dump(output, f, ensure_ascii=False, indent=4)
