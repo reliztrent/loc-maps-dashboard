@@ -1,0 +1,64 @@
+
+
+{% for file in site.data.modified_items | sort_natural %}
+	{% if file[0].size == 26 %}
+		{% assign len = file[1] | size %}
+		{% assign year = file[0] | slice: -10, 4 %}
+		{% assign month = file[0] | slice: -5, 2 %}
+		{% assign day = file[0] | slice: -2, 2 %}
+		<h4>Items updated: {{ year }}-{{ month }}-{{ day }}</h4>
+
+		{% if len == 0 %}
+			<p>No items updated</p>
+		{% elsif len > 0%}
+			<table>
+				<thead>
+					<tr>
+						<th>Date updated</th>
+						<th>Title</th>
+						<th>Date</th>
+						<th>Call number</th>
+						<th>Number of resources in object</th>
+						<th>Permalink</th>
+						<th>Direct URL</th>
+						<th>Image</th>
+					</tr>
+				</thead>
+				<tbody>	
+			{% for result in file[1] %}
+				{% assign title = result.item.title %}
+				{% assign date = result.item.date %}
+				{% assign call_number = result.item.call_number %}
+				{% assign resource_count = result.resources | size %}
+				{% assign hdls = result.item.digital_id %}
+				{% assign item_url = result.id %}
+				{% assign thumbnail = result.image_url[0] %}
+					<tr>
+						<td>{{ year }}-{{ month }}-{{ day }}</td>
+						<td>{{ title }}</td>
+						<td>{{ date }}</td>
+						<td>{{ call_number }}</td>
+						<td>{{ resource_count }}</td>
+						<td>
+							{% for hdl in hdls %}
+								<a href="{{ hdl }}">{{hdl}}</a>
+							{% endfor %}
+						</td>
+						<td><a href="{{ item_url }}">{{ item_url }}</a></td>
+						<td><img src="{{ thumbnail }}"></td>
+					<tr>
+			{% endfor %}
+		{% endif %}
+	{% endif %}
+{% endfor %}
+	</tbody>
+</table>
+
+
+
+
+
+
+
+
+		

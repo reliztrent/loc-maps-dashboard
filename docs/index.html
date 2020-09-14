@@ -23,7 +23,7 @@ title: Maps Dashboard
 	}
 </style>
 
-<p><small>Publicly available data about maps and map catalog records online at the the <a href='https://loc.gov/maps'>Library of Congress </a>. Made with the <a href="https://libraryofcongress.github.io/data-exploration/">loc.gov API</a>, <a href="https://pages.github.com/">GitHub pages</a>, <a href="https://docs.github.com/en/actions">GitHub actions</a>, <a href="https://jekyllrb.com/">Jekyll</a>, <a href="https://shopify.github.io/liquid/">Liquid</a>, and <a href="https://d3js.org/">D3</a>. Code <a href="https://github.com/reliztrent/loc-maps-dashboard">on GitHub</a>. Just for fun, not an official product of the Library of Congress. Data last refreshed : <code>{{ site.time | date: "%B %d, %Y" }} a little after midnight</code>.</small></p>
+<p><small>Publicly available data about maps and map catalog records online at the the <a href='https://loc.gov/maps'>Library of Congress </a>. Made with the <a href="https://libraryofcongress.github.io/data-exploration/">loc.gov API</a>, <a href="https://pages.github.com/">GitHub pages</a>, <a href="https://docs.github.com/en/actions">GitHub actions</a>, <a href="https://jekyllrb.com/">Jekyll</a>, <a href="https://shopify.github.io/liquid/">Liquid</a>, and <a href="https://d3js.org/">D3</a>. Code <a href="https://github.com/reliztrent/loc-maps-dashboard">on GitHub</a>. Just for fun, not an official product of the Library of Congress. Data last refreshed : <code>{{ site.time | date: "%B %d, %Y" }} 00:15 am</code>.</small></p>
 
 
 <div class="clearfix">
@@ -81,7 +81,16 @@ title: Maps Dashboard
 
 	</div>
 </div>
+<div class="clearfix">
+	<div class="col-12 sm-width-full">
+		<h3>GMD.MAR recently modified items</h3>
+		{% include table-gmdmar-modified-items.html %}
+	</div>
+</div>
+
 <br>
+<h2 class="h0 py-4 mt-3">Notes</h2>
+
 <div class="clearfix">
 	<div class="col-6 sm-width-full">
 		<h3 id="notes">&#42; Definitions</h3>
@@ -89,6 +98,8 @@ title: Maps Dashboard
 	</div>
 </div>
 <br>
+
+
 <div class="clearfix">
 	<div class="col-12 sm-width-full">
 		<h3>Data Freshness</h3>
