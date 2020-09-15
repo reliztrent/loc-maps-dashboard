@@ -40,3 +40,4 @@ jobs:
           BRANCH: master # Pushes the updates to the master branch.
           FOLDER: fetch-api-data-action # Must maintain this variable, appears to be ignored
           TARGET_FOLDER: docs/_data/gmdmar-recent-monthly # Saves the data into the 'docs/_data' directory on the master branch.
+          CLEAN: false
