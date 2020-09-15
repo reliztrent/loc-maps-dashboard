@@ -15,7 +15,7 @@ var maps_online_daily_svg = d3.select("#d3-maps-online-daily")
           "translate(" + maps_online_daily_margin.left + "," + maps_online_daily_margin.top + ")");
 
 //Read the data
-d3.json("https://reliztrent.github.io/loc-maps-dashboard/data/maps-online-daily.json", function(data) { 
+d3.json("data/maps-online-daily.json", function(data) { 
 
     // A color scale: one color for each group
     var myColor = d3.scaleOrdinal()

@@ -15,7 +15,7 @@ var maps_online_donut = d3.select("#d3-maps-original-format-donut")
   .append("g")
     .attr("transform", "translate(" + maps_origformat_donut_width / 2 + "," + maps_origformat_donut_height / 2 + ")");
 
-d3.json("/data/all-facet-original-format.json", function(data) {
+d3.json("data/all-facet-original-format.json", function(data) {
 
 // set the color scale
 var color = d3.scaleOrdinal()

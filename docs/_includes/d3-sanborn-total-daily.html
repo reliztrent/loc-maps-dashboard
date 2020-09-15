@@ -15,7 +15,7 @@ var sanborn_total_daily_svg = d3.select("#d3-sanborn-total-daily")
           "translate(" + sanborn_total_daily_margin.left + "," + sanborn_total_daily_margin.top + ")");
 
 //Read the data
-d3.json("https://reliztrent.github.io/loc-maps-dashboard/data/sanborn-total-daily.json", function(data) { 
+d3.json("data/sanborn-total-daily.json", function(data) { 
 
     // A color scale: one color for each group
     var myColor = d3.scaleOrdinal()

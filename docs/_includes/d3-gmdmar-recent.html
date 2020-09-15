@@ -18,7 +18,7 @@ var gmdmar_recent = d3.select("#d3-gmdmar-recent")
 var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
 // Parse the Data
-d3.json("https://reliztrent.github.io/loc-maps-dashboard/data/gmdmar-recent.json", function(data) {
+d3.json("data/gmdmar-recent.json", function(data) {
 
 // X axis
 var x = d3.scaleBand()

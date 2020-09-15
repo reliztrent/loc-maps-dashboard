@@ -18,7 +18,7 @@ var gmdmar_recent_daily = d3.select("#d3-gmdmar-recent-daily")
 var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
 // Parse the Data
-d3.json("https://reliztrent.github.io/loc-maps-dashboard/data/gmdmar-recent-daily.json", function(data) {
+d3.json("data/gmdmar-recent-daily.json", function(data) {
   console.log(data)
 
   // parse the date / time
