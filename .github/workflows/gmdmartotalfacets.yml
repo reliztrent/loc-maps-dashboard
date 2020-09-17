@@ -17,14 +17,14 @@ jobs:
       - name: Fetch API Data -${{ env.TIMESTAMP }}📦
         uses: JamesIves/fetch-api-data-action@1.0.15
         with:
-          ENDPOINT: https://www.loc.gov/maps/?sq=group:gmd.mar&at=facets&fo=json
+          ENDPOINT: https://www.loc.gov/search/?sq=group:gmd.mar&at=facets&fo=json
           RETRY: true
           SAVE_NAME: gmdmar-total-facets-${{ env.TIMESTAMP }}
           
       - name: Fetch API Data - TODAY📦
         uses: JamesIves/fetch-api-data-action@1.0.15
         with:
-          ENDPOINT: https://www.loc.gov/maps/?sq=group:gmd.mar&at=facets&fo=json
+          ENDPOINT: https://www.loc.gov/search/?sq=group:gmd.mar&at=facets&fo=json
           RETRY: true
           SAVE_NAME: gmdmar-total-facets-TODAY
           
