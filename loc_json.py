@@ -61,22 +61,14 @@ def main(argv):
             directory = arg
     print ('Start date is ', start_date)
     print ('End date is ', end_date)
-    url = 'https://www.loc.gov/search/?at=facets&fo=json&sb=shelf-id&sq=group:gmd.mar+AND+number_source_modified:[' + start_date + ' TO ' + end_date + ']'
+    url = 'https://www.loc.gov/search/?fo=json&sb=shelf-id&sq=group:gmd.mar+AND+number_source_modified:[' + start_date + ' TO ' + end_date + ']'
     print("Query URL is: ", url)
     items = query (url,[])
-
-    print(directory)
 
     generate_output_folder(directory)
     with open(directory + '/gmdmar-modified-' + end_date + '.json', 'w', encoding='utf-8') as f:
         json.dump(items, f, ensure_ascii=False, indent=4)
     
-
-    
-'''
-start_date = '2020-09-11'
-end_date = '2020-09-12'
-'''
 
 
 if __name__ == "__main__":
