@@ -3,92 +3,85 @@ layout: page
 title: Maps Dashboard
 ---
 
-<style>
-	.h0 {font-size:80px !important; padding-top:30px; padding-bottom:35px;}
-	rect {fill: #69b3a2;}
-	rect:hover {fill: #8CD3DD;}
-	path:hover {}
-	.toolTip {
-	  position: absolute;
-	  display: none;
-	  padding:4px 10px;
-	  height: auto;
-	  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
-	  color:white;
-	  text-align: center;
-	  font-size:12px;
-	}
-	.line {
-	  stroke-width: 4px;
-	}
-</style>
 
-<p><small>Publicly available data about maps and map catalog records online at the the <a href='https://loc.gov/maps'>Library of Congress </a>. Made with the <a href="https://libraryofcongress.github.io/data-exploration/">loc.gov API</a>, <a href="https://pages.github.com/">GitHub pages</a>, <a href="https://docs.github.com/en/actions">GitHub actions</a>, <a href="https://jekyllrb.com/">Jekyll</a>, <a href="https://shopify.github.io/liquid/">Liquid</a>, and <a href="https://d3js.org/">D3</a>. Code <a href="https://github.com/reliztrent/loc-maps-dashboard">on GitHub</a>. Just for fun, not an official product of the Library of Congress. Data last refreshed : <code>{{ site.time | date: "%B %d, %Y" }} 00:15 am</code>.</small></p>
+<p><small>Publicly available data about maps and map catalog records online at the the <a href='https://loc.gov/maps'>Library of Congress</a>. Made with the <a href="https://libraryofcongress.github.io/data-exploration/">loc.gov API</a>, GitHub <a href="https://pages.github.com/">pages</a> and <a href="https://docs.github.com/en/actions">actions</a>, <a href="https://jekyllrb.com/">Jekyll</a>, <a href="https://shopify.github.io/liquid/">Liquid</a>, and <a href="https://d3js.org/">D3</a>. Code <a href="https://github.com/reliztrent/loc-maps-dashboard">on GitHub</a>. Just for fun, not an official product of the Library of Congress. Data last refreshed : <code>{{ site.time | date: "%B %d, %Y" }} 00:15 am</code>.</small></p>
 
 
 <div class="clearfix">
 	<div class="col-4 sm-width-full left">
-		<h3>Online Map objects</h3>
-		<code>{{site.data.map-facets-daily.map-facets-TODAY.facets[0].filters[0].count}}</code>
-	
+		<div class="card card-mini mr-2 mb-2">
+			<p class="h3">Online Map objects</p>
+			<h3 id="online-map-objects"></h3>
+	    </div>
 	</div>
 	<div class="col-4 sm-width-full left">
-		<h3> Online Sanborns atlases</h3>
-		<code>{{site.data.map-facets-daily.map-facets-TODAY.facets[5].filters[1].count}}</code>
+		<div class="card card-mini mr-2 mb-2">
+			<p class="h3"> Online Sanborns atlases</p>
+			<h3 id ="online-sanborn-atlases"></h3>
+		</div>
 	</div>
 	<div class="col-4 sm-width-full left">
-		<h3> Online GMD.MAR<a href="#notes">&#42;</a> objects</h3>
-		<code>{{site.data.gmdmar-facets-daily.gmdmar-facets-TODAY.facets[0].filters[0].count}}</code>
+ 		<div class="card card-mini mr-2 mb-2">
+			<p class="h3"> Online GMD.MAR<a href="#notes">&#42;</a> objects</p>
+			<h3 id="online-gmd-mar"></h3>
+		</div>
 	</div>
-	<p>&nbsp;</p>
 </div>
 
 <div class="clearfix">
-	<div class="col-7 sm-width-full left">
-		<h2>GMD.MAR</h2>
-		<h3>GMD.MAR objects Last Modified, by Month</h3>
-		<p>All map objects currently in gmd.mar, by month most recently modified (created and/or updated). </p>
-		<div id="d3-gmdmar-recent"></div>
-		
-		<h3>GMD.MAR objects Modified, by Day</h3>
-		<p>Number of gmd.mar map objects modified per day (created and/or updated).</p>
-		<div id="d3-gmdmar-recent-daily"></div>
-
-		<h3>Total GMD.MAR objects, by Day</h3>
-		<p>All map objects currently in gmd.mar, by daily count</p>
-		<div id="d3-gmdmar-total-daily"></div>
-
-		<h3>Total Sanborn objects, by Day</h3>
-		<p>All Sanborn objects, by daily count</p>
-		<div id="d3-sanborn-total-daily"></div>
-
+	<div class="col-6 sm-width-full left">
+		<h2 class="ml-2 pop">GMD.MAR</h2>
+		<div class="card card-mini mr-3 mb-3">
+			<h3>GMD.MAR objects Last Modified, by Month</h3>
+			<p class="subtitle">All map objects currently in gmd.mar, by month most recently modified (created and/or updated). </p>
+			<div id="d3-gmdmar-recent" class="svg-container"></div>
+		</div>
+		<div class="card card-mini mr-3 mb-3">
+			<h3>GMD.MAR objects Modified, by Day</h3>
+			<p class="subtitle">Number of gmd.mar map objects modified per day (created and/or updated).</p>
+			<div id="d3-gmdmar-recent-daily" class="svg-container"></div>
+		</div>
+		<div class="card card-mini mr-3 mb-3">
+			<h3>Total GMD.MAR objects, by Day</h3>
+			<p class="subtitle">All map objects currently in gmd.mar, by daily count</p>
+			<div id="d3-gmdmar-total-daily" class="svg-container"></div>
+		</div>
+		<div class="card card-mini mr-3 mb-3">
+			<h3>Total Sanborn objects, by Day</h3>
+			<p class="subtitle">All Sanborn objects, by daily count</p>
+			<div id="d3-sanborn-total-daily" class="svg-container"></div>
+		</div>
 	</div>
 
-	<div class="col-5 sm-width-full left">
-		<h2>Maps</h2>
-		<h3>Total Map objects, by Online Status</h3>
-		<p>All map objects currently in loc.gov/maps, online (true) vs. not online<a href="#notes">&#42;</a> (false). </p>
-		<div id="d3-maps-online-donut"></div>
-		
-		<br>
-		<h3>Total Online Map objects, by Day</h3>
-		<p>All online map objects in loc.gov/maps, by daily count</p>
-		<div id="d3-maps-online-daily"></div>
-
-		<h3>Total Map records (not online<a href="#notes">&#42;</a>), by Day</h3>
-		<p>All map objects that are not online<a href="#notes">&#42;</a> in loc.gov/maps, by daily count</p>
-		<div id="d3-maps-not-online-daily"></div>
-		
-		<h3>Total Online Map objects, by Collection</h3>
-		<p>All online map objects currently in loc.gov/maps, by "Part of" facet</p>
-		<div id="d3-maps-partof"></div>
-
+	<div class="col-6 sm-width-full left">
+		<h2 class="ml-2 pop">Maps</h2>
+		<div class="card card-mini mr-3 mb-3">
+			<h3>Total Map objects, by Online Status</h3>
+			<p class="subtitle">All map objects currently in loc.gov/maps, online (true) vs. not online<a href="#notes">&#42;</a> (false). </p>
+			<div id="d3-maps-online-donut" class="svg-container"></div>
+		</div>
+		<div class="card card-mini mr-3 mb-3">
+			<h3>Total Online Map objects, by Day</h3>
+			<p class="subtitle">All online map objects in loc.gov/maps, by daily count</p>
+			<div id="d3-maps-online-daily" class="svg-container"></div>
+		</div>
+		<div class="card card-mini mr-3 mb-3">
+			<h3>Total Map records (not online<a href="#notes">&#42;</a>), by Day</h3>
+			<p class="subtitle">All map objects that are not online<a href="#notes">&#42;</a> in loc.gov/maps, by daily count</p>
+			<div id="d3-maps-not-online-daily" class="svg-container"></div>
+		</div>
+		<div class="card card-mini mr-3 mb-3">
+			<h3>Total Online Map objects, by Collection</h3>
+			<p class="subtitle">All online map objects currently in loc.gov/maps, by "Part of" facet</p>
+			<div id="d3-maps-partof" class="svg-container"></div>
+		</div>
 	</div>
 </div>
 <div class="clearfix">
 	<div class="col-12 sm-width-full">
-		<h3>GMD.MAR recently modified items</h3>
-		{% include table-gmdmar-modified-items.html %}
+		<h2 class="pop">Recently Modified Items</h2>
+			<h3>GMD.MAR</h3>
+			{% include table-gmdmar-modified-items.html %}
 	</div>
 </div>
 
@@ -97,21 +90,21 @@ title: Maps Dashboard
 
 <div class="clearfix">
 	<div class="col-6 sm-width-full">
-		<h3 id="notes">&#42; Definitions</h3>
-		<dl><dt>Online</dt><dd>digitized materials, webpages, finding aids, e-resources, other online resources</dd><dt>Not online</dt><dd>links to catalog  other descriptive records (other than finding aids) but objects themselves aren't online.</dd><dt>GMD.MAR</dt><dd>A grouping for processing purposes, which holds all online materials from LOC's Geography and Map Division that are not otherwise held in another processing group. In API query results, can be found in "group" field.</dd></dl>
+		<div class="card card-mini mr-3 mb-3">
+			<h3 id="notes">&#42; Definitions</h3>
+			<dl><dt>Online</dt><dd>digitized materials, webpages, finding aids, e-resources, other online resources</dd><dt>Not online</dt><dd>links to catalog  other descriptive records (other than finding aids) but objects themselves aren't online.</dd><dt>GMD.MAR</dt><dd>A grouping for processing purposes, which holds all online materials from LOC's Geography and Map Division that are not otherwise held in another processing group. In API query results, can be found in "group" field.</dd></dl>
+		</div>
 	</div>
 </div>
-<br>
-
 
 <div class="clearfix">
 	<div class="col-12 sm-width-full">
-		<h3>Data Freshness</h3>
-		{% include data_freshness.html %}
+		<div class="card card-mini mr-3 mb-3">
+			<h3>Data Freshness</h3>
+			{% include data_freshness.html %}
+		</div>
 	</div>
 </div>
-
-
 
 <script src="//d3js.org/d3.v4.min.js"></script>
 {% include d3-maps-online.html %}
@@ -122,3 +115,15 @@ title: Maps Dashboard
 {% include d3-gmdmar-total-daily.html %}
 {% include d3-maps-not-online-daily.html %}
 {% include d3-sanborn-total-daily.html %}
+<script>
+	var num1 = {{site.data.map-facets-daily.map-facets-TODAY.facets[0].filters[0].count}};
+	num1_formatted = Number(num1).toLocaleString('en');
+	document.getElementById('online-map-objects').innerHTML = num1_formatted;
+	var num2 = {{site.data.map-facets-daily.map-facets-TODAY.facets[5].filters[1].count}};
+	num2_formatted = Number(num2).toLocaleString('en');
+	document.getElementById('online-sanborn-atlases').innerHTML = num2_formatted;
+	var num3 = {{site.data.gmdmar-facets-daily.gmdmar-facets-TODAY.facets[0].filters[0].count}};
+	num3_formatted = Number(num3).toLocaleString('en');
+	document.getElementById('online-gmd-mar').innerHTML = num3_formatted;
+</script>
+
