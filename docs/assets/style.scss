@@ -31,6 +31,16 @@ p.small {
 	padding-top:20px; 
 	padding-bottom:25px;
 }
+h2,h3,h4,h5,h6,h7,h8 {
+  font-weight:500;
+}
+h2.subtle {
+	color:#9ba1b5;
+}
+h2.pop {
+	color:#df8080;
+}
+
 
 header.clearfix {
  background-color:#353946;
@@ -100,10 +110,8 @@ path:hover {}
 .line {
 	stroke-width: 4px;
 }
-h2.subtle {
-	color:#9ba1b5;
-}
-h2.pop {
-	color:#df8080;
+
+table.small {
+  font-size:14px;
 }
 
