@@ -1,7 +1,7 @@
 name: Daily get loc.gov map facets
 on:
   schedule:
-    - cron: '0 4 * * *'
+    - cron: '0 4-23 * * *'
 jobs:
   refresh-feed:
     runs-on: ubuntu-latest
