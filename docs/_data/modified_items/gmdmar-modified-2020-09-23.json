@@ -1,1 +1,352 @@
-null
+[
+    {
+        "item": {
+            "digital_id": [
+                "https://hdl.loc.gov/loc.gmd/g7960.ct011914"
+            ],
+            "call_number": [
+                "G7960 1691 .I7 18--"
+            ],
+            "repository": [
+                "Library of Congress Geography and Map Division Washington, D.C. 20540-4650 USA dcu"
+            ],
+            "contributors": [
+                "Ishikawa, Tomonobu.",
+                "Sagamiya, Tahē."
+            ],
+            "title": "Nihon kaisan chōrikuzu",
+            "notes": [
+                "Title \"Nihon kaisan chōrikuzu\" from Geospatial Information Authority of Japan, online Japanese map collection, April, 24, 2020; Nihon kaisan chōrikuzu.",
+                "Title \"Nihon sankai zudō taizen\" from Nihon koezu shūsei, suppl., p. 103.",
+                "Facsimile.",
+                "Oriented with north toward the upper right.",
+                "Relief shown pictorially.",
+                "Pictorial map.",
+                "\"Wachō no zukei sakizaki ōshi ima mata dōro meisho tō taigai kakikuwae kaihan seshimuru mono nari.\"",
+                "Shows fuedal fiefs.",
+                "Includes distance chart, list of important place names and shrines, and chart of seasonal changes.",
+                "Available also through the Library of Congress Web site as a raster image.",
+                "Vault",
+                "AACR2: 651/1; 650/2; 700/1"
+            ],
+            "format": [
+                "cartographic"
+            ],
+            "language": [
+                "jpn"
+            ],
+            "subjects": [
+                "Japan--Maps--Early works to 1800--Facsimiles",
+                "Fiefs--Japan--Maps--Facsimiles",
+                "Japan"
+            ],
+            "location": [
+                "Japan"
+            ],
+            "date": "1800",
+            "translated_title": [
+                "日本海山潮陸図 /"
+            ],
+            "created_published": [
+                "Edo : Sagamiya Tahē, Genroku 4 [i.e. 1691. n.p., 18--?]"
+            ],
+            "number_former_id": [
+                "https://www.loc.gov/item/gm71005210",
+                "https://www.loc.gov/item/5403781"
+            ],
+            "medium": [
+                "col. map 89 x 176 cm."
+            ],
+            "other_title": [
+                "日本海山潮陸図 /",
+                "Nihon sankai zudō taizen"
+            ]
+        },
+        "access_restricted": false,
+        "original_format": [
+            "map"
+        ],
+        "contributor": [
+            "sagamiya, tah",
+            "ishikawa, tomonobu"
+        ],
+        "id": "http://www.loc.gov/item/gm71005210/",
+        "partof": [
+            "american memory",
+            "general maps",
+            "catalog",
+            "geography and map division"
+        ],
+        "subject": [
+            "facsimiles",
+            "early maps",
+            "maps",
+            "early works to 1800",
+            "fiefs",
+            "japan"
+        ],
+        "index": 1,
+        "number": [
+            "2020-09-22t08:42:17",
+            "http://www.loc.gov/item/5403781",
+            "gm71005210",
+            "2020-06-24t10:39:22",
+            "http://www.loc.gov/item/gm71005210"
+        ],
+        "location_country": [
+            "japan"
+        ],
+        "title": "Nihon kaisan chōrikuzu",
+        "number_source_modified": [
+            "2020-09-22t08:42:17",
+            "2020-06-24t10:39:22"
+        ],
+        "online_format": [
+            "image"
+        ],
+        "number_former_id": [
+            "http://www.loc.gov/item/gm71005210",
+            "http://www.loc.gov/item/5403781"
+        ],
+        "resources": [
+            {
+                "files": 1,
+                "url": "https://www.loc.gov/resource/g7960.ct011914/",
+                "image": "https://tile.loc.gov/storage-services/service/gmd/gmd7/g7960/g7960/ct011914.gif"
+            }
+        ],
+        "location": [
+            "japan"
+        ],
+        "digitized": true,
+        "description": [
+            "Title \"Nihon kaisan chōrikuzu\" from Geospatial Information Authority of Japan, online Japanese map collection, April, 24, 2020; Nihon kaisan chōrikuzu. Title \"Nihon sankai zudō taizen\" from Nihon koezu shūsei, suppl., p. 103. Facsimile. Oriented with north toward the upper right. Relief shown pictorially. Pictorial map. \"Wachō no zukei sakizaki ōshi ima mata dōro meisho tō taigai kakikuwae kaihan seshimuru mono nari.\" Shows fuedal fiefs. Includes distance chart, list of important place names and shrines, and chart of seasonal changes. Available also through the Library of Congress Web site as a raster image. Vault Date on class no. needs to be examined. AACR2: 651/1; 650/2; 700/1"
+        ],
+        "timestamp": "2020-09-23T05:15:43.174Z",
+        "site": [
+            "catalog",
+            "ammem"
+        ],
+        "campaigns": [],
+        "extract_timestamp": "2020-09-23T05:11:31.882Z",
+        "date": "1691",
+        "group": [
+            "catalog",
+            "gmd.mar",
+            "main-catalog",
+            "general-maps"
+        ],
+        "other_title": [
+            "日本海山潮陸図 /",
+            "Nihon sankai zudō taizen"
+        ],
+        "dates": [
+            "1691-01-01T00:00:00Z",
+            "1800-01-01T00:00:00Z"
+        ],
+        "number_lccn": [
+            "gm71005210"
+        ],
+        "language": [
+            "japanese"
+        ],
+        "url": "https://www.loc.gov/item/gm71005210/",
+        "shelf_id": "G7960 1691 .I7 18--",
+        "hassegments": false,
+        "image_url": [
+            "https://tile.loc.gov/storage-services/service/gmd/gmd7/g7960/g7960/ct011914.gif",
+            "https://tile.loc.gov/storage-services/service/gmd/gmd7/g7960/g7960/ct011914.gif#h=72&w=150",
+            "https://tile.loc.gov/image-services/iiif/service:gmd:gmd7:g7960:g7960:ct011914/full/pct:12.5/0/default.jpg#h=1235&w=2559",
+            "https://tile.loc.gov/image-services/iiif/service:gmd:gmd7:g7960:g7960:ct011914/full/pct:25/0/default.jpg#h=2471&w=5119"
+        ],
+        "mime_type": [
+            "image/gif",
+            "image/tiff",
+            "image/jpeg",
+            "image/jp2"
+        ],
+        "aka": [
+            "http://www.loc.gov/item/gm71005210/",
+            "http://lccn.loc.gov/gm71005210",
+            "http://www.loc.gov/resource/g7960.ct011914/",
+            "https://hdl.loc.gov/loc.gmd/g7960.ct011914"
+        ]
+    },
+    {
+        "item": {
+            "digital_id": [
+                "https://hdl.loc.gov/loc.gmd/g7960.ct011921",
+                "https://hdl.loc.gov/loc.gmd/g7960.ct011922"
+            ],
+            "call_number": [
+                "G7960 1864 .S4"
+            ],
+            "repository": [
+                "Library of Congress Geography and Map Division Washington, D.C. 20540-4650 USA dcu"
+            ],
+            "contributors": [
+                "Baisotei, Gengyo, 1817-1880.",
+                "Nagakubo, Sekisui, 1717-1801."
+            ],
+            "title": "Dai Nihon kairiku zenzu",
+            "notes": [
+                "Wood block print.",
+                "Oriented with north toward the upper right.",
+                "Relief shown pictorially.",
+                "Japanese.",
+                "Includes distance charts.",
+                "Based on map created by Nagakubo Sekisui.",
+                "Available also through the Library of Congress Web site as a raster image.",
+                "Vault",
+                "AACR2: 651"
+            ],
+            "format": [
+                "cartographic"
+            ],
+            "language": [
+                "jpn"
+            ],
+            "subjects": [
+                "Japan--Maps",
+                "Japan--Tokyo"
+            ],
+            "location": [
+                "Japan"
+            ],
+            "date": "1864",
+            "translated_title": [
+                "大日本海陸全圖 /"
+            ],
+            "created_published": [
+                "Edo : Ebisuya Shōshichi, Bunkyū 4 i.e. [1864]"
+            ],
+            "number_former_id": [
+                "https://www.loc.gov/item/gm71005209",
+                "https://www.loc.gov/item/5403780"
+            ],
+            "medium": [
+                "col. map on sheet 73 x 100 cm."
+            ],
+            "other_title": [
+                "大日本海陸全圖 /"
+            ]
+        },
+        "access_restricted": false,
+        "site": [
+            "catalog",
+            "ammem"
+        ],
+        "original_format": [
+            "map"
+        ],
+        "contributor": [
+            "baisotei, gengyo",
+            "nagakubo, sekisui"
+        ],
+        "id": "http://www.loc.gov/item/gm71005209/",
+        "partof": [
+            "american memory",
+            "general maps",
+            "catalog",
+            "geography and map division"
+        ],
+        "subject": [
+            "japan",
+            "tokyo",
+            "maps"
+        ],
+        "location_city": [
+            "tokyo"
+        ],
+        "index": 2,
+        "number": [
+            "2020-06-24t11:11:05",
+            "gm71005209",
+            "http://www.loc.gov/item/gm71005209",
+            "2020-09-22t08:12:28",
+            "http://www.loc.gov/item/5403780"
+        ],
+        "location_country": [
+            "japan"
+        ],
+        "title": "Dai Nihon kairiku zenzu",
+        "number_source_modified": [
+            "2020-09-22t08:12:28",
+            "2020-06-24t11:11:05"
+        ],
+        "online_format": [
+            "image"
+        ],
+        "location": [
+            "japan",
+            "tokyo"
+        ],
+        "number_former_id": [
+            "http://www.loc.gov/item/gm71005209",
+            "http://www.loc.gov/item/5403780"
+        ],
+        "resources": [
+            {
+                "files": 1,
+                "url": "https://www.loc.gov/resource/g7960.ct011921/",
+                "image": "https://tile.loc.gov/storage-services/service/gmd/gmd7/g7960/g7960/ct011921.gif",
+                "caption": "Copy 1"
+            },
+            {
+                "files": 1,
+                "url": "https://www.loc.gov/resource/g7960.ct011922/",
+                "image": "https://tile.loc.gov/storage-services/service/gmd/gmd7/g7960/g7960/ct011922.gif",
+                "caption": "Copy 2"
+            }
+        ],
+        "digitized": true,
+        "description": [
+            "Wood block print. Oriented with north toward the upper right. Relief shown pictorially. Japanese. Includes distance charts. Based on map created by Nagakubo Sekisui. Available also through the Library of Congress Web site as a raster image. Vault AACR2: 651"
+        ],
+        "timestamp": "2020-09-23T05:15:43.174Z",
+        "campaigns": [],
+        "extract_timestamp": "2020-09-23T05:11:31.882Z",
+        "date": "1864",
+        "group": [
+            "catalog",
+            "gmd.mar",
+            "main-catalog",
+            "general-maps"
+        ],
+        "other_title": [
+            "大日本海陸全圖 /"
+        ],
+        "dates": [
+            "1864-01-01T00:00:00Z"
+        ],
+        "number_lccn": [
+            "gm71005209"
+        ],
+        "language": [
+            "japanese"
+        ],
+        "url": "https://www.loc.gov/item/gm71005209/",
+        "shelf_id": "G7960 1864 .S4",
+        "hassegments": false,
+        "image_url": [
+            "https://tile.loc.gov/storage-services/service/gmd/gmd7/g7960/g7960/ct011921.gif",
+            "https://tile.loc.gov/storage-services/service/gmd/gmd7/g7960/g7960/ct011921.gif#h=109&w=150",
+            "https://tile.loc.gov/image-services/iiif/service:gmd:gmd7:g7960:g7960:ct011921/full/pct:12.5/0/default.jpg#h=1088&w=1491",
+            "https://tile.loc.gov/image-services/iiif/service:gmd:gmd7:g7960:g7960:ct011921/full/pct:25/0/default.jpg#h=2176&w=2982"
+        ],
+        "mime_type": [
+            "image/gif",
+            "image/tiff",
+            "image/jpeg",
+            "image/jp2"
+        ],
+        "aka": [
+            "https://hdl.loc.gov/loc.gmd/g7960.ct011921",
+            "https://hdl.loc.gov/loc.gmd/g7960.ct011922",
+            "http://lccn.loc.gov/gm71005209",
+            "http://www.loc.gov/item/gm71005209/",
+            "http://www.loc.gov/resource/g7960.ct011922/",
+            "http://www.loc.gov/resource/g7960.ct011921/"
+        ]
+    }
+]
