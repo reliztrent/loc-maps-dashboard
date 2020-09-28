@@ -1,15 +1,14 @@
 <script>
 
 // Dimensions and sanborn_total_daily_margins
-var sanborn_total_daily_margin = {top: 20, right: 100, bottom: 100, left: 50},
+var sanborn_total_daily_margin = {top: 20, right: 60, bottom: 100, left: 40},
     sanborn_total_daily_width = 450 - sanborn_total_daily_margin.left - sanborn_total_daily_margin.right,
     sanborn_total_daily_height = 350 - sanborn_total_daily_margin.top - sanborn_total_daily_margin.bottom;
 
 // Append to body
 var sanborn_total_daily_svg = d3.select("#d3-sanborn-total-daily")
   .append("svg")
-    .attr("width", sanborn_total_daily_width + sanborn_total_daily_margin.left + sanborn_total_daily_margin.right)
-    .attr("height", sanborn_total_daily_height + sanborn_total_daily_margin.top + sanborn_total_daily_margin.bottom)
+    .attr("viewBox", '0 0 450 350')
   .append("g")
     .attr("transform",
           "translate(" + sanborn_total_daily_margin.left + "," + sanborn_total_daily_margin.top + ")");
@@ -52,6 +51,17 @@ d3.json("data/sanborn-total-daily.json", function(data) {
       return Math.min(d.online); })-10, d3.max(data, function(d) {
       return Math.max(d.online); })+10]); //structured to handle multiple lines
 
+    // Fill below line 
+    var area = d3.area()
+      .x(function(d) { return x(d.facet); })
+      .y0(sanborn_total_daily_height)
+      .y1(function(d) { return y(d.online); })
+      .curve(d3.curveMonotoneX);
+    sanborn_total_daily_svg.append("path")
+        .datum(data)
+        .attr("class", "area-teal")
+        .attr("d", area);
+
     // Add (first) line
     sanborn_total_daily_svg.append("path")
         .data([data])
@@ -84,8 +94,8 @@ d3.json("data/sanborn-total-daily.json", function(data) {
         .text("online")
         .attr("transform", "translate(" + sanborn_total_daily_width + "," + y(data[data.length-1].online) + ")")
         .style("fill","#8CD3DD")
-        .attr("x", 12)
-        .attr("y", -8)//move up a bit;
+        .attr("x", -12)
+        .attr("y", -12)//move up a bit;
 
     // Add the point(s)
     sanborn_total_daily_svg

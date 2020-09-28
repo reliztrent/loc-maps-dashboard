@@ -10,8 +10,7 @@ var maps_origformat_donut_radius = Math.min(maps_origformat_donut_width, maps_or
 // append the svg "maps_online_donut" object to the div called 'my_dataviz'
 var maps_online_donut = d3.select("#d3-maps-original-format-donut")
   .append("svg")
-    .attr("width", maps_origformat_donut_width)
-    .attr("height", maps_origformat_donut_height)
+    .attr("viewBox", '0 0 400 400')
   .append("g")
     .attr("transform", "translate(" + maps_origformat_donut_width / 2 + "," + maps_origformat_donut_height / 2 + ")");
 

@@ -1,15 +1,14 @@
 <script>
 
 // Dimensions and maps_online_daily_margins
-var maps_online_daily_margin = {top: 20, right: 100, bottom: 100, left: 50},
+var maps_online_daily_margin = {top: 20, right: 60, bottom: 100, left: 50},
     maps_online_daily_width = 450 - maps_online_daily_margin.left - maps_online_daily_margin.right,
     maps_online_daily_height = 350 - maps_online_daily_margin.top - maps_online_daily_margin.bottom;
 
 // Append to body
 var maps_online_daily_svg = d3.select("#d3-maps-online-daily")
   .append("svg")
-    .attr("width", maps_online_daily_width + maps_online_daily_margin.left + maps_online_daily_margin.right)
-    .attr("height", maps_online_daily_height + maps_online_daily_margin.top + maps_online_daily_margin.bottom)
+    .attr("viewBox", '0 0 450 350')
   .append("g")
     .attr("transform",
           "translate(" + maps_online_daily_margin.left + "," + maps_online_daily_margin.top + ")");
@@ -52,13 +51,24 @@ d3.json("data/maps-online-daily.json", function(data) {
       return Math.min(d.online); })-10, d3.max(data, function(d) {
       return Math.max(d.online); })+10]); //structured to handle multiple lines
 
+    // Fill below line 
+      var area = d3.area()
+        .x(function(d) { return x(d.facet); })
+        .y0(maps_online_daily_height)
+        .y1(function(d) { return y(d.online); })
+        .curve(d3.curveMonotoneX);
+      maps_online_daily_svg.append("path")
+          .datum(data)
+          .attr("class", "area-teal")
+          .attr("d", area);
+
     // Add (first) line
     maps_online_daily_svg.append("path")
         .data([data])
         .attr("class", "line")
         .attr("d", line1)
         .attr("fill", "none")
-        .attr("stroke", "#1f77b4");
+        .attr("stroke", "#8CD3DD");
 
     // Add Y Axis
     maps_online_daily_svg.append("g")
@@ -83,9 +93,9 @@ d3.json("data/maps-online-daily.json", function(data) {
         .data([data])
         .text("online")
         .attr("transform", "translate(" + maps_online_daily_width + "," + y(data[data.length-1].online) + ")")
-        .style("fill","#1f77b4")
-        .attr("x", 12)
-        .attr("y", -8)//move up a bit;
+        .style("fill","#8CD3DD")
+        .attr("x", -12)
+        .attr("y", -12)//move up a bit;
 
     // Add the point(s)
     maps_online_daily_svg
@@ -97,7 +107,7 @@ d3.json("data/maps-online-daily.json", function(data) {
           .attr("cy", function(d) { return y(d.online) } )
           .attr("r", 4)
           .attr("stroke", "white")
-          .style("fill", "#1f77b4")
+          .style("fill", "#8CD3DD")
           .on("mousemove", function(d){
             tooltip
               .style("left", d3.event.pageX - 30 + "px")

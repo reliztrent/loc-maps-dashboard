@@ -9,8 +9,7 @@ var maps_partof_margin = {top: 10, right: 30, bottom: 115, left: 40},
 // append the svg object to the body of the page
 var maps_partof = d3.select("#d3-maps-partof")
   .append("svg")
-    .attr("width", maps_partof_width + maps_partof_margin.left + maps_partof_margin.right)
-    .attr("height", maps_partof_height + maps_partof_margin.top + maps_partof_margin.bottom)
+    .attr("viewBox", '0 0 450 350')
   .append("g")
     .attr("transform",
           "translate(" + maps_partof_margin.left + "," + maps_partof_margin.top + ")");
@@ -46,6 +45,7 @@ maps_partof.selectAll("bar")
     .attr("x", function(d) { return x(d.facet); })
     .attr("width", x.bandwidth())
     .attr("fill", "#69b3a2")
+    .attr("class", "pink")
     // no bar at the beginning thus:
     .attr("height", function(d) { return maps_partof_height - y(0); }) // always equal to 0
     .attr("y", function(d) { return y(0); })

@@ -1,15 +1,14 @@
 <script>
 
 // Dimensions and gmdmar_total_daily_margins
-var gmdmar_total_daily_margin = {top: 20, right: 100, bottom: 100, left: 50},
+var gmdmar_total_daily_margin = {top: 20, right: 60, bottom: 100, left: 50},
     gmdmar_total_daily_width = 450 - gmdmar_total_daily_margin.left - gmdmar_total_daily_margin.right,
     gmdmar_total_daily_height = 350 - gmdmar_total_daily_margin.top - gmdmar_total_daily_margin.bottom;
 
 // Append to body
 var gmdmar_total_daily_svg = d3.select("#d3-gmdmar-total-daily")
   .append("svg")
-    .attr("width", gmdmar_total_daily_width + gmdmar_total_daily_margin.left + gmdmar_total_daily_margin.right)
-    .attr("height", gmdmar_total_daily_height + gmdmar_total_daily_margin.top + gmdmar_total_daily_margin.bottom)
+    .attr("viewBox", '0 0 450 350')
   .append("g")
     .attr("transform",
           "translate(" + gmdmar_total_daily_margin.left + "," + gmdmar_total_daily_margin.top + ")");
@@ -35,6 +34,8 @@ d3.json("data/gmdmar-total-daily.json", function(data) {
         .y(function(d) { return y(d.online); })
         .curve(d3.curveMonotoneX) ;
 
+
+
     // format the data
     data.forEach(function(d) {
         d.facet = parseTime(d.facet);
@@ -52,7 +53,18 @@ d3.json("data/gmdmar-total-daily.json", function(data) {
       return Math.min(d.online); })-10, d3.max(data, function(d) {
       return Math.max(d.online); })+10]); //structured to handle multiple lines
 
-    // Add (first) line
+    // Fill below line 
+    var area = d3.area()
+      .x(function(d) { return x(d.facet); })
+      .y0(gmdmar_total_daily_height)
+      .y1(function(d) { return y(d.online); })
+      .curve(d3.curveMonotoneX);
+    gmdmar_total_daily_svg.append("path")
+        .datum(data)
+        .attr("class", "area-teal")
+        .attr("d", area);
+
+    // Add (first) line. Additional lines can also be added. 
     gmdmar_total_daily_svg.append("path")
         .data([data])
         .attr("class", "line")
@@ -84,8 +96,8 @@ d3.json("data/gmdmar-total-daily.json", function(data) {
         .text("online")
         .attr("transform", "translate(" + gmdmar_total_daily_width + "," + y(data[data.length-1].online) + ")")
         .style("fill","#8CD3DD")
-        .attr("x", 12)
-        .attr("y", -8)//move up a bit;
+        .attr("x", -12)
+        .attr("y", -12)//move up a bit;
 
     // Add the point(s)
     gmdmar_total_daily_svg

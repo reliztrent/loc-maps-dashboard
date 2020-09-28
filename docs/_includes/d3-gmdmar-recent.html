@@ -9,8 +9,7 @@ var gmdmar_recent_margin = {top: 10, right: 30, bottom: 80, left: 40},
 // append the svg object to the body of the page
 var gmdmar_recent = d3.select("#d3-gmdmar-recent")
   .append("svg")
-    .attr("width", gmdmar_recent_width + gmdmar_recent_margin.left + gmdmar_recent_margin.right)
-    .attr("height", gmdmar_recent_height + gmdmar_recent_margin.top + gmdmar_recent_margin.bottom)
+    .attr("viewBox", '0 0 450 350')
   .append("g")
     .attr("transform",
           "translate(" + gmdmar_recent_margin.left + "," + gmdmar_recent_margin.top + ")");

@@ -1,15 +1,14 @@
 <script>
 
 // Dimensions and maps_not_online_daily_margins
-var maps_not_online_daily_margin = {top: 20, right: 100, bottom: 100, left: 50},
+var maps_not_online_daily_margin = {top: 20, right: 60, bottom: 100, left: 50},
     maps_not_online_daily_width = 450 - maps_not_online_daily_margin.left - maps_not_online_daily_margin.right,
     maps_not_online_daily_height = 350 - maps_not_online_daily_margin.top - maps_not_online_daily_margin.bottom;
 
 // Append to body
 var maps_not_online_daily_svg = d3.select("#d3-maps-not-online-daily")
   .append("svg")
-    .attr("width", maps_not_online_daily_width + maps_not_online_daily_margin.left + maps_not_online_daily_margin.right)
-    .attr("height", maps_not_online_daily_height + maps_not_online_daily_margin.top + maps_not_online_daily_margin.bottom)
+    .attr("viewBox", '0 0 450 350')
   .append("g")
     .attr("transform",
           "translate(" + maps_not_online_daily_margin.left + "," + maps_not_online_daily_margin.top + ")");
@@ -52,6 +51,17 @@ d3.json("data/maps-online-daily.json", function(data) {
       return Math.min(d.not_online); })-10, d3.max(data, function(d) {
       return Math.max(d.not_online); })+10]); //structured to handle multiple lines
 
+    // Fill below line 
+      var area = d3.area()
+        .x(function(d) { return x(d.facet); })
+        .y0(maps_not_online_daily_height)
+        .y1(function(d) { return y(d.not_online); })
+        .curve(d3.curveMonotoneX);
+      maps_not_online_daily_svg.append("path")
+          .datum(data)
+          .attr("class", "area-orange")
+          .attr("d", area);
+
     // Add (first) line
     maps_not_online_daily_svg.append("path")
         .data([data])
@@ -84,8 +94,8 @@ d3.json("data/maps-online-daily.json", function(data) {
         .text("records")
         .attr("transform", "translate(" + maps_not_online_daily_width + "," + y(data[data.length-1].not_online) + ")")
         .style("fill","#ff7f0e")
-        .attr("x", 12)
-        .attr("y", -8)//move up a bit;
+        .attr("x", -12)
+        .attr("y", -12)//move up a bit;
 
     // Add the point(s)
     maps_not_online_daily_svg

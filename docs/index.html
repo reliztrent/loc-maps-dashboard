@@ -1,81 +1,106 @@
 ---
-layout: page
+layout: default
 title: Maps Dashboard
 ---
 
-
-<p><small>Publicly available data about maps and map catalog records online at the the <a href='https://loc.gov/maps'>Library of Congress</a>. Made with the <a href="https://libraryofcongress.github.io/data-exploration/">loc.gov API</a>, GitHub <a href="https://pages.github.com/">pages</a> and <a href="https://docs.github.com/en/actions">actions</a>, <a href="https://jekyllrb.com/">Jekyll</a>, <a href="https://shopify.github.io/liquid/">Liquid</a>, and <a href="https://d3js.org/">D3</a>. Code <a href="https://github.com/reliztrent/loc-maps-dashboard">on GitHub</a>. Just for fun, not an official product of the Library of Congress. Data last refreshed : <code>{{ site.time | date: "%B %d, %Y" }} 00:15 am</code>.</small></p>
-
-
-<div class="clearfix">
-	<div class="col-4 sm-width-full left">
-		<div class="card card-mini mr-2 mb-2">
-			<p class="h3">Online Map objects</p>
-			<h3 id="online-map-objects"></h3>
-	    </div>
-	</div>
-	<div class="col-4 sm-width-full left">
-		<div class="card card-mini mr-2 mb-2">
-			<p class="h3"> Online Sanborns atlases</p>
-			<h3 id ="online-sanborn-atlases"></h3>
+<div class="container-fluid p-4">
+	<div class="row">
+		<div class="col-md-12">
+			<h1 class="h0">{{ page.title }}</h1>
 		</div>
 	</div>
-	<div class="col-4 sm-width-full left">
- 		<div class="card card-mini mr-2 mb-2">
-			<p class="h3"> Online GMD.MAR<a href="#notes">&#42;</a> objects</p>
-			<h3 id="online-gmd-mar"></h3>
+	<div class="row">
+		<div class="col-md-6"><hr></div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<p>Publicly available data about online map-related records and materials at the Library of Congress's<a href='https://loc.gov/maps'>loc.gov</a>. Made with the <a href="https://libraryofcongress.github.io/data-exploration/">loc.gov API</a>, GitHub <a href="https://pages.github.com/">pages</a> and <a href="https://docs.github.com/en/actions">actions</a>, <a href="https://jekyllrb.com/">Jekyll</a>, <a href="https://shopify.github.io/liquid/">Liquid</a>, and <a href="https://d3js.org/">D3</a>. Code <a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}">on GitHub</a>. Data last refreshed : <code>{{ site.time | date: "%B %d, %Y" }} 00:15 am</code>.</p>
+		</div>
+	</div>
+
+<div class="row">
+	<div class="col-md-4 p-1">
+ 		<div class="card card-mini blue mb-2">
+			<p class="h3 pop" id="online-gmd-mar"></p>
+			<h3 class="h4"> Online GMD.MAR Objects</h3>
+		</div>
+	</div>
+	<div class="col-md-4 p-1">
+		<div class="card card-mini orange mb-2">
+			<p class="h3 pop" id="online-map-objects"></p>
+			<h3 class="h4">Online Map Objects</h3>
+	    </div>
+	</div>
+	<div class="col-md-4 p-1">
+		<div class="card card-mini pink mb-2">
+			<p class="h3 pop" id ="online-sanborn-atlases"></p>
+			<h3 class="h4"> Online Sanborns Objects</h3>
 		</div>
 	</div>
 </div>
 
-<div class="clearfix">
-	<div class="col-6 sm-width-full left">
-		<h2 class="ml-2 pop">GMD.MAR</h2>
-		<div class="card card-mini mr-3 mb-3">
-			<h3>GMD.MAR objects Last Modified, by Month</h3>
-			<p class="subtitle">All map objects currently in gmd.mar, by month most recently modified (created and/or updated). </p>
-			<div id="d3-gmdmar-recent" class="svg-container"></div>
-		</div>
-		<div class="card card-mini mr-3 mb-3">
-			<h3>GMD.MAR objects Modified, by Day</h3>
-			<p class="subtitle">Number of gmd.mar map objects modified per day (created and/or updated).</p>
-			<div id="d3-gmdmar-recent-daily" class="svg-container"></div>
-		</div>
-		<div class="card card-mini mr-3 mb-3">
-			<h3>Total GMD.MAR objects, by Day</h3>
-			<p class="subtitle">All map objects currently in gmd.mar, by daily count</p>
+
+<div class="row">
+	<div class="col-md-4 p-1">
+		<div class="card card-mini blue mb-2">
+			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/gmdmar-total-facets-daily" class="data_download"></a>
+			<!--<span id="total_online_gmdmar" class="h3 pop"></span>-->
+			<h3>Online GMD.MAR Objects</h3>
 			<div id="d3-gmdmar-total-daily" class="svg-container"></div>
 		</div>
-		<div class="card card-mini mr-3 mb-3">
-			<h3>Total Sanborn objects, by Day</h3>
-			<p class="subtitle">All Sanborn objects, by daily count</p>
-			<div id="d3-sanborn-total-daily" class="svg-container"></div>
+		<div class="card card-mini blue mb-2">
+			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/gmdmar-recent-daily" class="data_download"></a>
+			<h3>GMD.MAR Objects Modified</h3>
+			<div id="d3-gmdmar-recent-daily" class="svg-container"></div>
+		</div>
+		<div class="card card-mini blue mb-2">
+			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/gmdmar-recent-monthly" class="data_download"></a>
+			<h3>GMD.MAR Objects, Month Most Recently Modified</h3>
+			<div id="d3-gmdmar-recent" class="svg-container"></div>
 		</div>
 	</div>
 
-	<div class="col-6 sm-width-full left">
-		<h2 class="ml-2 pop">Maps</h2>
-		<div class="card card-mini mr-3 mb-3">
-			<h3>Total Map objects, by Online Status</h3>
-			<p class="subtitle">All map objects currently in loc.gov/maps, online (true) vs. not online<a href="#notes">&#42;</a> (false). </p>
+	<div class="col-md-4 p-1">
+		<div class="card card-mini orange mb-2">
+			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/map-facets-daily" class="data_download"></a>
+			<h3>Map Objects: Online vs. Not Online</h3>
 			<div id="d3-maps-online-donut" class="svg-container"></div>
 		</div>
-		<div class="card card-mini mr-3 mb-3">
-			<h3>Total Online Map objects, by Day</h3>
-			<p class="subtitle">All online map objects in loc.gov/maps, by daily count</p>
+		<div class="card card-mini orange mb-2">
+			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/map-facets-daily" class="data_download"></a>
+			<span id="total_online_maps" class="h3 pop"></span>
+			<h3>Online Map Objects</h3>
 			<div id="d3-maps-online-daily" class="svg-container"></div>
 		</div>
-		<div class="card card-mini mr-3 mb-3">
-			<h3>Total Map records (not online<a href="#notes">&#42;</a>), by Day</h3>
-			<p class="subtitle">All map objects that are not online<a href="#notes">&#42;</a> in loc.gov/maps, by daily count</p>
+		<div class="card card-mini orange mb-2">
+			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/map-facets-daily" class="data_download"></a>
+			<span id="total_notonline_maps" class="h3 pop"></span>
+			<h3>Bibliographic Map Records (not online)</h3>
 			<div id="d3-maps-not-online-daily" class="svg-container"></div>
 		</div>
-		<div class="card card-mini mr-3 mb-3">
-			<h3>Total Online Map objects, by Collection</h3>
-			<p class="subtitle">All online map objects currently in loc.gov/maps, by "Part of" facet</p>
+		<div class="card card-mini orange mb-2">
+			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/map-facets-daily" class="data_download"></a>
+			<h3>Online Map Objects, by Collection</h3>
+			<p class="subtitle">Objects can belong in more than one collection. "Collection" = "Part Of"</p>
 			<div id="d3-maps-partof" class="svg-container"></div>
 		</div>
 	</div>
+
+	<div class="col-md-4 p-1">
+		<div class="card card-mini pink mb-2">
+			<!--<span id="total_online_sanborns" class="h3 pop"></span>-->
+			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/sanborn-facets-daily" class="data_download"></a>
+			<h3>Sanborn Objects Online</h3>
+			<div id="d3-sanborn-total-daily" class="svg-container"></div>
+		</div>
+		<!--<div class="card card-mini mb-2">
+			<a href="" class="data_download"></a>
+			<h3>Sanborn Object Records (not online<a href="#notes">&#42;)</a></h3>
+			<span id="total_notonline_sanborns" class="h3"></span>
+			<div id="d3-sanborn-total-daily-notonline" class="svg-container"></div>
+		</div>-->
+	</div>
+
 </div>
 <!--<div class="clearfix">
 	<div class="col-12 sm-width-full">
@@ -85,26 +110,35 @@ title: Maps Dashboard
 	</div>
 </div>-->
 
-<br>
-<h2 class="h0 py-4 mt-3">Notes</h2>
 
-<div class="clearfix">
-	<div class="col-6 sm-width-full">
-		<div class="card card-mini mr-3 mb-3">
-			<h3 id="notes">&#42; Definitions</h3>
-			<dl><dt>Online</dt><dd>digitized materials, webpages, finding aids, e-resources, other online resources</dd><dt>Not online</dt><dd>links to catalog  other descriptive records (other than finding aids) but objects themselves aren't online.</dd><dt>GMD.MAR</dt><dd>A grouping for processing purposes, which holds all online materials from LOC's Geography and Map Division that are not otherwise held in another processing group. In API query results, can be found in "group" field.</dd></dl>
-		</div>
+
+<div class="row">
+	<div class="card card-mini mt-5 mb-3">
+		<h2 class="h0 mb-4">Notes</h2>
+		<h3 id="notes">Definitions</h3>
+		<dl>
+			<dt>Online</dt>
+				<dd>Items where <code>digitized:true</code>. Includes digitized materials, webpages, finding aids, e-resources, other online resources. Example search: <a href="https://www.loc.gov/search/?fa=digitized:true">https://www.loc.gov/search/?fa=digitized:true</a></dd>
+			<dt>Not online</dt>
+				<dd>Items where <code>digitized:false</code>. Includes links to catalog other descriptive records (other than finding aids) but objects themselves aren't online. Example search: <a href="https://www.loc.gov/search/?fa=digitized:false">https://www.loc.gov/search/?fa=digitized:false</a></dd>
+			<dt>GMD.MAR</dt>
+				<dd>Items where <code>group:gmd.mar</code>. GMD.MAR is a grouping for internal processing purposes, which holds all online materials from LOC's Geography and Map Division that are not otherwise held in another processing group. Note that these materials may not necessarily be maps. Example search: <a href="https://www.loc.gov/search/?sq=group:gmd.mar">https://www.loc.gov/search/?sq=group:gmd.mar</a>. </dd>
+			<dt>Maps</dt>
+				<dd>Items where <code>original-format:map</code>. Example searches: <a href="https://www.loc.gov/search/?fa=original-format:map">https://www.loc.gov/search/?fa=original-format:map</a>, equivalent to <a href="https://www.loc.gov/maps">https://www.loc.gov/maps</a></dd>
+			<dt>Sanborns</dt>
+				<dd>Items where <code>partof:sanborn</code>. Example search: <a href="https://www.loc.gov/collections/sanborn-maps/">https://www.loc.gov/collections/sanborn-maps/</a>, equivalent to <a href="https://www.loc.gov/search/?fa=partof:sanborn maps">https://www.loc.gov/search/?fa=partof:sanborn maps</a></dd>
+		</dl>
 	</div>
 </div>
 
-<div class="clearfix">
+<!--<div class="clearfix">
 	<div class="col-12 sm-width-full">
-		<div class="card card-mini mr-3 mb-3">
+		<div class="card card-mini mb-2">
 			<h3>Data Freshness</h3>
 			{% include data_freshness.html %}
 		</div>
 	</div>
-</div>
+</div>-->
 
 <script src="//d3js.org/d3.v4.min.js"></script>
 {% include d3-maps-online.html %}
@@ -115,15 +149,55 @@ title: Maps Dashboard
 {% include d3-gmdmar-total-daily.html %}
 {% include d3-maps-not-online-daily.html %}
 {% include d3-sanborn-total-daily.html %}
+
 <script>
-	var num1 = {{site.data.map-facets-daily.map-facets-TODAY.facets[0].filters[0].count}};
+	//Top row
+	var num1 = {{site.data.map-facets-daily.map-facets-TODAY.facets[0].filters[0].count| default: 0}};
 	num1_formatted = Number(num1).toLocaleString('en');
 	document.getElementById('online-map-objects').innerHTML = num1_formatted;
-	var num2 = {{site.data.map-facets-daily.map-facets-TODAY.facets[5].filters[1].count}};
+
+	var num2 = {{site.data.sanborn-facets-daily.sanborn-facets-TODAY.facets[0].filters[0].count | default: 0}};
 	num2_formatted = Number(num2).toLocaleString('en');
 	document.getElementById('online-sanborn-atlases').innerHTML = num2_formatted;
-	var num3 = {{site.data.gmdmar-facets-daily.gmdmar-facets-TODAY.facets[0].filters[0].count}};
+
+	var num3 = {{site.data.gmdmar-facets-daily.gmdmar-facets-TODAY.facets[0].filters[0].count | default: 0}};
 	num3_formatted = Number(num3).toLocaleString('en');
 	document.getElementById('online-gmd-mar').innerHTML = num3_formatted;
+
+	//Charts and graphs
+
+	var total_online_gmdmar = {{site.data.gmdmar-facets-daily.gmdmar-facets-TODAY.facets[0].filters[0].count | default: 0}};
+	total_online_gmdmar_formatted = Number(total_online_gmdmar).toLocaleString('en');
+	document.getElementById('total_online_gmdmar').insertAdjacentHTML("afterbegin", total_online_gmdmar_formatted)
+
+	var total_online_maps = {{site.data.map-facets-daily.map-facets-TODAY.facets[0].filters[0].count | default: 0}};
+	total_online_maps_formatted = Number(total_online_maps).toLocaleString('en');
+	document.getElementById('total_online_maps').insertAdjacentHTML("afterbegin", total_online_maps_formatted);
+
+	var total_notonline_maps = {{site.data.map-facets-daily.map-facets-TODAY.facets[0].filters[1].count | default: 0}};
+	total_notonline_maps_formatted = Number(total_notonline_maps).toLocaleString('en');
+	document.getElementById('total_notonline_maps').insertAdjacentHTML("afterbegin", total_notonline_maps_formatted);
+
+	var total_online_sanborns = {{site.data.sanborn-facets-daily.sanborn-facets-TODAY.facets[0].filters[0].count | default: 0}};
+	total_online_sanborns_formatted = Number(total_online_sanborns).toLocaleString('en');
+	document.getElementById('total_online_sanborns').insertAdjacentHTML("afterbegin", total_online_sanborns_formatted);
+
+	//var total_notonline_sanborns = {{site.data.sanborn-facets-daily.sanborn-facets-TODAY.facets[0].filters[1].count | default: 0}};
+	//total_notonline_sanborns_formatted = Number(total_notonline_sanborns).toLocaleString('en');
+	//document.getElementById('total_notonline_sanborns').insertAdjacentHTML("afterbegin", total_notonline_sanborns_formatted);
+
+</script>
+<script>
+const data_download = d3.selectAll('.data_download');
+const svg = data_download.append('svg')
+			.attr('width','1.4em')
+			.attr('height','1.4em')
+			.attr('viewBox','0 0 16 16')
+			.attr('class','bi bi-cloud-arrow-down-fill top-right')
+			.attr('xmlns','http://www.w3.org/2000/svg')
+			.attr('fill','#ddd')
+			.append('path')
+				.attr('fill-rule','evenodd')
+				.attr('d','M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm2.354 6.854l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5a.5.5 0 0 1 1 0v3.793l1.146-1.147a.5.5 0 0 1 .708.708z');
 </script>
 
