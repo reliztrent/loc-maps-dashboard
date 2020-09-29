@@ -14,7 +14,7 @@ title: Maps Dashboard
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<p>Publicly available data about online map-related records and materials at the Library of Congress's <a href='https://loc.gov/maps'>loc.gov</a>. Made with the <a href="https://libraryofcongress.github.io/data-exploration/">loc.gov API</a>, GitHub <a href="https://pages.github.com/">pages</a> and <a href="https://docs.github.com/en/actions">actions</a>, <a href="https://jekyllrb.com/">Jekyll</a>, <a href="https://shopify.github.io/liquid/">Liquid</a>, and <a href="https://d3js.org/">D3</a>. Code <a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}">on GitHub</a>. Data last refreshed : <code>{{ site.time | date: "%B %d, %Y" }} 00:15 am</code>.</p>
+			<p>Publicly available data about online map-related records and materials at the Library of Congress's<a href='https://loc.gov/maps'>loc.gov</a>. Made with the <a href="https://libraryofcongress.github.io/data-exploration/">loc.gov API</a>, GitHub <a href="https://pages.github.com/">pages</a> and <a href="https://docs.github.com/en/actions">actions</a>, <a href="https://jekyllrb.com/">Jekyll</a>, <a href="https://shopify.github.io/liquid/">Liquid</a>, and <a href="https://d3js.org/">D3</a>. Code <a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}">on GitHub</a>. Data last refreshed : <code>{{ site.time | date: "%B %d, %Y" }} 00:15 am</code>.</p>
 		</div>
 	</div>
 
@@ -47,7 +47,6 @@ title: Maps Dashboard
 			<!--<span id="total_online_gmdmar" class="h3 pop"></span>-->
 			<h3>Online GMD.MAR Objects</h3>
 			<div id="d3-gmdmar-total-daily" class="svg-container"></div>
-			<p class="small">Note: Beginning Sep 21, GMD.MAR was updated to include non-map items.</p>
 		</div>
 		<div class="card card-mini blue mb-2">
 			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/gmdmar-recent-daily" class="data_download"></a>
@@ -89,17 +88,21 @@ title: Maps Dashboard
 
 	<div class="col-md-4 p-1">
 		<div class="card card-mini pink mb-2">
+			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/sanborn-facets-daily" class="data_download"></a>
+			<h3>Sanborn Objects: Online vs Not Online</h3>
+			<div id="d3-sanborn-online-donut" class="svg-container"></div>
+		</div>
+		<div class="card card-mini pink mb-2">
 			<!--<span id="total_online_sanborns" class="h3 pop"></span>-->
 			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/sanborn-facets-daily" class="data_download"></a>
 			<h3>Sanborn Objects Online</h3>
 			<div id="d3-sanborn-total-daily" class="svg-container"></div>
 		</div>
-		<!--<div class="card card-mini mb-2">
-			<a href="" class="data_download"></a>
-			<h3>Sanborn Object Records (not online<a href="#notes">&#42;)</a></h3>
-			<span id="total_notonline_sanborns" class="h3"></span>
-			<div id="d3-sanborn-total-daily-notonline" class="svg-container"></div>
-		</div>-->
+		<div class="card card-mini pink mb-2">
+			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/sanborn-facets-daily" class="data_download"></a>
+			<h3>Sanborn Object Records (not online)</a></h3>
+			<div id="d3-sanborn-not-online-daily" class="svg-container"></div>
+		</div>
 	</div>
 
 </div>
@@ -118,8 +121,6 @@ title: Maps Dashboard
 		<h2 class="h0 mb-4">Notes</h2>
 		<h3 id="notes">Definitions</h3>
 		<dl>
-			<dt>Object</dt>
-				<dd>An object is anything found on a loc.gov <code>/item/</code> URL. It could be a single map, a set of hundreds or thousands of maps, an atlas with multiple maps, or any other kind of object. The individual sheets within objects are found at loc.gov <code>/resource/</code> pages.</dd>
 			<dt>Online</dt>
 				<dd>Items where <code>digitized:true</code>. Includes digitized materials, webpages, finding aids, e-resources, other online resources. Example search: <a href="https://www.loc.gov/search/?fa=digitized:true">https://www.loc.gov/search/?fa=digitized:true</a></dd>
 			<dt>Not online</dt>
@@ -151,7 +152,9 @@ title: Maps Dashboard
 {% include d3-maps-online-daily.html %}
 {% include d3-gmdmar-total-daily.html %}
 {% include d3-maps-not-online-daily.html %}
+{% include d3-sanborn-online.html %}
 {% include d3-sanborn-total-daily.html %}
+{% include d3-sanborn-not-online-daily.html %}
 
 <script>
 	//Top row

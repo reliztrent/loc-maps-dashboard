@@ -1,0 +1,14 @@
+---
+layout: none
+---
+[{% for facet in site.data.sanborn-facets-daily.sanborn-facets-TODAY.facets %}
+  {% if facet.type == "digitized"%}
+  {% for filter in facet.filters %}
+  {
+    "count": "{{ filter.count }}",
+    "facet": "{{ filter.title }}"
+  }{% if forloop.last == false %},{% endif %}
+  {% endfor %}
+  {% break %}
+  {% endif %}
+{% endfor %}]

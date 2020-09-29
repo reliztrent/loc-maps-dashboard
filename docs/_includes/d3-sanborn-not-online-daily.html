@@ -1,0 +1,122 @@
+<script>
+
+// Dimensions and sanborn_not_online_daily_margins
+var sanborn_not_online_daily_margin = {top: 20, right: 60, bottom: 100, left: 40},
+    sanborn_not_online_daily_width = 450 - sanborn_not_online_daily_margin.left - sanborn_not_online_daily_margin.right,
+    sanborn_not_online_daily_height = 350 - sanborn_not_online_daily_margin.top - sanborn_not_online_daily_margin.bottom;
+
+// Append to body
+var sanborn_not_online_daily_svg = d3.select("#d3-sanborn-not-online-daily")
+  .append("svg")
+    .attr("viewBox", '0 0 450 350')
+  .append("g")
+    .attr("transform",
+          "translate(" + sanborn_not_online_daily_margin.left + "," + sanborn_not_online_daily_margin.top + ")");
+
+//Read the data
+d3.json("data/sanborn-total-daily.json", function(data) { 
+
+    // A color scale: one color for each group
+    var myColor = d3.scaleOrdinal()
+      .domain(["online", "not_online"])
+      .range(d3.schemeCategory10);
+
+    // parse the date / time
+    var parseTime = d3.timeParse("%Y-%m-%d");
+
+    // set the ranges
+    var x = d3.scaleTime().range([0, sanborn_not_online_daily_width]);
+    var y = d3.scaleLinear().range([sanborn_not_online_daily_height, 0]);
+
+    // define the first line
+    var line1 = d3.line()
+        .x(function(d) { return x(d.facet); })
+        .y(function(d) { return y(d.not_online); })
+        .curve(d3.curveMonotoneX) ;
+
+    // format the data
+    data.forEach(function(d) {
+        d.facet = parseTime(d.facet);
+        d.online = +d.not_online;
+    });
+
+    // sort years ascending
+    data.sort(function(a, b){
+      return a["facet"]-b["facet"]; 
+    })
+
+    // Scale the range of the data
+    x.domain(d3.extent(data, function(d) { return d.facet; })); //list of all facets
+    y.domain([d3.min(data, function(d) {
+      return Math.min(d.not_online); })-10, d3.max(data, function(d) {
+      return Math.max(d.not_online); })+10]); //structured to handle multiple lines
+
+    // Fill below line 
+    var area = d3.area()
+      .x(function(d) { return x(d.facet); })
+      .y0(sanborn_not_online_daily_height)
+      .y1(function(d) { return y(d.not_online); })
+      .curve(d3.curveMonotoneX);
+    sanborn_not_online_daily_svg.append("path")
+        .datum(data)
+        .attr("class", "area-orange")
+        .attr("d", area);
+
+    // Add (first) line
+    sanborn_not_online_daily_svg.append("path")
+        .data([data])
+        .attr("class", "line")
+        .attr("d", line1)
+        .attr("fill", "none")
+        .attr("stroke", "#ff7f0e");
+
+    // Add Y Axis
+    sanborn_not_online_daily_svg.append("g")
+        .attr("class", "axis")
+        .call(d3.axisLeft(y));
+
+    // Add X Axis
+    sanborn_not_online_daily_svg.append("g")
+        .attr("class", "axis")
+        .attr("transform", "translate(0," + sanborn_not_online_daily_height + ")")
+        .call(d3.axisBottom(x)
+          .tickFormat(d3.timeFormat("%a %b %d"))
+          .tickValues(data.map(function(d){return d.facet})))
+        .selectAll("text") 
+          .style("text-anchor", "end")
+          .attr("dx", "-.8em")
+          .attr("dy", ".15em")
+          .attr("transform", "rotate(-65)");
+
+    // Add line label(s)
+    sanborn_not_online_daily_svg.append("text")
+        .data([data])
+        .text("records")
+        .attr("transform", "translate(" + sanborn_not_online_daily_width + "," + y(data[data.length-1].not_online) + ")")
+        .style("fill","#ff7f0e")
+        .attr("x", -12)
+        .attr("y", -12)
+
+    // Add the point(s)
+    sanborn_not_online_daily_svg
+      .selectAll("points")
+      .data(data)
+      .enter()
+        .append("circle")
+          .attr("cx", function(d) { return x(d.facet) } )
+          .attr("cy", function(d) { return y(d.not_online) } )
+          .attr("r", 4)
+          .attr("stroke", "white")
+          .style("fill", "#ff7f0e")
+          .on("mousemove", function(d){
+            tooltip
+              .style("left", d3.event.pageX - 30 + "px")
+              .style("top", d3.event.pageY - 40 + "px")
+              .style("display", "inline-block")
+              .html((d.online));
+          })
+          .on("mouseout", function(d){ tooltip.style("display", "none");});
+
+})
+
+</script>
