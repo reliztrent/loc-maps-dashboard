@@ -62,7 +62,7 @@ maps_online_donut
   .data(data_ready)
   .enter()
   .append('polyline')
-    .attr("stroke", "black")
+    .attr("stroke", "#75777b")
     .style("fill", "none")
     .attr("stroke-width", 1)
     .attr('points', function(d) {
@@ -88,7 +88,8 @@ maps_online_donut
       }
       return label
     } )
-    .attr('font-size','.90em')
+    .attr('font-size','.70em')
+    .attr('fill', '#75777b')
     .attr('transform', function(d) {
         var pos = outerArc.centroid(d);
         var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
