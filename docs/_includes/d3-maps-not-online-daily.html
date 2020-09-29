@@ -68,7 +68,7 @@ d3.json("data/maps-online-daily.json", function(data) {
         .attr("class", "line")
         .attr("d", line1)
         .attr("fill", "none")
-        .attr("stroke", "#ff7f0e");
+        .attr("stroke", "#ff7f0e"); //orange
 
     // Add Y Axis
     maps_not_online_daily_svg.append("g")
@@ -93,9 +93,9 @@ d3.json("data/maps-online-daily.json", function(data) {
         .data([data])
         .text("records")
         .attr("transform", "translate(" + maps_not_online_daily_width + "," + y(data[data.length-1].not_online) + ")")
-        .style("fill","#ff7f0e")
+        .style("fill","#ff7f0e") //orange
         .attr("x", -12)
-        .attr("y", -12)//move up a bit;
+        .attr("y", -12)
 
     // Add the point(s)
     maps_not_online_daily_svg
@@ -107,7 +107,7 @@ d3.json("data/maps-online-daily.json", function(data) {
           .attr("cy", function(d) { return y(d.not_online) } )
           .attr("r", 4)
           .attr("stroke", "white")
-          .style("fill", "#ff7f0e")
+          .style("fill", "#ff7f0e") //orange
           .on("mousemove", function(d){
             tooltip
               .style("left", d3.event.pageX - 30 + "px")
