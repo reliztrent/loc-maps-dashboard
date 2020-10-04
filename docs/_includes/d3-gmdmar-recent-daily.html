@@ -14,14 +14,18 @@ var gmdmar_recent_daily = d3.select("#d3-gmdmar-recent-daily")
     .attr("transform",
           "translate(" + gmdmar_recent_daily_margin.left + "," + gmdmar_recent_daily_margin.top + ")");
 
-var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
-// Parse the Data
-d3.json("data/gmdmar-recent-daily.json", function(data) {
-  console.log(data)
-
+  // Parse the Data
+  d3.json("data/gmdmar-recent-daily.json", function(data) {
+  
   // parse the date / time
   var parseTime = d3.timeParse("%Y-%m-%d");
+
+  // format dates for tick text
+  var displayDate = d3.timeFormat("%a %b %d, %Y");
+
+  // format dates for tick contional formatting
+  var justDay = d3.timeFormat("%d");
 
   // format the data
   data.forEach(function(d) {
@@ -33,27 +37,44 @@ d3.json("data/gmdmar-recent-daily.json", function(data) {
   data.sort(function(a, b){
       return a["facet"]-b["facet"]; 
     })
-  console.log(data)
 
+  var x_domain = data.map(function(d) { return d.facet; })
   // X axis
   var x = d3.scaleBand()
     .range([ 0, gmdmar_recent_daily_width ])
-    .domain(data.map(function(d) { return d.facet; }))
+    .domain(x_domain)
     .padding(0.2);
+
+  // Y axis
+  var y = d3.scaleLinear()
+    .range([ gmdmar_recent_daily_height, 0])
+    .domain([0, d3.max(data, function(d) {
+          return Math.max(d.online); })+4]);
+
+  
+  // Add X axis, ticks and labels
   gmdmar_recent_daily.append("g")
+    .attr("class", "axis axis-minor")
     .attr("transform", "translate(0," + gmdmar_recent_daily_height + ")")
     .call(d3.axisBottom(x)
-      .tickFormat(d3.timeFormat("%a %b %d"))
-      .tickValues(data.map(function(d){return d.facet})))
+      //.ticks(d3.timeMonth.every(1))
+      //.tickValues(data.map(function(d){return d.facet}))
+      .tickFormat(d3.timeFormat("%b %Y"))
+    ) 
     .selectAll("text")
-      .attr("transform", "translate(-10,0)rotate(-45)")
-      .style("text-anchor", "end");
+      .style("text-anchor", "end")
+      .attr("dx", "-.8em")
+      .attr("dy", ".15em")
+      .attr("transform", "rotate(-45)")
+      .style("fill", function(d) {
+        if(justDay(d) == 1){
+            return 'black';
+        } else {
+            return 'none';
+        }
+    });
 
-  // Add Y axis
-  var y = d3.scaleLinear()
-    .domain([0, d3.max(data, function(d) {
-          return Math.max(d.online); })+10])
-    .range([ gmdmar_recent_daily_height, 0]);
+
   gmdmar_recent_daily.append("g")
     .call(d3.axisLeft(y));
 
@@ -70,9 +91,14 @@ d3.json("data/gmdmar-recent-daily.json", function(data) {
     .on("mousemove", function(d){
         tooltip
           .style("left", d3.event.pageX - 30 + "px")
-          .style("top", d3.event.pageY - 40 + "px")
+          .style("top", d3.event.pageY - 70 + "px")
           .style("display", "inline-block")
-          .html((d.online));
+          .html(
+            d.online+
+            "<br><span class=\"small\">"+
+            displayDate(d.facet)+
+            "</span>"
+          ); 
     })
     .on("mouseout", function(d){ tooltip.style("display", "none");})
 
@@ -82,7 +108,7 @@ d3.json("data/gmdmar-recent-daily.json", function(data) {
     .duration(800)
     .attr("y", function(d) { return y(d.online); })
     .attr("height", function(d) { return gmdmar_recent_daily_height - y(d.online); })
-    .delay(function(d,i){console.log(i) ; return(i*100)})
+    .delay(function(d,i){return(i*100)})
 
 })
 

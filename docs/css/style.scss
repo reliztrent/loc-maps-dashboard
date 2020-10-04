@@ -119,3 +119,14 @@ rect.pink:hover {
 .area-orange {
 	fill: rgba(255, 127, 14, 0.4);
 }
+
+.axis-lines line {
+    stroke:rgba(255, 255, 255, 0.8);
+}
+.axis-major.axis-lines line {
+	stroke-width: 3px;
+	stroke:rgba(255, 255, 255, 1);
+}
+.axis-lines .domain {
+  stroke:none;
+}

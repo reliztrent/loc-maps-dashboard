@@ -24,6 +24,9 @@ d3.json("data/sanborn-total-daily.json", function(data) {
     // parse the date / time
     var parseTime = d3.timeParse("%Y-%m-%d");
 
+    // format dates for tick text
+    var displayDate = d3.timeFormat("%a %b %d, %Y");
+
     // set the ranges
     var x = d3.scaleTime().range([0, sanborn_not_online_daily_width]);
     var y = d3.scaleLinear().range([sanborn_not_online_daily_height, 0]);
@@ -76,17 +79,39 @@ d3.json("data/sanborn-total-daily.json", function(data) {
         .call(d3.axisLeft(y));
 
     // Add X Axis
-    sanborn_not_online_daily_svg.append("g")
-        .attr("class", "axis")
+    sanborn_not_online_daily_svg.append("g")//Daily ticks
+        .attr("class", "axis axis-minor")
         .attr("transform", "translate(0," + sanborn_not_online_daily_height + ")")
         .call(d3.axisBottom(x)
-          .tickFormat(d3.timeFormat("%a %b %d"))
-          .tickValues(data.map(function(d){return d.facet})))
-        .selectAll("text") 
+          .ticks(d3.timeDay.every(1))
+          .tickFormat(d3.timeFormat("")))          
+    sanborn_not_online_daily_svg.append("g")//Weekly Sunday vertical lines
+        .attr("class", "axis axis-lines")
+        .attr("transform", "translate(0," + sanborn_not_online_daily_height + ")")
+        .attr("stroke","none")
+        .call(d3.axisBottom(x)
+          .ticks(d3.timeWeek.every(1))
+          .tickSize(-sanborn_not_online_daily_height)
+          .tickFormat(d3.timeFormat("")))
+    sanborn_not_online_daily_svg.append("g")//Monthly vertical lines
+        .attr("class", "axis axis-major axis-lines")
+        .attr("transform", "translate(0," + sanborn_not_online_daily_height + ")")
+        .attr("stroke","none")
+        .call(d3.axisBottom(x)
+          .ticks(d3.timeMonth.every(1))
+          .tickSize(-sanborn_not_online_daily_height)
+          .tickFormat(d3.timeFormat("")))
+    sanborn_not_online_daily_svg.append("g")//Monthly ticks and labels
+        .attr("class", "axis axis-major")
+        .attr("transform", "translate(0," + sanborn_not_online_daily_height + ")")
+        .call(d3.axisBottom(x)
+          .ticks(d3.timeMonth.every(1))
+          .tickFormat(d3.timeFormat("%b %Y")))
+        .selectAll("text")
           .style("text-anchor", "end")
           .attr("dx", "-.8em")
           .attr("dy", ".15em")
-          .attr("transform", "rotate(-65)");
+          .attr("transform", "rotate(-45)");
 
     // Add line label(s)
     sanborn_not_online_daily_svg.append("text")
@@ -111,9 +136,14 @@ d3.json("data/sanborn-total-daily.json", function(data) {
           .on("mousemove", function(d){
             tooltip
               .style("left", d3.event.pageX - 30 + "px")
-              .style("top", d3.event.pageY - 40 + "px")
+              .style("top", d3.event.pageY - 60 + "px")
               .style("display", "inline-block")
-              .html((d.online));
+              .html(
+                d.online+
+                "<br><span class=\"small\">"+
+                displayDate(d.facet)+
+                "</span>"
+              ); 
           })
           .on("mouseout", function(d){ tooltip.style("display", "none");});
 

@@ -63,7 +63,7 @@ gmdmar_recent.selectAll("rect")
   .duration(800)
   .attr("y", function(d) { return y(d.count); })
   .attr("height", function(d) { return gmdmar_recent_height - y(d.count); })
-  .delay(function(d,i){console.log(i) ; return(i*100)})
+  .delay(function(d,i){return(i*100)})
 
 })
 
