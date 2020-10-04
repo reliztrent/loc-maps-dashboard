@@ -106,12 +106,11 @@ d3.json("data/sanborn-total-daily.json", function(data) {
         .attr("transform", "translate(0," + sanborn_total_daily_height + ")")
         .call(d3.axisBottom(x)
           .ticks(d3.timeMonth.every(1))
-          .tickFormat(d3.timeFormat("%b %Y")))
+          .tickFormat(d3.timeFormat("%b %d, %Y")))
         .selectAll("text")
-          .style("text-anchor", "end")
-          .attr("dx", "-.8em")
-          .attr("dy", ".15em")
-          .attr("transform", "rotate(-45)");
+          .style("text-anchor", "middle")
+          .attr("dx", "0")
+          .attr("dy", "1.1em");
 
     // Add line label(s)
     sanborn_total_daily_svg.append("text")
