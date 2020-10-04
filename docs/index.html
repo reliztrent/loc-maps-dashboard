@@ -14,7 +14,7 @@ title: Maps Dashboard
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<p>Publicly available data about online map-related records and materials at the Library of Congress's<a href='https://loc.gov/maps'>loc.gov</a>. Made with the <a href="https://libraryofcongress.github.io/data-exploration/">loc.gov API</a>, GitHub <a href="https://pages.github.com/">pages</a> and <a href="https://docs.github.com/en/actions">actions</a>, <a href="https://jekyllrb.com/">Jekyll</a>, <a href="https://shopify.github.io/liquid/">Liquid</a>, and <a href="https://d3js.org/">D3</a>. Code <a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}">on GitHub</a>. Data last refreshed : <code>{{ site.time | date: "%B %d, %Y" }} 00:15 am</code>.</p>
+			<p>Publicly available data about online map-related records and materials at the Library of Congress's <a href='https://loc.gov/maps'>loc.gov</a>. Made with the <a href="https://libraryofcongress.github.io/data-exploration/">loc.gov API</a>, GitHub <a href="https://pages.github.com/">pages</a> and <a href="https://docs.github.com/en/actions">actions</a>, <a href="https://jekyllrb.com/">Jekyll</a>, <a href="https://shopify.github.io/liquid/">Liquid</a>, and <a href="https://d3js.org/">D3</a>. Code <a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}">on GitHub</a>. Data last refreshed : <code>{{ site.time | date: "%B %d, %Y" }} 00:15 am</code>.</p>
 		</div>
 	</div>
 
@@ -47,6 +47,7 @@ title: Maps Dashboard
 			<!--<span id="total_online_gmdmar" class="h3 pop"></span>-->
 			<h3>Online GMD.MAR Objects</h3>
 			<div id="d3-gmdmar-total-daily" class="svg-container"></div>
+			<p>Until Sep 21, this count did not include non-map gmd.mar objects. The query method was updated Sep 21.</p>
 		</div>
 		<div class="card card-mini blue mb-2">
 			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/gmdmar-recent-daily" class="data_download"></a>
@@ -91,12 +92,14 @@ title: Maps Dashboard
 			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/sanborn-facets-daily" class="data_download"></a>
 			<h3>Sanborn Objects: Online vs Not Online</h3>
 			<div id="d3-sanborn-online-donut" class="svg-container"></div>
+			<p>Beginning Sept 20, this number includes gmd.mar items that are not maps.</p>
 		</div>
 		<div class="card card-mini pink mb-2">
 			<!--<span id="total_online_sanborns" class="h3 pop"></span>-->
 			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/sanborn-facets-daily" class="data_download"></a>
 			<h3>Sanborn Objects Online</h3>
 			<div id="d3-sanborn-total-daily" class="svg-container"></div>
+			<p>The query method for this figure is in flux and may not be accurate. .</p>
 		</div>
 		<div class="card card-mini pink mb-2">
 			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/sanborn-facets-daily" class="data_download"></a>
