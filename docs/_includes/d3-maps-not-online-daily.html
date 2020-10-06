@@ -138,7 +138,7 @@ d3.json("data/maps-online-daily.json", function(data) {
               .style("top", d3.event.pageY - 60 + "px")
               .style("display", "inline-block")
               .html(
-                d.online+
+                d.not_online+
                 "<br><span class=\"small\">"+
                 displayDate(d.facet)+
                 "</span>"
