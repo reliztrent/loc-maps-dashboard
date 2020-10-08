@@ -1,1 +1,160 @@
-[]
+[
+    {
+        "location_county": [
+            "narragansett bay"
+        ],
+        "item": {
+            "call_number": [
+                "G3772.N3 1777 .B5"
+            ],
+            "repository": [
+                "Library of Congress Geography and Map Division Washington, D.C. 20540-4650 USA dcu"
+            ],
+            "contributors": [
+                "Blaskowitz, Charles.",
+                "Faden, William, 1749-1836."
+            ],
+            "format": [
+                "cartographic"
+            ],
+            "notes": [
+                "Scale ca. 1:50,000.",
+                "Hand colored.",
+                "Relief shown by hachures. Depths shown by soundings.",
+                "Inscribed \"To the Right Honourable Hugh Earl Percy ... with His Lordship's permission ... by ... Wm. Faden.\"",
+                "Includes text, \"References to the batteries,\" and \"A list of the principal farms in Rhode Island.\"",
+                "LC Maps of North America, 1750-1789, 1003",
+                "Available also through the Library of Congress Web site as a raster image.",
+                "Vault",
+                "AACR2: 100; 651/1; 651/2; 650/3; 700/1"
+            ],
+            "title": "A topographical chart of the bay of Narraganset in the province of New England, with all the isles contained therein, among which Rhode Island and Connonicut have been particularly surveyed, shewing the true position & bearings of the banks, shoals, rocks &c. as likewise the soundings; To which have been added the several works & batteries raised by the Americans. Taken by order of the principal farmers on Rhode Island.",
+            "language": [
+                "eng"
+            ],
+            "subjects": [
+                "Narragansett Bay (R.I.)--Maps--Early works to 1800",
+                "Rhode Island--Defenses--Maps--Early works to 1800",
+                "Nautical charts--Rhode Island--Narragansett Bay--Early works to 1800",
+                "United States--Rhode Island--Narragansett Bay"
+            ],
+            "location": [
+                "Rhode Island--Narragansett Bay",
+                "Narragansett Bay (R.I.)",
+                "Rhode Island"
+            ],
+            "date": "1777",
+            "created_published": [
+                "[London] Engraved & printed for Wm. Faden, 1777."
+            ],
+            "medium": [
+                "col. map 93 x 65 cm."
+            ]
+        },
+        "access_restricted": false,
+        "site": [
+            "catalog",
+            "ammem"
+        ],
+        "original_format": [
+            "map"
+        ],
+        "contributor": [
+            "blaskowitz, charles",
+            "faden, william"
+        ],
+        "id": "http://www.loc.gov/item/74692135/",
+        "partof": [
+            "military battles and campaigns",
+            "american memory",
+            "catalog",
+            "geography and map division",
+            "american revolution and its era: maps and charts of north america and the west indies, 1750-1789"
+        ],
+        "subject": [
+            "defenses",
+            "nautical charts",
+            "narragansett bay",
+            "rhode island",
+            "united states",
+            "maps",
+            "early works to 1800",
+            "narragansett bay (r.i.)"
+        ],
+        "index": 1,
+        "number": [
+            "2020-10-07t15:31:35",
+            "74692135"
+        ],
+        "location_country": [
+            "united states"
+        ],
+        "title": "A topographical chart of the bay of Narraganset in the province of New England, with all the isles contained therein, among which Rhode Island and Connonicut have been particularly surveyed, shewing the true position & bearings of the banks, shoals, rocks &c. as likewise the soundings; To which have been added the several works & batteries raised by the Americans. Taken by order of the principal farmers on Rhode Island.",
+        "number_source_modified": [
+            "2020-10-07t15:31:35"
+        ],
+        "online_format": [
+            "image"
+        ],
+        "location": [
+            "united states",
+            "narragansett bay",
+            "rhode island"
+        ],
+        "resources": [
+            {
+                "files": 1,
+                "url": "https://www.loc.gov/resource/g3772n.ar100301/",
+                "image": "https://tile.loc.gov/storage-services/service/gmd/gmd377/g3772/g3772n/ar100301.gif"
+            }
+        ],
+        "digitized": true,
+        "description": [
+            "Scale ca. 1:50,000. Hand colored. Relief shown by hachures. Depths shown by soundings. Inscribed \"To the Right Honourable Hugh Earl Percy ... with His Lordship's permission ... by ... Wm. Faden.\" Includes text, \"References to the batteries,\" and \"A list of the principal farms in Rhode Island.\" LC Maps of North America, 1750-1789, 1003 Available also through the Library of Congress Web site as a raster image. Vault AACR2: 100; 651/1; 651/2; 650/3; 700/1"
+        ],
+        "timestamp": "2020-10-08T05:29:23.539Z",
+        "campaigns": [],
+        "extract_timestamp": "2020-10-08T05:08:11.338Z",
+        "date": "1777",
+        "group": [
+            "catalog",
+            "gmd.mar",
+            "main-catalog",
+            "general-maps"
+        ],
+        "other_title": [],
+        "location_state": [
+            "rhode island"
+        ],
+        "dates": [
+            "1777-01-01T00:00:00Z"
+        ],
+        "number_lccn": [
+            "74692135"
+        ],
+        "language": [
+            "english"
+        ],
+        "url": "https://www.loc.gov/item/74692135/",
+        "shelf_id": "G3772.N3 1777 .B5",
+        "hassegments": false,
+        "image_url": [
+            "https://tile.loc.gov/storage-services/service/gmd/gmd377/g3772/g3772n/ar100301.gif",
+            "https://tile.loc.gov/storage-services/service/gmd/gmd377/g3772/g3772n/ar100301.gif#h=150&w=101",
+            "https://tile.loc.gov/image-services/iiif/service:gmd:gmd377:g3772:g3772n:ar100301/full/pct:12.5/0/default.jpg#h=1421&w=960",
+            "https://tile.loc.gov/image-services/iiif/service:gmd:gmd377:g3772:g3772n:ar100301/full/pct:25/0/default.jpg#h=2843&w=1921"
+        ],
+        "mime_type": [
+            "image/gif",
+            "image/tiff",
+            "image/jpeg",
+            "image/jp2"
+        ],
+        "aka": [
+            "http://lccn.loc.gov/74692135",
+            "http://hdl.loc.gov/loc.gmd/g3772n.ar100301",
+            "http://www.loc.gov/item/74692135/",
+            "http://www.loc.gov/resource/g3772n.ar100301/"
+        ]
+    }
+]
