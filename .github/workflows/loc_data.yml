@@ -4,8 +4,6 @@ name: Generate loc.gov JSON
 
 # Controls when the action will run. Triggers the workflow on push events
 on:
-  push:
-    branches: [ master ]
   schedule:
     - cron: "0 6 * * *"
 
