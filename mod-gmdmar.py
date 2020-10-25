@@ -58,7 +58,7 @@ def makeFiles(start,end,directory):
             request_url = makeUrl(index,day)
             response = getRequest(request_url)
             date = str(datelist[index-1].date()).replace('-','')
-            with open(directory + '/gmdmar-recent-daily-' + date + '.json', 'w') as f:
+            with open(directory + '/mod-gmdmar-daily-' + date + '.json', 'w') as f:
                 json.dump(response, f) 
 
 def main(argv):

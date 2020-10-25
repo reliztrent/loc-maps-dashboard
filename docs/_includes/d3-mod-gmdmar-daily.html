@@ -7,7 +7,7 @@ var gmdmar_recent_daily_margin = {top: 10, right: 30, bottom: 80, left: 40},
     gmdmar_recent_daily_height = 350 - gmdmar_recent_daily_margin.top - gmdmar_recent_daily_margin.bottom;
 
 // append the svg object to the body of the page
-var gmdmar_recent_daily = d3.select("#d3-gmdmar-recent-daily")
+var gmdmar_recent_daily = d3.select("#d3-mod-gmdmar-daily")
   .append("svg")
     .attr("viewBox", '0 0 450 350')
   .append("g")
@@ -16,7 +16,7 @@ var gmdmar_recent_daily = d3.select("#d3-gmdmar-recent-daily")
 
 
   // Parse the Data
-  d3.json("data/gmdmar-recent-daily.json", function(data) {
+  d3.json("data/mod-gmdmar-daily.json", function(data) {
   
   // parse the date / time
   var parseTime = d3.timeParse("%Y-%m-%d");

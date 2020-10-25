@@ -3,7 +3,7 @@ layout: none
 ---
 [
 {% for file in site.data.gmdmar-recent-daily %}
-{% if file[0].size == 28 %}
+{% if file[0].size == 25 %}
 {% assign online = file[1].facets[0].filters[0].count %}
 {% assign not_online = file[1].facets[0].filters[1].count %}
 {% assign year = file[0] | slice: -8, 4 %}
