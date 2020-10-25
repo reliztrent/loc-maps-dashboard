@@ -44,7 +44,7 @@ jobs:
     - name: Generate json 📦
       run: |
         python3 --version
-        python3 mod_gmdmar.py -s ${{ env.TWOWEEKSAGO }} -e ${{ env.TODAY }} -d "docs/_data/gmdmar-recent-daily"
+        python3 gmdmar-recent-daily.py -s ${{ env.TWOWEEKSAGO }} -e ${{ env.TODAY }} -d "docs/_data/gmdmar-recent-daily"
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
