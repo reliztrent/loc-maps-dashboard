@@ -1,0 +1,59 @@
+# This workflow will capture and save the last 14 days worth of modifications to gmd.mar. 
+# It will overwrite the existing files for these days. 
+
+name: Log 7 days of gmd.mar updates
+
+on:
+  schedule:
+    - cron: "0 7 * * *"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set TIMESTAMP env
+      run: echo ::set-env name=TIMESTAMP::$(date -d "4 hours ago" +"%Y%m%d") #offset from UTC
+    - name: Set TODAY env
+      run: echo ::set-env name=TODAY::$(date -d "4 hours ago" +"%Y-%m-%d") #offset from UTC
+    - name: Set TWOWEEKSAGO env
+      run: echo ::set-env name=TWOWEEKSAGO::$(date -d "340 hours ago" +"%Y-%m-%d") #offset from UTC
+
+    # Run using Python 3.8 for consistency and aiohttp
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+        architecture: 'x64'
+
+    # Cache dependencies. From:
+    # https://github.com/actions/cache/blob/master/examples.md#python---pip
+    - uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    # Install dependencies with `pip`
+    - name: Install requirements
+      run: |
+        python3 -m pip install --upgrade pip setuptools wheel
+        python3 -m pip install -r requirements.txt
+    # Generate all json
+    - name: Generate json 📦
+      run: |
+        python3 --version
+        python3 mod_gmdmar.py -s ${{ env.TWOWEEKSAGO }} -e ${{ env.TODAY }} -d "docs/_data/gmdmar-recent-daily"
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
+    # Commits all changed files to the repository
+    - name: Commit 🚀
+      run: |
+        git config --global user.name "mod-gmdmar.yml"
+        git config --global user.email "[bot@github.com]"
+        git add .
+        # "echo" returns true so the build succeeds, even if no changed files
+        git commit -m 'Deploying from mod-gmdmar.yml 🚀' || echo
+        git push
