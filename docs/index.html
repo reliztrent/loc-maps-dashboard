@@ -3,7 +3,6 @@ layout: menu
 title: Maps Dashboard
 ---
 
-<div class="container-fluid p-4">
 	<div class="row">
 		<div class="col-md-12">
 			<h1 class="h0">{{ page.title }}</h1>
@@ -14,109 +13,114 @@ title: Maps Dashboard
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<p>Publicly available data about online map-related records and materials at the Library of Congress's <a href='https://loc.gov/maps'>loc.gov</a>. Made with the <a href="https://libraryofcongress.github.io/data-exploration/">loc.gov API</a>, GitHub <a href="https://pages.github.com/">pages</a> and <a href="https://docs.github.com/en/actions">actions</a>, <a href="https://jekyllrb.com/">Jekyll</a>, <a href="https://shopify.github.io/liquid/">Liquid</a>, and <a href="https://d3js.org/">D3</a>. Code <a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}">on GitHub</a>. Data last refreshed : <code>{{ site.time | date: "%B %d, %Y" }} 00:15 am</code>.</p>
+			<p>Publicly available data about online cartographic records and materials at the Library of Congress's <a href='https://loc.gov/maps'>loc.gov</a>. Made with the <a href="https://libraryofcongress.github.io/data-exploration/">loc.gov API</a>, GitHub <a href="https://pages.github.com/">pages</a> and <a href="https://docs.github.com/en/actions">actions</a>, <a href="https://jekyllrb.com/">Jekyll</a>, <a href="https://shopify.github.io/liquid/">Liquid</a>, and <a href="https://d3js.org/">D3</a>. Code <a href="https://github.com/{{ site.github_username }}{{ site.baseurl }}">on GitHub</a>.</p>
 		</div>
 	</div>
 
-<div class="row">
-	<div class="col-md-4 p-1">
- 		<div class="card card-mini blue mb-2">
-			<p class="h3 pop" id="online-gmd-mar"></p>
-			<h3 class="h4"> Online GMD.MAR Objects</h3>
+	<div class="row mt-3 d-none d-md-flex">
+		<div class="col-md-4">
+			<p class="text-center text-capitalize pop m-0">GMD.MAR</p>
+		</div>
+		<div class="col-md-4">
+			<p class="text-center text-capitalize pop m-0">Maps</p>
+		</div>
+		<div class="col-md-4">
+			<p class="text-center text-capitalize pop m-0">Sanborn</p>
 		</div>
 	</div>
-	<div class="col-md-4 p-1">
-		<div class="card card-mini orange mb-2">
-			<p class="h3 pop" id="online-map-objects"></p>
-			<h3 class="h4">Online Map Objects</h3>
-	    </div>
-	</div>
-	<div class="col-md-4 p-1">
-		<div class="card card-mini pink mb-2">
-			<p class="h3 pop" id ="online-sanborn-atlases"></p>
-			<h3 class="h4"> Online Sanborns Objects</h3>
+	<div class="row">
+		<div class="col-md-4 p-1">
+	 		<div id="card-online-gmd-mar" class="card card-mini blue mb-2">
+	 			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/gmdmar-facets-daily" class="data_download"></a>
+				<p class="h3 pop" id="online-gmd-mar"></p>
+				<h3 class="h4"> Online GMD.MAR Objects</h3>
+			</div>
 		</div>
-	</div>
-</div>
-
-
-<div class="row">
-	<div class="col-md-4 p-1">
-		<div class="card card-mini blue mb-2">
-			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/gmdmar-facets-daily class="data_download"></a>
-			<h3>Online GMD.MAR Objects</h3>
-			<div id="d3-gmdmar-total-daily" class="svg-container"></div>
-			<p class="small">Beginning Sept 20, this number includes gmd.mar items that are not maps.</p>
+		<div class="col-md-4 p-1">
+			<div id="card-online-map-objects" class="card card-mini orange mb-2">
+				<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/map-facets-daily" class="data_download"></a>
+				<p class="h3 pop" id="online-map-objects"></p>
+				<h3 class="h4">Online Map Objects</h3>
+		    </div>
 		</div>
-		<div class="card card-mini blue mb-2">
-			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/gmdmar-recent-daily" class="data_download"></a>
-			<h3>GMD.MAR Objects Modified</h3>
-			<div id="d3-mod-gmdmar-daily" class="svg-container"></div>
-		</div>
-		<!--<div class="card card-mini blue mb-2">
-			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/gmdmar-recent-monthly" class="data_download"></a>
-			<h3>GMD.MAR Objects, Month Most Recently Modified</h3>
-			<div id="d3-gmdmar-recent" class="svg-container"></div>
-		</div>-->
-	</div>
-
-	<div class="col-md-4 p-1">
-		<div class="card card-mini orange mb-2">
-			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/map-facets-daily" class="data_download"></a>
-			<h3>Map Objects: Online vs. Not Online</h3>
-			<div id="d3-maps-online-donut" class="svg-container"></div>
-		</div>
-		<div class="card card-mini orange mb-2">
-			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/map-facets-daily" class="data_download"></a>
-			<span id="total_online_maps" class="h3 pop"></span>
-			<h3>Online Map Objects</h3>
-			<div id="d3-maps-online-daily" class="svg-container"></div>
-		</div>
-		<div class="card card-mini orange mb-2">
-			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/map-facets-daily" class="data_download"></a>
-			<span id="total_notonline_maps" class="h3 pop"></span>
-			<h3>Bibliographic Map Records (not online)</h3>
-			<div id="d3-maps-not-online-daily" class="svg-container"></div>
-		</div>
-		<div class="card card-mini orange mb-2">
-			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/map-facets-daily" class="data_download"></a>
-			<h3>Online Map Objects, by Collection</h3>
-			<p class="subtitle">Objects can belong in more than one collection. "Collection" = "Part Of"</p>
-			<div id="d3-maps-partof" class="svg-container"></div>
+		<div class="col-md-4 p-1">
+			<div id="card-online-sanborn-atlases" class="card card-mini pink mb-2">
+				<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/sanborn-facets-daily" class="data_download"></a>
+				<p class="h3 pop" id ="online-sanborn-atlases"></p>
+				<h3 class="h4"> Online Sanborns Objects</h3>
+			</div>
 		</div>
 	</div>
 
-	<div class="col-md-4 p-1">
-		<div class="card card-mini pink mb-2">
-			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/sanborn-facets-daily" class="data_download"></a>
-			<h3>Sanborn Objects: Online vs Not Online</h3>
-			<div id="d3-sanborn-online-donut" class="svg-container"></div>
+
+	<div class="row">
+		<div class="col-md-4 p-1">
+			<div id="card-gmdmar-total-daily" class="card card-mini blue mb-2">
+				<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/gmdmar-facets-daily" class="data_download"></a>
+				<h3>Online GMD.MAR Objects</h3>
+				<div id="d3-gmdmar-total-daily" class="svg-container"></div>
+				<p class="small">Beginning Sept 20, this number includes gmd.mar items that are not maps.</p>
+			</div>
+			<div id="card-mod-gmdmar-daily" class="card card-mini blue mb-2">
+				<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/mod-gmdmar-daily" class="data_download"></a>
+				<h3>GMD.MAR Objects Modified</h3>
+				<div id="d3-mod-gmdmar-daily" class="svg-container"></div>
+			</div>
+			<!--<div class="card card-mini blue mb-2">
+				<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/gmdmar-recent-monthly" class="data_download"></a>
+				<h3>GMD.MAR Objects, Month Most Recently Modified</h3>
+				<div id="d3-gmdmar-recent" class="svg-container"></div>
+			</div>-->
 		</div>
-		<div class="card card-mini pink mb-2">
-			<!--<span id="total_online_sanborns" class="h3 pop"></span>-->
-			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/sanborn-facets-daily" class="data_download"></a>
-			<h3>Sanborn Objects Online</h3>
-			<div id="d3-sanborn-total-daily" class="svg-container"></div>
+
+		<div class="col-md-4 p-1">
+			<div id="card-maps-online-donut" class="card card-mini orange mb-2">
+				<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/map-facets-daily" class="data_download"></a>
+				<h3>Map Objects: Online vs. Not Online</h3>
+				<div id="d3-maps-online-donut" class="svg-container"></div>
+			</div>
+			<div id="card-maps-online-daily" class="card card-mini orange mb-2">
+				<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/map-facets-daily" class="data_download"></a>
+				<span id="total_online_maps" class="h3 pop"></span>
+				<h3>Online Map Objects</h3>
+				<div id="d3-maps-online-daily" class="svg-container"></div>
+			</div>
+			<div id="card-maps-not-online-daily"  class="card card-mini orange mb-2">
+				<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/map-facets-daily" class="data_download"></a>
+				<span id="total_notonline_maps" class="h3 pop"></span>
+				<h3>Bibliographic Map Records (not online)</h3>
+				<div id="d3-maps-not-online-daily" class="svg-container"></div>
+			</div>
+			<div id="card-maps-partof" class="card card-mini orange mb-2">
+				<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/map-facets-daily" class="data_download"></a>
+				<h3>Online Map Objects, by Collection</h3>
+				<p class="subtitle">Objects can belong in more than one collection. "Collection" = "Part Of"</p>
+				<div id="d3-maps-partof" class="svg-container"></div>
+			</div>
 		</div>
-		<div class="card card-mini pink mb-2">
-			<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/sanborn-facets-daily" class="data_download"></a>
-			<h3>Sanborn Object Records (not online)</a></h3>
-			<div id="d3-sanborn-not-online-daily" class="svg-container"></div>
+
+		<div class="col-md-4 p-1">
+			<div id="card-sanborn-online-donut" class="card card-mini pink mb-2">
+				<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/sanborn-facets-daily" class="data_download"></a>
+				<h3>Sanborn Objects: Online vs Not Online</h3>
+				<div id="d3-sanborn-online-donut" class="svg-container"></div>
+			</div>
+			<div id="card-sanborn-total-daily" class="card card-mini pink mb-2">
+				<span id="total_online_sanborns" class="h3 pop"></span>
+				<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/sanborn-facets-daily" class="data_download"></a>
+				<h3>Sanborn Objects Online</h3>
+				<div id="d3-sanborn-total-daily" class="svg-container"></div>
+			</div>
+			<div id="card-sanborn-not-online-daily" class="card card-mini pink mb-2">
+				<a href="https://github.com/{{ site.github_username }}/{{ site.baseurl }}/tree/master/docs/_data/sanborn-facets-daily" class="data_download"></a>
+				<h3>Sanborn Objects Not Online</h3>
+				<div id="d3-sanborn-not-online-daily" class="svg-container"></div>
+			</div>
 		</div>
+
 	</div>
 
-</div>
-<!--<div class="clearfix">
-	<div class="col-12 sm-width-full">
-		<h2 class="pop">Recently Modified Items</h2>
-			<h3>GMD.MAR</h3>
-			{% include table-gmdmar-modified-items.html %}
-	</div>
-</div>-->
-
-
-
-<div class="row">
+	<div class="row">
 	<div class="card card-mini mt-5 mb-3">
 		<h2 class="h0 mb-4">Notes</h2>
 		<h3 id="notes">Definitions</h3>
@@ -133,7 +137,7 @@ title: Maps Dashboard
 				<dd>Items where <code>partof:sanborn</code>. Example search: <a href="https://www.loc.gov/collections/sanborn-maps/">https://www.loc.gov/collections/sanborn-maps/</a>, equivalent to <a href="https://www.loc.gov/search/?fa=partof:sanborn maps">https://www.loc.gov/search/?fa=partof:sanborn maps</a></dd>
 		</dl>
 	</div>
-</div>
+
 
 <script src="//d3js.org/d3.v4.min.js"></script>
 {% include d3-maps-online.html %}
@@ -177,7 +181,7 @@ title: Maps Dashboard
 	var total_notonline_sanborns = {{site.data.sanborn-facets-daily.sanborn-facets-TODAY.facets[0].filters[1].count | default: 0}};
 	total_notonline_sanborns_formatted = Number(total_notonline_sanborns).toLocaleString('en');
 	//document.getElementById('total_notonline_sanborns').insertAdjacentHTML("afterbegin", total_notonline_sanborns_formatted);
-	
+
 </script>
 <script>
 const data_download = d3.selectAll('.data_download');
