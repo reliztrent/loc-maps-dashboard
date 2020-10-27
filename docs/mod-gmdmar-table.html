@@ -1,0 +1,60 @@
+---
+layout: menu
+title: GMD.MAR modified item list
+---
+			<h1 class="h0">{{ page.title }}</h1>
+			  <div class="card card-mini mb-2 small">
+				<table class="table table-hover bg-white table-responsive">
+					<caption>Table of items in GMD.MAR that have been modified, listed by day most recently modified since August 31, 2020.</caption>
+					<thead>
+					  <tr>
+					    <th>id<br></th>
+					    <th>title</th>
+					    <th>date</th>
+					    <th>bibliographic record modified</th>
+					    <th>call number</th>
+					    <th>thumbnail</th>
+					  </tr>
+					</thead>
+					<tbody>
+{% assign filenames = '' | split: ',' %}
+{% for file in site.data.mod-gmdmar-daily %}
+	{% if file[0].size == 25 %}
+	 {% assign filenames = filenames | push: file[0] %}
+	{% endif %}
+{% endfor %}
+{% assign sorted_filenames  = filenames | sort | reverse %}
+
+{% for filename in sorted_filenames %}
+ {% for file in site.data.mod-gmdmar-daily %}
+  {% if file[0] == filename %}
+	  {% for result in file[1].results %}
+	   {% assign year = file[0] | slice: -8, 4 %}
+	   {% assign month = file[0] | slice: -4, 2 %}
+	   {% assign day = file[0] | slice: -2, 2 %}
+					  <tr>
+					    <td><a href="{{ result.id | default: ""}}">{{ result.id | default: ""}}</a></td>
+					    <td>{{ result.title | slice: 0, 150 | default: ""}}{% if result.title.size > 150 %}...{% endif %}</td>
+					    <td>{{ result.date | defailt: ""}}</td>
+					    <td>
+					    {% for date in  result.number_source_modified %}
+					    {{ date | default: ""}}{% if forloop.last == false %}<br>{% endif %}
+					    {% endfor %}
+					    </td>
+					    <td>
+					    {% for call_number in result.item.call_number %}
+					    {{ call_number | default: ""}}{% if forloop.last == false %}<br>{% endif %}
+					    {% endfor %}
+					    </td>
+					    <td>
+					    <img alt="thumbnail image of item" src="{{ result.resources[0].image | default:""}}">
+					    </td>
+					  </tr>		
+
+	  {% endfor %}
+   {% endif %}
+  {% endfor %}
+{% endfor %}
+					</tbody>
+				</table>
+			  </div>
