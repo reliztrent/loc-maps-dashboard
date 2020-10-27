@@ -130,3 +130,109 @@ rect.pink:hover {
 .axis-lines .domain {
   stroke:none;
 }
+
+/*
+ * Sidebar
+ */
+
+.feather {
+  width: 16px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+
+.sidebar {
+  font-size: .75rem;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100; /* Behind the navbar */
+  padding: 48px 0 0; /* Height of navbar */
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+@media (max-width: 767.98px) {
+  .sidebar {
+    top: 2rem;
+  }
+}
+
+.navbar a, .sidebar a {
+  text-decoration:none;
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+  .sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+}
+
+.sidebar .nav-link {
+  color: #333;
+}
+
+.sidebar .nav-link .feather {
+  margin-right: 4px;
+  color: #999;
+}
+
+.sidebar .nav-link.active {
+  color: #007bff;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+  color: inherit;
+}
+
+.sidebar-heading {
+  font-size: .75rem;
+}
+
+.card {
+  scroll-margin-top:2rem;
+}
+
+/*
+ * Sidebar, animation effect
+ */
+
+@keyframes shadowPulse {
+	0% {
+		box-shadow:0 0.125rem 0.25rem rgba(0,0,0,0.05)
+	}
+	30% {
+		box-shadow:0px 0px 1.5rem #52d0e0;
+	}
+	50% {
+		box-shadow:0px 0px 1.5rem #52d0e0;
+	}
+	100% {
+		box-shadow:0 0.125rem 0.25rem rgba(0,0,0,0.05)
+	}
+}
+.glow {
+	animation-name:shadowPulse;
+	animation-duration:3s;
+	animation-iteration-count:1;
+	animation-timing-function:linear
+}
+
+/*
+ * Navbar
+ */
+
+.navbar .navbar-toggler {
+  right: 1rem;
+} 
