@@ -50,7 +50,9 @@ var gmdmar_recent_daily = d3.select("#d3-mod-gmdmar-daily")
     .range([ gmdmar_recent_daily_height, 0])
     .domain([0, d3.max(data, function(d) {
           return Math.max(d.online); })+4]);
-
+  
+  // Set tooltip variable
+  var tooltip = d3.select("body").append("div").attr("class", "toolTip")
   
   // Add X axis, ticks and labels
   gmdmar_recent_daily.append("g")
@@ -104,10 +106,10 @@ var gmdmar_recent_daily = d3.select("#d3-mod-gmdmar-daily")
   // Animation
   gmdmar_recent_daily.selectAll("rect")
     .transition()
-    .duration(800)
+    .duration(600)
     .attr("y", function(d) { return y(d.online); })
     .attr("height", function(d) { return gmdmar_recent_daily_height - y(d.online); })
-    .delay(function(d,i){return(i*100)})
+    .delay(function(d,i){return(i*20)})
 
 })
 

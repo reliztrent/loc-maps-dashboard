@@ -37,6 +37,9 @@ var outerArc = d3.arc()
   .innerRadius(maps_online_donut_radius * 0.9)
   .outerRadius(maps_online_donut_radius * 0.9)
 
+// Set tooltip variable
+var tooltip = d3.select("body").append("div").attr("class", "toolTip")
+
 // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
 maps_online_donut
   .selectAll('allSlices')

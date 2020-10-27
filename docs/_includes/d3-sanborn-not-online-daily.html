@@ -37,6 +37,9 @@ d3.json("data/sanborn-total-daily.json", function(data) {
         .y(function(d) { return y(d.not_online); })
         .curve(d3.curveMonotoneX) ;
 
+    // Set tooltip variable
+    var tooltip = d3.select("body").append("div").attr("class", "toolTip")
+
     // format the data
     data.forEach(function(d) {
         d.facet = parseTime(d.facet);

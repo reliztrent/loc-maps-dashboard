@@ -16,138 +16,139 @@ var maps_online_daily_svg = d3.select("#d3-maps-online-daily")
 //Read the data
 d3.json("data/maps-online-daily.json", function(data) { 
 
-    // A color scale: one color for each group
-    var myColor = d3.scaleOrdinal()
-      .domain(["online", "not_online"])
-      .range(d3.schemeCategory10);
+  // A color scale: one color for each group
+  var myColor = d3.scaleOrdinal()
+    .domain(["online", "not_online"])
+    .range(d3.schemeCategory10);
 
-    // parse the date / time
-    var parseTime = d3.timeParse("%Y-%m-%d");
+  // parse the date / time
+  var parseTime = d3.timeParse("%Y-%m-%d");
 
-    // format dates for tick text
-    var displayDate = d3.timeFormat("%a %b %d, %Y");
+  // format dates for tick text
+  var displayDate = d3.timeFormat("%a %b %d, %Y");
 
-    // set the ranges
-    var x = d3.scaleTime().range([0, maps_online_daily_width]);
-    var y = d3.scaleLinear().range([maps_online_daily_height, 0]);
+  // set tooltip variable
+  var tooltip = d3.select("body").append("div").attr("class", "toolTip")
 
-    // define the first line
-    var line1 = d3.line()
-        .x(function(d) { return x(d.facet); })
-        .y(function(d) { return y(d.online); })
-        .curve(d3.curveMonotoneX) ;
+  // set the ranges
+  var x = d3.scaleTime().range([0, maps_online_daily_width]);
+  var y = d3.scaleLinear().range([maps_online_daily_height, 0]);
 
-    // format the data
-    data.forEach(function(d) {
-        d.facet = parseTime(d.facet);
-        d.online = +d.online;
-    });
+  // define the first line
+  var line1 = d3.line()
+      .x(function(d) { return x(d.facet); })
+      .y(function(d) { return y(d.online); })
+      .curve(d3.curveMonotoneX) ;
 
-    // sort years ascending
-    data.sort(function(a, b){
-      return a["facet"]-b["facet"]; 
-    })
+  // format the data
+  data.forEach(function(d) {
+      d.facet = parseTime(d.facet);
+      d.online = +d.online;
+  });
 
-    // Scale the range of the data
-    x.domain(d3.extent(data, function(d) { return d.facet; })); //list of all facets
-    y.domain([d3.min(data, function(d) {
-      return Math.min(d.online); })-10, d3.max(data, function(d) {
-      return Math.max(d.online); })+10]); //structured to handle multiple lines
+  // sort years ascending
+  data.sort(function(a, b){
+    return a["facet"]-b["facet"]; 
+  })
 
-    // Fill below line 
-      var area = d3.area()
-        .x(function(d) { return x(d.facet); })
-        .y0(maps_online_daily_height)
-        .y1(function(d) { return y(d.online); })
-        .curve(d3.curveMonotoneX);
-      maps_online_daily_svg.append("path")
-          .datum(data)
-          .attr("class", "area-teal")
-          .attr("d", area);
+  // Scale the range of the data
+  x.domain(d3.extent(data, function(d) { return d.facet; })); //list of all facets
+  y.domain([d3.min(data, function(d) {
+    return Math.min(d.online); })-10, d3.max(data, function(d) {
+    return Math.max(d.online); })+10]); //structured to handle multiple lines
 
-    // Add (first) line
+  // Fill below line 
+    var area = d3.area()
+      .x(function(d) { return x(d.facet); })
+      .y0(maps_online_daily_height)
+      .y1(function(d) { return y(d.online); })
+      .curve(d3.curveMonotoneX);
     maps_online_daily_svg.append("path")
-        .data([data])
-        .attr("class", "line")
-        .attr("d", line1)
-        .attr("fill", "none")
-        .attr("stroke", "#8CD3DD");
+        .datum(data)
+        .attr("class", "area-teal")
+        .attr("d", area);
 
-    // Add Y Axis
-    maps_online_daily_svg.append("g")
-        .attr("class", "axis")
-        .call(d3.axisLeft(y));
+  // Add (first) line
+  maps_online_daily_svg.append("path")
+      .data([data])
+      .attr("class", "line")
+      .attr("d", line1)
+      .attr("fill", "none")
+      .attr("stroke", "#8CD3DD");
 
-    // Add X Axis
-    maps_online_daily_svg.append("g")//Daily ticks
-        .attr("class", "axis axis-minor")
-        .attr("transform", "translate(0," + maps_online_daily_height + ")")
-        .call(d3.axisBottom(x)
-          .ticks(d3.timeDay.every(1))
-          .tickFormat(d3.timeFormat("")))          
-    maps_online_daily_svg.append("g")//Weekly Sunday vertical lines
-        .attr("class", "axis axis-lines")
-        .attr("transform", "translate(0," + maps_online_daily_height + ")")
-        .attr("stroke","none")
-        .call(d3.axisBottom(x)
-          .ticks(d3.timeWeek.every(1))
-          .tickSize(-maps_online_daily_height)
-          .tickFormat(d3.timeFormat("")))
-    maps_online_daily_svg.append("g")//Monthly vertical lines
-        .attr("class", "axis axis-major axis-lines")
-        .attr("transform", "translate(0," + maps_online_daily_height + ")")
-        .attr("stroke","none")
-        .call(d3.axisBottom(x)
-          .ticks(d3.timeMonth.every(1))
-          .tickSize(-maps_online_daily_height)
-          .tickFormat(d3.timeFormat("")))
-    maps_online_daily_svg.append("g")//Monthly ticks and labels
-        .attr("class", "axis axis-major")
-        .attr("transform", "translate(0," + maps_online_daily_height + ")")
-        .call(d3.axisBottom(x)
-          .ticks(d3.timeMonth.every(1))
-          .tickFormat(d3.timeFormat("%b %d, %Y")))
-        .selectAll("text")
-          .style("text-anchor", "middle")
-          .attr("dx", "0")
-          .attr("dy", "1.1em");
+  // Add Y Axis
+  maps_online_daily_svg.append("g")
+      .attr("class", "axis")
+      .call(d3.axisLeft(y));
 
-    // Add line label(s)
-    maps_online_daily_svg.append("text")
-        .data([data])
-        .text("online")
-        .attr("transform", "translate(" + maps_online_daily_width + "," + y(data[data.length-1].online) + ")")
-        .style("fill","#8CD3DD")
-        .attr("x", -12)
-        .attr("y", -12)//move up a bit;
+  // Add X Axis
+  maps_online_daily_svg.append("g")//Daily ticks
+      .attr("class", "axis axis-minor")
+      .attr("transform", "translate(0," + maps_online_daily_height + ")")
+      .call(d3.axisBottom(x)
+        .ticks(d3.timeDay.every(1))
+        .tickFormat(d3.timeFormat("")))          
+  maps_online_daily_svg.append("g")//Weekly Sunday vertical lines
+      .attr("class", "axis axis-lines")
+      .attr("transform", "translate(0," + maps_online_daily_height + ")")
+      .attr("stroke","none")
+      .call(d3.axisBottom(x)
+        .ticks(d3.timeWeek.every(1))
+        .tickSize(-maps_online_daily_height)
+        .tickFormat(d3.timeFormat("")))
+  maps_online_daily_svg.append("g")//Monthly vertical lines
+      .attr("class", "axis axis-major axis-lines")
+      .attr("transform", "translate(0," + maps_online_daily_height + ")")
+      .attr("stroke","none")
+      .call(d3.axisBottom(x)
+        .ticks(d3.timeMonth.every(1))
+        .tickSize(-maps_online_daily_height)
+        .tickFormat(d3.timeFormat("")))
+  maps_online_daily_svg.append("g")//Monthly ticks and labels
+      .attr("class", "axis axis-major")
+      .attr("transform", "translate(0," + maps_online_daily_height + ")")
+      .call(d3.axisBottom(x)
+        .ticks(d3.timeMonth.every(1))
+        .tickFormat(d3.timeFormat("%b %d, %Y")))
+      .selectAll("text")
+        .style("text-anchor", "middle")
+        .attr("dx", "0")
+        .attr("dy", "1.1em");
 
-    // Add the point(s)
-    maps_online_daily_svg
-      .selectAll("points")
-      .data(data)
-      .enter()
-        .append("circle")
-          .attr("cx", function(d) { return x(d.facet) } )
-          .attr("cy", function(d) { return y(d.online) } )
-          .attr("r", 4)
-          .attr("stroke", "white")
-          .style("fill", "#8CD3DD")
-          .on("mousemove", function(d){
-            tooltip
-              .style("left", d3.event.pageX - 30 + "px")
-              .style("top", d3.event.pageY - 60 + "px")
-              .style("display", "inline-block")
-              .html(
-                d.online+
-                "<br><span class=\"small\">"+
-                displayDate(d.facet)+
-                "</span>"
-              );
-          })
-          .on("mouseout", function(d){ tooltip.style("display", "none");});
+  // Add line label(s)
+  maps_online_daily_svg.append("text")
+      .data([data])
+      .text("online")
+      .attr("transform", "translate(" + maps_online_daily_width + "," + y(data[data.length-1].online) + ")")
+      .style("fill","#8CD3DD")
+      .attr("x", -12)
+      .attr("y", -12)//move up a bit;
 
-}
-)
+  // Add the point(s)
+  maps_online_daily_svg
+    .selectAll("points")
+    .data(data)
+    .enter()
+      .append("circle")
+        .attr("cx", function(d) { return x(d.facet) } )
+        .attr("cy", function(d) { return y(d.online) } )
+        .attr("r", 4)
+        .attr("stroke", "white")
+        .style("fill", "#8CD3DD")
+        .on("mousemove", function(d){
+          tooltip
+            .style("left", d3.event.pageX - 30 + "px")
+            .style("top", d3.event.pageY - 60 + "px")
+            .style("display", "inline-block")
+            .html(
+              d.online+
+              "<br><span class=\"small\">"+
+              displayDate(d.facet)+
+              "</span>"
+            );
+        })
+        .on("mouseout", function(d){ tooltip.style("display", "none");});
+})
 
 
 </script>

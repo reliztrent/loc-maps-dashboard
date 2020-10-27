@@ -16,90 +16,93 @@ var sanborn_online_donut = d3.select("#d3-sanborn-online-donut")
  
 d3.json("data/sanborn-online.json", function(data) {
 
-// set the color scale
-var color = d3.scaleOrdinal()
-  .domain(["true","false"])
-  .range(["#8CD3DD","rgba(255, 127, 14, 0.7)"]);
+  // set the color scale
+  var color = d3.scaleOrdinal()
+    .domain(["true","false"])
+    .range(["#8CD3DD","rgba(255, 127, 14, 0.7)"]);
 
-// Compute the position of each group on the pie:
-var pie = d3.pie()
-  .sort(null) // Do not sort group by size
-  .value(function(d) {return d.count; })
-var data_ready = pie(data)
+  // Compute the position of each group on the pie:
+  var pie = d3.pie()
+    .sort(null) // Do not sort group by size
+    .value(function(d) {return d.count; })
+  var data_ready = pie(data)
 
-// The arc generator
-var arc = d3.arc()
-  .innerRadius(sanborn_online_donut_radius * 0.5)         // This is the size of the donut hole
-  .outerRadius(sanborn_online_donut_radius * 0.8)
+  // The arc generator
+  var arc = d3.arc()
+    .innerRadius(sanborn_online_donut_radius * 0.5)         // This is the size of the donut hole
+    .outerRadius(sanborn_online_donut_radius * 0.8)
 
-// Another arc that won't be drawn. Just for labels positioning
-var outerArc = d3.arc()
-  .innerRadius(sanborn_online_donut_radius * 0.9)
-  .outerRadius(sanborn_online_donut_radius * 0.9)
+  // Another arc that won't be drawn. Just for labels positioning
+  var outerArc = d3.arc()
+    .innerRadius(sanborn_online_donut_radius * 0.9)
+    .outerRadius(sanborn_online_donut_radius * 0.9)
 
-// Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
-sanborn_online_donut
-  .selectAll('allSlices')
-  .data(data_ready)
-  .enter()
-  .append('path')
-    .attr('d', arc)
-    .attr('fill', function(d,i){ return(color(d.data.facet)) })
-    .attr("stroke", "white")
-    .style("stroke-width", "2px")
-    .on("mousemove", function(d){
-      tooltip
-        .style("left", d3.event.pageX - 30 + "px")
-        .style("top", d3.event.pageY - 40 + "px")
-        .style("display", "inline-block")
-        .html((d.data.count));
-    })
-    .on("mouseout", function(d){ tooltip.style("display", "none");})
+  // Set tooltip variable
+  var tooltip = d3.select("body").append("div").attr("class", "toolTip")
 
-// Add the polylines between chart and labels:
-sanborn_online_donut
-  .selectAll('allPolylines')
-  .data(data_ready)
-  .enter()
-  .append('polyline')
-    .attr("stroke", "#75777b")
-    .style("fill", "none")
-    .attr("stroke-width", 1)
-    .attr('points', function(d) {
-      var posA = arc.centroid(d) // line insertion in the slice
-      var posB = outerArc.centroid(d) // line break: we use the other arc generator that has been built only for that
-      var posC = outerArc.centroid(d); // Label position = almost the same as posB
-      var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2 // we need the angle to see if the X position will be at the extreme right or extreme left
-      posC[0] = sanborn_online_donut_radius * 0.75 * (midangle < Math.PI ? 1 : -1); // multiply by 1 or -1 to put it on the right or on the left
-      return [posA, posB, posC]
-    })
+  // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+  sanborn_online_donut
+    .selectAll('allSlices')
+    .data(data_ready)
+    .enter()
+    .append('path')
+      .attr('d', arc)
+      .attr('fill', function(d,i){ return(color(d.data.facet)) })
+      .attr("stroke", "white")
+      .style("stroke-width", "2px")
+      .on("mousemove", function(d){
+        tooltip
+          .style("left", d3.event.pageX - 30 + "px")
+          .style("top", d3.event.pageY - 40 + "px")
+          .style("display", "inline-block")
+          .html((d.data.count));
+      })
+      .on("mouseout", function(d){ tooltip.style("display", "none");})
 
-// Add the labels:
-sanborn_online_donut
-  .selectAll('allLabels')
-  .data(data_ready)
-  .enter()
-  .append('text')
-    .text( function(d) { 
-      if (d.data.facet =='true') {
-        var label = 'online';
-      } else {
-        var label = 'not online';
-      }
-      return label
-    } )
-    .attr('font-size','.70em')
-    .attr('fill', '#75777b')
-    .attr('transform', function(d) {
-        var pos = outerArc.centroid(d);
-        var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
-        pos[0] = sanborn_online_donut_radius * 0.79 * (midangle < Math.PI ? 1 : -1);
-        return 'translate(' + pos + ')';
-    })
-    .style('text-anchor', function(d) {
-        var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
-        return (midangle < Math.PI ? 'start' : 'end')
-    })
+  // Add the polylines between chart and labels:
+  sanborn_online_donut
+    .selectAll('allPolylines')
+    .data(data_ready)
+    .enter()
+    .append('polyline')
+      .attr("stroke", "#75777b")
+      .style("fill", "none")
+      .attr("stroke-width", 1)
+      .attr('points', function(d) {
+        var posA = arc.centroid(d) // line insertion in the slice
+        var posB = outerArc.centroid(d) // line break: we use the other arc generator that has been built only for that
+        var posC = outerArc.centroid(d); // Label position = almost the same as posB
+        var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2 // we need the angle to see if the X position will be at the extreme right or extreme left
+        posC[0] = sanborn_online_donut_radius * 0.75 * (midangle < Math.PI ? 1 : -1); // multiply by 1 or -1 to put it on the right or on the left
+        return [posA, posB, posC]
+      })
+
+  // Add the labels:
+  sanborn_online_donut
+    .selectAll('allLabels')
+    .data(data_ready)
+    .enter()
+    .append('text')
+      .text( function(d) { 
+        if (d.data.facet =='true') {
+          var label = 'online';
+        } else {
+          var label = 'not online';
+        }
+        return label
+      } )
+      .attr('font-size','.70em')
+      .attr('fill', '#75777b')
+      .attr('transform', function(d) {
+          var pos = outerArc.centroid(d);
+          var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+          pos[0] = sanborn_online_donut_radius * 0.79 * (midangle < Math.PI ? 1 : -1);
+          return 'translate(' + pos + ')';
+      })
+      .style('text-anchor', function(d) {
+          var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+          return (midangle < Math.PI ? 'start' : 'end')
+      })
 
 })
 
