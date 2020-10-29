@@ -24,9 +24,15 @@ a {
 	text-decoration:underline dotted;
 }
 
+
 a:hover {
 	color:#007bff;
 	text-decoration:underline;
+}
+
+a.zoom:hover svg, a.data_download:hover svg {
+	fill:#333;
+    cursor: pointer;
 }
 
 h2.subtle {
@@ -78,6 +84,7 @@ h1.pop, h2.pop, h3.pop, h4.pop, .pop {
 	color:#4d4d4d;
 	text-align:center;
 	font-size:14px;
+	z-index:2001;
 }
 
 .line {
@@ -88,12 +95,6 @@ table.small {
   font-size:14px;
 }
 
-
-.top-right {
-	position:absolute;
-	top:6px;
-	right:8px;
-}
 
 /* Default colors for bar graphs */
 rect {
@@ -211,10 +212,10 @@ rect.pink:hover {
 	0% {
 		box-shadow:0 0.125rem 0.25rem rgba(0,0,0,0.05)
 	}
-	20% {
+	30% {
 		box-shadow:0px 0px 1.5rem #52d0e0;
 	}
-	40% {
+	50% {
 		box-shadow:0px 0px 1.5rem #52d0e0;
 	}
 	100% {
