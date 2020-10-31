@@ -36,7 +36,7 @@ def getRequest(request_url,params={'f':'json','c':'200','at':'results,facets,pag
             i += 1
             totaltime.append(timewait)
             timewait += 10 
-            makeRequest(request_url,params,timewait)
+            getRequest(request_url,params,timewait)
         else:
             print('Could not get ' + request_url)
             print('{} tries over {} seconds'.format(str(i),sum(totaltime)))
