@@ -1,4 +1,4 @@
-name: Daily get Sanborn atlas facets
+name: sanbornfacets.yml | Get current facets for loc.gov/collections/sanborn-maps
 on:
   schedule:
     - cron: '0 4 * * *'
@@ -12,17 +12,17 @@ jobs:
           persist-credentials: false
           
       - name: Set env
-        run: echo ::set-env name=TIMESTAMP::$(date +"%Y%m%d")
+        run: echo "TIMESTAMP=$(date +"%Y%m%d")" >> $GITHUB_ENV
   
       - name: Fetch API Data -${{ env.TIMESTAMP }}📦
-        uses: JamesIves/fetch-api-data-action@1.0.15
+        uses: JamesIves/fetch-api-data-action@1.0.19
         with:
           ENDPOINT: https://www.loc.gov/collections/sanborn-maps/?at=facets&fo=json
           RETRY: true
           SAVE_NAME: sanborn-facets-${{ env.TIMESTAMP }}
           
       - name: Fetch API Data - TODAY📦
-        uses: JamesIves/fetch-api-data-action@1.0.15
+        uses: JamesIves/fetch-api-data-action@1.0.19
         with:
           ENDPOINT: https://www.loc.gov/collections/sanborn-maps/?at=facets&fo=json
           RETRY: true
