@@ -1,7 +1,9 @@
-name: Monthly new gmd.mar updates
+name: mod-gmdmar-monthly.yml | Last month of mods to gmd.mar, in gmdmar-recent-monthly/
 on:
+  push: 
+    branches: master
   schedule:
-    - cron: '08 4 1 * *'
+    - cron: '08 4 1 * *' #offset from UTC to ensure that "today" is in the correct month
 
 jobs:
   refresh-feed:
@@ -13,21 +15,21 @@ jobs:
           persist-credentials: false
           
       - name: Set LASTMONTH env
-        run: echo ::set-env name=LASTMONTH::$(date -d "-$(date +%d) days" "+%Y%m")
+        run: echo "LASTMONTH=$(date -d "-$(date +%d) days" "+%Y%m")" >> $GITHUB_ENV
       - name: Set FIRSTDAYLASTMONTH env
-        run: echo ::set-env name=FIRSTDAYLASTMONTH::$(date -d "-1 month -$(($(date +%d)-1)) days" +"%Y-%m-%d")
+        run: echo "FIRSTDAYLASTMONTH=$(date -d "-1 month -$(($(date +%d)-1)) days" +"%Y-%m-%d")" >> $GITHUB_ENV
       - name: Set LASTDAYLASTMONTH env
-        run: echo ::set-env name=LASTDAYLASTMONTH::$(date -d "-$(date +%d) days" "+%Y-%m-%d")
+        run: echo "LASTDAYLASTMONTH=$(date -d "-$(date +%d) days" "+%Y-%m-%d")" >> $GITHUB_ENV
   
       - name: Fetch API Data - ${{ env.LASTMONTH }}📦
-        uses: JamesIves/fetch-api-data-action@1.0.15
+        uses: JamesIves/fetch-api-data-action@1.0.19
         with:
           ENDPOINT: https://www.loc.gov/search/?all=true&sb=shelf-id&sq=group:gmd.mar+AND+number_source_modified:[${{ env.FIRSTDAYLASTMONTH }} TO ${{ env.LASTDAYLASTMONTH }}]&fo=json&at=facets
           RETRY: true
           SAVE_NAME: gmdmar-mod-monthly-${{ env.LASTMONTH }}
           
       - name: Fetch API Data - THISMONTH📦
-        uses: JamesIves/fetch-api-data-action@1.0.15
+        uses: JamesIves/fetch-api-data-action@1.0.19
         with:
           ENDPOINT: https://www.loc.gov/search/?all=true&sb=shelf-id&sq=group:gmd.mar+AND+number_source_modified:[${{ env.FIRSTDAYLASTMONTH }} TO ${{ env.LASTDAYLASTMONTH }}]&fo=json&at=facets
           RETRY: true
