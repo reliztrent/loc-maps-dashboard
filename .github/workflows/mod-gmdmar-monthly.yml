@@ -1,7 +1,5 @@
 name: mod-gmdmar-monthly.yml | Last month of mods to gmd.mar, in gmdmar-recent-monthly/
 on:
-  push: 
-    branches: master
   schedule:
     - cron: '08 4 1 * *' #offset from UTC to ensure that "today" is in the correct month
 
