@@ -1,0 +1,35 @@
+---
+layout: none
+---
+
+{% assign filenames = '' | split: ',' %}
+{% for file in site.data.mod-gmdmar-daily %}
+	{% if file[0].size == 25 %}
+	 {% assign filenames = filenames | push: file[0] %}
+	{% endif %}
+{% endfor %}
+{% assign sorted_filenames  = filenames | sort | reverse %}
+
+{% for filename in sorted_filenames %}
+ {% for file in site.data.mod-gmdmar-daily %}
+  {% if file[0] == filename %}
+	  {% for result in file[1].results %}
+	   {% assign year = file[0] | slice: -8, 4 %}
+	   {% assign month = file[0] | slice: -4, 2 %}
+	   {% assign day = file[0] | slice: -2, 2 %}
+
+{
+	"id": "{{ result.id | default: ""}}",
+	"title": "{{ result.title | slice: 0, 150 | default: ""}}{% if result.title.size > 150 %}...{% endif %}",
+	"date": "{{ result.date | defailt: ""}}",
+	"callnumbers": [
+		{% for call_number in result.item.call_number %}
+		"{{ call_number | default: ""}}{% if forloop.last == false %}<br>{% endif %}",
+		{% endfor %}
+	],
+	"thumbnail": "{ result.resources[0].image | default:""}}"
+}{% if forloop.last == false %},{% endif %}
+	  {% endfor %}
+   {% endif %}
+  {% endfor %}
+{% endfor %}
