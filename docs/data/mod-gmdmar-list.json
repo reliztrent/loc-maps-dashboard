@@ -24,12 +24,12 @@ layout: none
 	"date": "{{ result.date | defailt: ""}}",
 	"callnumbers": [
 		{% for call_number in result.item.call_number %}
-		"{{ call_number | default: ""}}{% if forloop.last == false %}<br>{% endif %}",
+		"{{ call_number | default: ""}}{% if forloop.last == false %}<br>{% endif %}"{% if forloop.last == false %},{% endif %}
 		{% endfor %}
 	],
-	"thumbnail": "{ result.resources[0].image | default:""}}"
+	"thumbnail": "{{ result.resources[0].image | default:""}}"
 }{% if forloop.last == false %},{% endif %}
 	  {% endfor %}
    {% endif %}
-  {% endfor %}
+  {% endfor %}{% if forloop.last == false %},{% endif %}
 {% endfor %}
