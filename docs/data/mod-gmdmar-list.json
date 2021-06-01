@@ -14,14 +14,13 @@ layout: none
  {% for file in site.data.mod-gmdmar-daily %}
   {% if file[0] == filename %}
 	  {% for result in file[1].results %}
-	   {% assign year = file[0] | slice: -8, 4 %}
-	   {% assign month = file[0] | slice: -4, 2 %}
-	   {% assign day = file[0] | slice: -2, 2 %}
+
 
 {
 	"id": "{{ result.id | default: ""}}",
 	"title": "{{ result.title | slice: 0, 150 | default: ""}}{% if result.title.size > 150 %}...{% endif %}",
-	"date": "{{ result.date | defailt: ""}}",
+    "datePub": "{{ result.date | defailt: ""}}",
+    "dateBoated": ["{% for date in result.number_source_modified %}{{ date | default: ""}}"{% if forloop.last == false %},{% endif %}"{% endfor %}"],
 	"callnumbers": [
 		{% for call_number in result.item.call_number %}
 		"{{ call_number | default: ""}}{% if forloop.last == false %}<br>{% endif %}"{% if forloop.last == false %},{% endif %}
@@ -31,5 +30,5 @@ layout: none
 }{% if forloop.last == false %},{% endif %}
 	  {% endfor %}
    {% endif %}
-  {% endfor %}{% if forloop.last == false %},{% endif %}
+  {% endfor %} {% if file[1].results.size > 0 %} {% if forloop.last == false %},{% endif %}{% endif %}
 {% endfor %}
