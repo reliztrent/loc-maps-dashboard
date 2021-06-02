@@ -1,7 +1,8 @@
 ---
 layout: none
 ---
-
+[
+	["id","title","date","bib record modified","call number","thumbnail"],
 {% assign filenames = '' | split: ',' %}
 {% for file in site.data.mod-gmdmar-daily %}
 	{% if file[0].size == 25 %}
@@ -10,25 +11,27 @@ layout: none
 {% endfor %}
 {% assign sorted_filenames  = filenames | sort | reverse %}
 
-{% for filename in sorted_filenames %}
+{% assign numresults = 0 %}
+
+{% for filename in sorted_filenames %}{% if numresults > 0 %}{% if forloop.first == false %},{% endif %}{% endif %}
  {% for file in site.data.mod-gmdmar-daily %}
   {% if file[0] == filename %}
-	  {% for result in file[1].results %}
-
-
-{
-	"id": "{{ result.id | default: ""}}",
-	"title": "{{ result.title | slice: 0, 150 | default: ""}}{% if result.title.size > 150 %}...{% endif %}",
-    "datePub": "{{ result.date | defailt: ""}}",
-    "dateBoated": ["{% for date in result.number_source_modified %}{{ date | default: ""}}"{% if forloop.last == false %},{% endif %}"{% endfor %}"],
-	"callnumbers": [
-		{% for call_number in result.item.call_number %}
-		"{{ call_number | default: ""}}{% if forloop.last == false %}<br>{% endif %}"{% if forloop.last == false %},{% endif %}
-		{% endfor %}
-	],
-	"thumbnail": "{{ result.resources[0].image | default:""}}"
-}{% if forloop.last == false %},{% endif %}
+	{% assign numresults = file[1].results.size %}
+	{% for result in file[1].results %}
+[
+	"<a href=\"{{ result.id | default: "" | replace: '"', '\"'}}\">{{ result.id | default: "" | replace: '"', '\"'}}</a>",
+	"{{ result.title | slice: 0, 150 | default: "" | replace: '"', '\"'}}{% if result.title.size > 150 %}...{% endif %}",
+    "{{ result.date | defailt: "" | replace: '"', '\"'}}",
+    "{% for date in result.number_source_modified %}{{ date | default: "" | replace: '"', '\"'}}{% if forloop.last == false %}<br/>{% endif %}{% endfor %}",
+	"{% for call_number in result.item.call_number %}{{ call_number | default: "" | replace: '"', '\"'}}{% if forloop.last == false %}<br>{% endif %}{% endfor %}",
+	"<img alt=\"thumbnail image of item\" src=\"{{ result.resources[0].image | default:"" | replace: '"', '\"'}}\">"
+]{% if forloop.last == false %},{% endif %}
 	  {% endfor %}
    {% endif %}
-  {% endfor %} {% if file[1].results.size > 0 %} {% if forloop.last == false %},{% endif %}{% endif %}
+  {% endfor %} 
 {% endfor %}
+{% if numresults == 0 %}
+["","","","","",""]
+
+{% endif %}
+]
