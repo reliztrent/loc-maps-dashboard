@@ -158,7 +158,7 @@ const app = Vue.createApp({
         let today = new Date();
         let weekAgo = this.convertDateString(new Date(today.getTime() - (7 * 24 * 60 * 60 * 1000)));
         let thirtyDaysAgo = this.convertDateString(new Date(today.getTime() - (30 * 24 * 60 * 60 * 1000)));
-        sets.todayTotal = data[data.length-1];        
+        sets.todayTotal = (data[data.length-1]).toLocaleString();        
         for(var i = 0; i < dates.length; i += 1) {
           if(dates[i] === '2020-10-01') {
             sets.fy21StartIndex = i;
