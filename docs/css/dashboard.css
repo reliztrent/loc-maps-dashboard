@@ -1,0 +1,210 @@
+body {
+  font-size: .875rem;
+}
+
+.plotly-hide {
+  position: absolute;
+  height: 0;
+  overflow: hidden;
+}
+
+.card {
+  box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 5%);
+}
+
+.square-chart{
+  position:relative;
+}
+
+.square-chart:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.square-chart .chart {
+  position:absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.nav-tabs a.nav-link {
+  color: #d8478a;
+  cursor: pointer;
+  font-size:1.2rem;
+  font-weight:300;
+}
+
+.nav-tabs a.nav-link:hover {
+  background-color:#fbfbfb;
+}
+
+#sidebarMenu a.nav-link {
+  border-bottom:1px solid #dcdcdc;
+  padding:20px;
+}
+
+#sidebarMenu a.nav-link:hover {
+  background-color:#f3f2f2;
+}
+
+#sidebarMenu a.nav-link:active {
+  background-color:#ececec;
+}
+
+.badge {
+  background-color: #ffa567;
+}
+/* Modification list tables */
+
+.mod-table-container {
+  border-top: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+}
+.mod-table {
+  font-size:.8rem;  
+}
+.mod-table col {
+  width:20%;
+}
+.mod-table .thumbnail {
+  max-width: 100px;
+  max-height:150px;
+}
+
+.mod-table {
+  display:block;
+  /*max-height:500px;
+}
+
+/* Vue hide items until pages finishes loading */
+[v-cloak] { display:none; }
+
+/* Form-switch colors */
+.form-check-input:checked {
+    background-color: #f463a6;
+    border-color: #f463a6;
+}
+
+.form-check-input:focus {
+    border-color: #ffb0d5;
+    box-shadow: 0 0 0 .25rem rgba(244, 99, 166, 0.15);
+}
+
+.form-switch .form-check-input:focus {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23ffb0d5'/%3e%3c/svg%3e");
+}
+}
+/* Plotly charts */
+.chart {
+  width: 100% !important;
+}
+
+/* Icons */
+.feather {
+  width: 16px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+
+/* Text style overrides */
+.text-zhuzhed {
+  color: #f463a6!important;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  /* rtl:raw:
+  right: 0;
+  */
+  bottom: 0;
+  /* rtl:remove */
+  left: 0;
+  z-index: 100; /* Behind the navbar */
+  padding: 48px 0 0; /* Height of navbar */
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+@media (max-width: 767.98px) {
+  .sidebar {
+    top: 0;
+  }
+}
+
+#sidebarMenu {
+  background-color:white;
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+.sidebar .nav-link {
+  font-size: 0.8rem;
+  color: #333;
+}
+
+.sidebar .nav-link .feather {
+  margin-right: 4px;
+  color: #727272;
+}
+
+.sidebar .nav-link.active {
+  color: #007bff;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+  color: inherit;
+}
+
+.sidebar-heading {
+  font-size: .75rem;
+  text-transform: uppercase;
+}
+
+/*
+ * Navbar
+ */
+
+.navbar-brand {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  font-size: 1rem;
+  background-color: rgba(0, 0, 0, .25);
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+}
+
+.navbar .navbar-toggler {
+  top: .25rem;
+  right: 1rem;
+}
+
+.navbar .form-control {
+  padding: .75rem 1rem;
+  border-width: 0;
+  border-radius: 0;
+}
+
+.form-control-dark {
+  color: #fff;
+  background-color: rgba(255, 255, 255, .1);
+  border-color: rgba(255, 255, 255, .1);
+}
+
+.form-control-dark:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}

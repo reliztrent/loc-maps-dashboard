@@ -1,28 +1,115 @@
----
-layout: menu
-title: Notes
----
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Maps Dashboard</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/dashboard.css">
+  </head>
+  <body>
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Maps Dashboard</a>
+      <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>      
+      <ul class="navbar-nav px-5 mx-5 px-md-3 mx-md-0">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" href="https://github.com/reliztrent/loc-maps-dashboard"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+        </li>
+      </ul>
+    </header>
+      <div v-cloak id="v-container" class="container-fluid bg-light">
+        <div class="container-fluid">
+          <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+              <div class="position-sticky pt-3">
 
-	<h1 class="h0 mb-4">{{ page. title }}</h1>
-	<div class="card card-mini mb-2">	
-		<h3>Definitions</h3>
-		
-		<dl>
-			<dt>Object</dt>
-				<dd class="ml-4">An object is anything presented on loc.gov with a <code>https://www.loc.gov/item/</code> URL. An object could be a map set or volume with hundreds or even thousands of map sheets, or a single map.</dd>
-			<dt>Online</dt>
-				<dd class="ml-4">Items where <code>digitized:true</code>. Includes digitized materials, webpages, finding aids, e-resources, other online resources. Example search (all online materials from LOC): <a href="https://www.loc.gov/search/?fa=digitized:true">https://www.loc.gov/search/?fa=digitized:true</a></dd>
-			<dt>Not online</dt>
-				<dd class="ml-4">Items where <code>digitized:false</code>. Includes links to catalog and other descriptive records (other than finding aids) but objects themselves aren't online. Example search (all not online materials from LOC): <a href="https://www.loc.gov/search/?fa=digitized:false">https://www.loc.gov/search/?fa=digitized:false</a></dd>
-			<dt>GMD.MAR</dt>
-				<dd class="ml-4">Items where <code>group:gmd.mar</code>. GMD.MAR is a grouping for internal processing purposes. It holds all online materials from LOC's Geography and Map Division that are not otherwise held in another processing group. Note that these materials may not necessarily be maps. All GMD.MAR items are online. Example search (all GMD.MAR materials): <a href="https://www.loc.gov/search/?sq=group:gmd.mar">https://www.loc.gov/search/?sq=group:gmd.mar</a>. </dd>
-			<dt>Maps</dt>
-				<dd class="ml-4">Items where <code>original-format:map</code>. Example search (all maps from LOC): <a href="https://www.loc.gov/search/?fa=original-format:map">https://www.loc.gov/search/?fa=original-format:map</a>, equivalent to <a href="https://www.loc.gov/maps">https://www.loc.gov/maps</a></dd>
-			<dt>Sanborns</dt>
-				<dd class="ml-4">Items where <code>partof:sanborn</code>. Example search (all Sanborns): <a href="https://www.loc.gov/collections/sanborn-maps/">https://www.loc.gov/collections/sanborn-maps/</a>, equivalent to <a href="https://www.loc.gov/search/?fa=partof:sanborn%20maps">https://www.loc.gov/search/?fa=partof:sanborn maps</a></dd>
-		</dl>
-	</div>
-	<div class="card card-mini mb-2">	
-		<h3>Data sources</h3>
-		<p>The original JSON data files for each chart and table can be found using the <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-cloud-arrow-down-fill" fill="#ddd" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm2.354 6.854l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5a.5.5 0 0 1 1 0v3.793l1.146-1.147a.5.5 0 0 1 .708.708z"/></svg> button next to charts and tables. All  data can also be found in this site's <a href="https://github.com/{{ site.github_username }}{{ site.baseurl }}">GitHub repo</a>.</p>
-	</div>
+                <ul class="nav flex-column mt-4">
+                  <li class="nav-item">
+                    <a class="nav-link" href="main">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                      Home <span class="visually-hidden">(current)</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="notes">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" class="feather bi-card-list" fill="currentColor"><path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"></path><path fill-rule="evenodd" d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5z"></path><circle cx="3.5" cy="5.5" r=".5"></circle><circle cx="3.5" cy="8" r=".5"></circle><circle cx="3.5" cy="10.5" r=".5"></circle></svg>
+                      Data Notes
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="mod-gmdmar-table">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" class="feather bi bi-table"><path fill-rule="evenodd" d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z"></path></svg>
+                      Recently Modified
+                    </a>
+                  </li>
+                </ul>
+
+                
+                
+
+                
+              </div>
+            </nav>
+        
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+              <div class="d-md-none d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <div class="btn-toolbar mb-2 mb-md-0">
+                  <div class="btn-group me-2">
+                  </div>
+                </div>
+              </div>
+
+
+              <!-- begin title and lead-->
+              <div class="row pt-3">
+                <div class="col-md-12">
+                  <h1 class="h0 display-3">Data Notes</h1>
+                </div>
+              </div>
+              <div class="row row-cols-1">
+                <div class="col">
+                  <p>Publicly available data about online cartographic records and materials at the Library of Congress's <a href="https://loc.gov/maps">loc.gov</a>. All data can also be found in this site's <a href="https://github.com/reliztrent/loc-maps-dashboard">GitHub repo</a>. Made with the <a href="https://libraryofcongress.github.io/data-exploration/">loc.gov API</a>, GitHub <a href="https://pages.github.com/">pages</a> and <a href="https://docs.github.com/en/actions">actions</a>, <a href="https://jekyllrb.com/">Jekyll</a>, <a href="https://shopify.github.io/liquid/">Liquid</a>, and <a href="https://plotly.com/javascript/">Plotly.js</a>. Code and documentation <a href="https://github.com/reliztrent/loc-maps-dashboard">on GitHub</a>.</p>
+                </div>
+                <div class="col">
+                    <div class="card mt-4">
+                      <div class="card-body"> 	
+                        <h3 class="display-5">Definitions</h3>
+                        <dl>
+                            <dt>Object</dt>
+                                <dd class="ml-4">An object is anything presented on loc.gov with a URL beginning <code>https://www.loc.gov/item/</code>. An object could be a map set or volume with hundreds or even thousands of map sheets, or it could be a single map.</dd>
+                            <dt>Online</dt>
+                                <dd class="ml-4">Items where <code>digitized:true</code>. Includes digitized materials, webpages, finding aids, e-resources, other online resources. Example search (all online materials from LOC): <a href="https://www.loc.gov/search/?fa=digitized:true">https://www.loc.gov/search/?fa=digitized:true</a></dd>
+                            <dt>Not online</dt>
+                                <dd class="ml-4">Items where <code>digitized:false</code>. Includes links to catalog and other descriptive records (other than finding aids) but objects themselves aren't online. Example search (all not online materials from LOC): <a href="https://www.loc.gov/search/?fa=digitized:false">https://www.loc.gov/search/?fa=digitized:false</a></dd>
+                            <dt>GMD.MAR</dt>
+                                <dd class="ml-4">Items where <code>group:gmd.mar</code>. GMD.MAR is a grouping for internal processing purposes. It holds all online materials from LOC's Geography and Map Division that are not otherwise held in another processing group. Note that these materials may not necessarily be maps. All GMD.MAR items are online. Example search (all GMD.MAR materials): <a href="https://www.loc.gov/search/?sq=group:gmd.mar">https://www.loc.gov/search/?sq=group:gmd.mar</a>. </dd>
+                            <dt>Maps</dt>
+                                <dd class="ml-4">Items where <code>original-format:map</code>. Example search (all maps from LOC): <a href="https://www.loc.gov/search/?fa=original-format:map">https://www.loc.gov/search/?fa=original-format:map</a>, equivalent to <a href="https://www.loc.gov/maps">https://www.loc.gov/maps</a></dd>
+                            <dt>Sanborns</dt>
+                                <dd class="ml-4">Items where <code>partof:sanborn</code>. Example search (all Sanborns): <a href="https://www.loc.gov/collections/sanborn-maps/">https://www.loc.gov/collections/sanborn-maps/</a>, equivalent to <a href="https://www.loc.gov/search/?fa=partof:sanborn%20maps">https://www.loc.gov/search/?fa=partof:sanborn maps</a></dd>
+                        </dl>
+                      </div>
+                    </div>
+                </div>
+              </div>
+
+
+              
+              
+            </main>
+          </div>
+        </div>
+
+
+
+
+      </div>
+    <script src="assets/vue.global.prod.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js" crossorigin="anonymous"></script>
+    <script src="assets/main.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+  </body>
+</html>
