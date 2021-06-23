@@ -3,6 +3,8 @@ body {
   background-color: #f8f9fa;
 }
 
+[v-cloak] { display:none; }
+
 .plotly-hide {
   position: absolute;
   height: 0;
