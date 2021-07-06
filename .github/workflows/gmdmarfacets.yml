@@ -2,6 +2,11 @@ name: gmdmarfacets.yml | Get current facets for gmd.mar
 on:
   schedule:
     - cron: '5 4 * * *'
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'Manual dispatch'
+
 
 jobs:
   refresh-feed:
