@@ -160,11 +160,11 @@ const app = Vue.createApp({
         let thirtyDaysAgo = this.convertDateString(new Date(today.getTime() - (30 * 24 * 60 * 60 * 1000)));
         sets.todayTotal = (data[data.length-1]).toLocaleString();        
         for(var i = 0; i < dates.length; i += 1) {
-          if(dates[i] === '2020-10-01') {
-            sets.fy21StartIndex = i;
-            sets.fy21StartTotal = data[i];
-            sets.fy21Increase = data[data.length-1] - data[i];
-            sets.fy21PercentIncrease = (100*(sets.fy21Increase/sets.fy21StartTotal)).toFixed(2);
+          if(dates[i] === '2021-10-01') {
+            sets.fy22StartIndex = i;
+            sets.fy22StartTotal = data[i];
+            sets.fy22Increase = data[data.length-1] - fy22StartTotal;
+            sets.fy22PercentIncrease = (100*(sets.fy22Increase/sets.fy22StartTotal)).toFixed(2);
           };
           if (dates[i] === weekAgo) {
             sets.weekAgoTotal = data[i];
@@ -594,11 +594,11 @@ const app = Vue.createApp({
             this.gmdmarDailyTotalsDates(),
           );
 
-          let red = document.getElementById('gmdmarOnline-fy21Decrease');
-          let green = document.getElementById('gmdmarOnline-fy21Increase');
-          if (this.dataPoints.sets.gmdmarOnline.fy21PercentIncrease < 0) {
+          let red = document.getElementById('gmdmarOnline-fy22Decrease');
+          let green = document.getElementById('gmdmarOnline-fy22Increase');
+          if (this.dataPoints.sets.gmdmarOnline.fy22PercentIncrease < 0) {
             red.classList.remove("d-none")
-          } else if (this.dataPoints.sets.gmdmarOnline.fy21PercentIncrease > 0) {       
+          } else if (this.dataPoints.sets.gmdmarOnline.fy22PercentIncrease > 0) {       
             green.classList.remove("d-none")
           };
 
@@ -642,11 +642,11 @@ const app = Vue.createApp({
             this.sanbornDailyTotalsDates(),
           );
 
-          let red = document.getElementById('sanbornsOnline-fy21Decrease');
-          let green = document.getElementById('sanbornsOnline-fy21Increase');
-          if (this.dataPoints.sets.sanbornsOnline.fy21PercentIncrease < 0) {
+          let red = document.getElementById('sanbornsOnline-fy22Decrease');
+          let green = document.getElementById('sanbornsOnline-fy22Increase');
+          if (this.dataPoints.sets.sanbornsOnline.fy22PercentIncrease < 0) {
             red.classList.remove("d-none")
-          } else if (this.dataPoints.sets.sanbornsOnline.fy21PercentIncrease > 0) {       
+          } else if (this.dataPoints.sets.sanbornsOnline.fy22PercentIncrease > 0) {       
             green.classList.remove("d-none")
           };
 
@@ -683,19 +683,19 @@ const app = Vue.createApp({
             this.mapDailyTotalsDates(), 
           );
 
-          let red = document.getElementById('bibsOnline-fy21Decrease');
-          let green = document.getElementById('bibsOnline-fy21Increase');
-          if (this.dataPoints.sets.bibsOnline.fy21PercentIncrease < 0) {
+          let red = document.getElementById('bibsOnline-fy22Decrease');
+          let green = document.getElementById('bibsOnline-fy22Increase');
+          if (this.dataPoints.sets.bibsOnline.fy22PercentIncrease < 0) {
             red.classList.remove("d-none")
-          } else if (this.dataPoints.sets.bibsOnline.fy21PercentIncrease > 0) {       
+          } else if (this.dataPoints.sets.bibsOnline.fy22PercentIncrease > 0) {       
             green.classList.remove("d-none")
           };
 
-          let red2 = document.getElementById('mapsOnline-fy21Decrease');
-          let green2 = document.getElementById('mapsOnline-fy21Increase');
-          if (this.dataPoints.sets.mapsOnline.fy21PercentIncrease < 0) {
+          let red2 = document.getElementById('mapsOnline-fy22Decrease');
+          let green2 = document.getElementById('mapsOnline-fy22Increase');
+          if (this.dataPoints.sets.mapsOnline.fy22PercentIncrease < 0) {
             red2.classList.remove("d-none")
-          } else if (this.dataPoints.sets.mapsOnline.fy21PercentIncrease > 0) {       
+          } else if (this.dataPoints.sets.mapsOnline.fy22PercentIncrease > 0) {       
             green2.classList.remove("d-none")
           };
 
