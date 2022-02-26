@@ -12,7 +12,8 @@ layout: none
 {% for filename in sorted_filenames -%}
 	{% for file in site.data.gmdmar-facets-daily -%}
 	{% if file[0] == filename -%}
-	  {% if file[1].facets[0].filters[0].count >0 -%}
+	  {% assign flag = file[1].facets[0].filters[0].count -%}
+	  {% if flag > 0 -%}
 		{% assign online = file[1].facets[0].filters[0].count -%}
 		{% assign not_online = file[1].facets[0].filters[1].count -%}
 		{% assign year = file[0] | slice: -8, 4 -%}
@@ -26,6 +27,6 @@ layout: none
 	  {%- endif -%}
 	{%- endif -%}
 	{%- endfor -%}
-	{%- if forloop.last == false -%},{%- endif -%}
+	{%- if forloop.last == false -%}{%- if flag !=0 -%},{%- endif -%}{%- endif -%}
 {% endfor -%}
 ]
