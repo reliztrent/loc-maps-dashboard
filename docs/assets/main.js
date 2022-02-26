@@ -163,7 +163,7 @@ const app = Vue.createApp({
           if(dates[i] === '2021-10-01') {
             sets.fy22StartIndex = i;
             sets.fy22StartTotal = data[i];
-            sets.fy22Increase = data[data.length-1] - fy22StartTotal;
+            sets.fy22Increase = data[data.length-1] - data[i];
             sets.fy22PercentIncrease = (100*(sets.fy22Increase/sets.fy22StartTotal)).toFixed(2);
           };
           if (dates[i] === weekAgo) {
