@@ -12,17 +12,15 @@ layout: none
 {% for filename in sorted_filenames %}
 	{% for file in site.data.gmdmar-facets-daily %}
 	{% if file[0] == filename %}
-	  {% if file[1].facets %}
-		{% assign online = file[1].facets[0].filters[0].count %}
-		{% assign not_online = file[1].facets[0].filters[1].count %}
-		{% assign year = file[0] | slice: -8, 4 %}
-		{% assign month = file[0] | slice: -4, 2 %}
-		{% assign day = file[0] | slice: -2, 2 %}
-		{
-			"facet": "{{year}}-{{month}}-{{day}}",
-			"online": {{ online | default: 0 }}, 
-			"not_online": {{ not_online | default: 0 }} 	
-		}
-	{% endif %}{% endif %}{% endfor %}{% if forloop.last == false %},{% endif %}
+	{% assign online = file[1].facets[0].filters[0].count %}
+	{% assign not_online = file[1].facets[0].filters[1].count %}
+	{% assign year = file[0] | slice: -8, 4 %}
+	{% assign month = file[0] | slice: -4, 2 %}
+	{% assign day = file[0] | slice: -2, 2 %}
+	{
+		"facet": "{{year}}-{{month}}-{{day}}",
+		"online": {{ online | default: "" }}, 
+		"not_online": {{ not_online | default: "" }} 	
+	}{% endif %}{% endfor %}{% if forloop.last == false %},{% endif %}
 {% endfor %}
 ]
