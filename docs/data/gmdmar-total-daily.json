@@ -27,6 +27,6 @@ layout: none
 	  {%- endif -%}
 	{%- endif -%}
 	{%- endfor -%}
-	{%- if forloop.last == false -%}{%- if flag !=0 -%},{%- endif -%}{%- endif -%}
+	{%- if forloop.last == false -%}{%- if flag > 0 -%},{%- endif -%}{%- endif -%}
 {% endfor -%}
 ]
